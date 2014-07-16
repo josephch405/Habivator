@@ -1,0 +1,56 @@
+html, body{
+    width:600;
+    height:400;
+    margin: 0px;
+    font-family: "Calibri";
+    font-weight: bold;
+}
+
+table,td,th
+{
+    border:2px solid black;
+    border-collapse:collapse
+}
+
+td{
+    padding:2px;
+    height:34px;
+    font-size:20px;
+}
+
+th{
+    font-size: 14px;
+}
+
+table
+{
+    height:auto;
+    margin:5px;
+    width:580;
+    font-weight: 800;
+}
+
+#banner
+{
+    width:600;
+    height:60;
+}
+
+.iconGrid
+{
+    width:32px;
+    padding:0px;
+}
+
+.halfIconGrid
+{
+    width:12px;
+    padding:0px;
+}
+
+.icon
+{
+    height:32px;
+    width:32px;
+}
+
