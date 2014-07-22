@@ -22,7 +22,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn) {
 	}
 	
 	this.addToTable = function(){
-		table=document.getElementById("table");
+		table=document.getElementById("tasks");
 		rowText = "";
 		rowText += "<tr>"
 		
@@ -41,10 +41,13 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn) {
 			//closes the grid
 		}
 		//week grids
-		rowText += "<td class='halfIconGrid' id='" + this.id + "-e'></td>"
+		rowText += "<td class='halfIconGrid' id='" + this.id + "-e'>";
+		rowText += "<img class='halfIcon' src='..//ti//editButton.png'	onmouseover='this.src=\"..//ti//leditButton.png\";' onmouseout='this.src=\"..//ti//editButton.png\"'>";
+		rowText += "</td>"
 		//edit button
 		rowText += "</tr>"
-		table.children[0].innerHTML+=rowText;
+		console.log(table);
+		table.innerHTML+=rowText;
 	}
 	
 	this.buttonGen = function (dayIn, clickable) {
