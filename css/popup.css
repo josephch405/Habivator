@@ -60,3 +60,12 @@ table
     width:12px;
 }
 
+.editingTextbox
+{
+    font-weight: bold;
+    font-size: 20px;
+    font-family:calibri;
+    margin:0;
+    width:240px;
+    height:28px;
+}
