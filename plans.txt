@@ -1,0 +1,15 @@
+-weekend count implementation
+	-passes week endpoint = recount
+	-on options page
+
+-archive system
+	-separate objects of taskArchives
+	-with own manager, own page
+
+-better banner
+
+-icon system
+	-change on click?
+
+-smiley face
+	-randomized messages

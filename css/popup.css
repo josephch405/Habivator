@@ -33,7 +33,22 @@ table
 #banner
 {
     width:600;
-    height:60;
+    height:80;
+}
+#face{
+    position:absolute;
+    top:4px ;
+    right:4px;
+}
+
+#popBox{
+    position:absolute;
+    top:8px;
+    right: 120px;
+    width:300px;
+    height:120px;
+    visibility: hidden;
+    font-size: 20px;
 }
 
 .iconGrid

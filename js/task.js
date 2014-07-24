@@ -17,7 +17,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
         this.id = idIn || -1;
         this.icon = iconIn || 1;
         //basic init. management
-	//
+        //
         this.createTaskRow = function ()
         {
                 rowText = "";
@@ -46,7 +46,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
                 return rowText;
         }
         //creates normal task row and returns string
-	//
+        //
         this.createEditRow = function ()
         {
                 rowText = "";
@@ -54,7 +54,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
                 //icon 
                 rowText += "<td>";
                 rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "'"
-		rowText += "onkeydown='if (event.keyCode == 13) { switchToTask(" + this.id + ") }'>";
+                rowText += "onkeydown='if (event.keyCode == 13) { switchToTask(" + this.id + ") }'>";
                 rowText += "</td>";
                 //title
                 for (var i = 0; i < 7; i++)
@@ -78,15 +78,15 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
                 return rowText;
         }
         //creates row for edit mode and returns string
-	//
+        //
         this.addToTable = function ()
         {
                 table = document.getElementById("tasks");
                 rowText = this.createTaskRow();
                 table.innerHTML += "<tr id=" + this.id + ">" + rowText + "</tr>";
         }
-        //output row text and paste to end of table at initiation
-	//
+        //output row text and paste to end of table at start build of page, when called
+        //
         this.buttonGen = function (dayIn, clickable, inDaysActive)
         {
                 var result = "";
@@ -149,7 +149,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
                 return result;
         }
         //creates a button, based on day, clickable and daysactive if mentioned
-	//
+        //
         this.dDoneLocal = function (dayIn)
         {
                 switch (this.daysDone[dayIn])
@@ -168,7 +168,6 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
                 }
         }
         //local handler of main dDone function, toggles day completion
-	
         this.dActiveLocal = function (dayIn)
         {
                 switch (this.activeDays[dayIn])
@@ -184,27 +183,42 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn)
                 }
         }
         //local handler of main dActive function, toggles day activation
-	//
-	
-	this.scrub = function (){
-		for (i in this.daysDone){
-			if (this.activeDays[i]==0) {
-				this.daysDone[i]=0;
-			}
-			else if (this.activeDays[i]==1) {
-				if (i>=dayOfWeek) {
-					this.daysDone[i]=1;
-				}
-				else{
-					if (this.daysDone[i]<2) {
-						this.daysDone[i]=2;
-					}
-				}
-			}
-		}
-	}
-	//scrubbles task; checks for discrepancies in daysdone and activedays
-	
+        //
+        this.scrub = function ()
+        {
+                for (i in this.daysDone)
+                {
+                        if (this.activeDays[i] == 0)
+                        {
+                                this.daysDone[i] = 0;
+                        }
+                        else if (this.activeDays[i] == 1)
+                        {
+                                if (i >= dayOfWeek)
+                                {
+                                        this.daysDone[i] = 1;
+                                }
+                                else
+                                {
+                                        if (this.daysDone[i] < 2)
+                                        {
+                                                this.daysDone[i] = 2;
+                                        }
+                                }
+                        }
+                }
+        }
+        //scrubbles task; checks for discrepancies in daysdone and activedays
+        this.scrubClean = function ()
+        {
+                for (i in this.daysDone)
+                {
+                        this.daysDone[i] = 1;
+                }
+                this.scrub();
+		console.log(dayOfWeek);
+		console.log(this.daysDone);
+        }
         this.exportInfo = function ()
         {
                 string = "";

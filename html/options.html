@@ -1,43 +1,49 @@
+<!DOCTYLE HTML>
 <html>
-
-
-<title>Awesome Options</title>
-<center>
-<br>
-<style>
-body {
-background-image:url('awesomePromo.jpg');
-background-repeat:no-repeat;
-background-attachment:fixed;
-background-position: center top;
-}
-</style>
 <head>
-<!-- <b><font size=8 face="arial black">You are... </font></b>//-->
+    <link rel="stylesheet" type="text/css" href="..\css\popup.css">
+
 </head>
-<br><br>
-<br><br>
 
-<font size=4 face="verdana">
+<body style="position:absolute">
 
-<textarea id="word" rows="2" cols="50" style="font-family:verdana" ></textarea>
+    <div id="banner">
+        <img src="..\img\banner.png">
+    </div>
+    <div id="face" >
+        <img style="height:68px; width:68px" src="../img/face/up.png" onmouseover="this.src='../img/face/smile.png';"      onmouseout="this.src='../img/face/up.png';" onclick="smileyToggle()">
+    </div>
 
-<br>
-<input type="checkbox" id="animation">Animate!<br>
-<br>
+    <div id="popBox">
+        <img style="z-index:10;position:absolute" src="../img/bubble.png">
+        <div style="z-index:20;position:absolute;margin:8px">
+            Hi!
+        </div>
+    </div>
+    
+    <table id="table">
+        <tbody id="tasks">
+        <tr>
+            <th></th>
+            <th></th>
+            <th id="mon">Mon</th>
+            <th id="tue">Tue</th>
+            <th id="wed">Wed</th>
+            <th id="thu">Thu</th>
+            <th id="fri">Fri</th>
+            <th id="sat">Sat</th>
+            <th id="sun">Sun</th>
+            <th></th>
+        </tr>
+        </tbody>
+        <tr>
+            <td class="iconGrid"><img class="icon" src="..\img\tile\plus.png" onclick = "addNewTask()"></td>
+        </tr>
+    </table>
 
-<button id="save">Save</button>
-<br><br>
-<br>
-*RANDOM! for <b>RANDOM AWESOME PHRASES</b><br><br>
-**set <b>MORE THAN 1 AWESOME TEXT</b> by typing <b>";"</b> between phrases
-<br>
 
-<font size=2 face="verdana">
-<br>
-<input type="checkbox" id="ownPhrase">Customize entire phrase</font>
-
-</font>
+</body>
+<script src="..\js\jquery-2.1.1.min.js"></script>
+<script src="..\js\task.js"></script>
+<script src="..\js\popup.js"></script>
 </html>
-
-<script src="../js/options.js"></script>

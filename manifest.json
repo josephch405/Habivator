@@ -2,7 +2,7 @@
    "background": {
     "scripts": ["js/background.js"]
    },
-   "name": "Moti",
+   "name": "Motibit",
    "version": "0.1",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
    "browser_action": {
