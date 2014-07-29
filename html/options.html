@@ -1,17 +1,14 @@
 <!DOCTYLE HTML>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="..\css\popup.css">
-
+    <link rel="stylesheet" type="text/css" href="..\css\options.css">
+    <title>Habivator Options</title>
 </head>
 
-<body style="position:absolute">
+<body>
 
-    <div id="banner">
-        <img src="..\img\banner.png">
-    </div>
-    <div id="face" >
-        <img style="height:68px; width:68px" src="../img/face/up.png" onmouseover="this.src='../img/face/smile.png';"      onmouseout="this.src='../img/face/up.png';" onclick="smileyToggle()">
+    <div id="faceBox" >
+        <img id="face" style="height:68px; width:68px" src="../img/face/up.png" >
     </div>
 
     <div id="popBox">
@@ -33,17 +30,15 @@
             <th id="fri">Fri</th>
             <th id="sat">Sat</th>
             <th id="sun">Sun</th>
-            <th></th>
+            <th colspan="2"></th>
         </tr>
         </tbody>
-        <tr>
-            <td class="iconGrid"><img class="icon" src="..\img\tile\plus.png" onclick = "addNewTask()"></td>
-        </tr>
     </table>
 
 
 </body>
 <script src="..\js\jquery-2.1.1.min.js"></script>
+<script src="..\js\main.js"></script>
 <script src="..\js\task.js"></script>
-<script src="..\js\popup.js"></script>
+<script src="..\js\options.js"></script>
 </html>

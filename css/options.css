@@ -1,6 +1,4 @@
 html, body{
-    width:600px;
-    height:600px;
     margin: 0px;
     font-family: "Calibri";
     font-weight: bold;
@@ -25,26 +23,21 @@ th{
 
 table
 {
-    background-color: white;
+    top:100px;
     height:auto;
-    margin:5px;
-    width:590px;
+    margin:100px;
+    width:580px;
     font-weight: 800;
 }
 
 #banner
 {
-    width:600;
     height:80;
 }
 #face{
     position:absolute;
     top:4px ;
     right:4px;
-}
-
-#banner img{
-    width:600px;
 }
 
 #popBox{
@@ -55,10 +48,6 @@ table
     height:120px;
     visibility: hidden;
     font-size: 20px;
-}
-
-#plusTaskRow{
-    text-align: center;
 }
 
 .iconGrid

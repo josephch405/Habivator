@@ -1,15 +1,15 @@
-function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountIn) {
+function archivedTask(nameIn, iconIn, idIn, daysDoneIn) {
     this.name = "new task";
     this.editMode = 0;
-    this.activeDays = [1, 1, 1, 1, 1, 1, 1]; //0 is no and 1 is yes
     this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
-    if (activeDaysIn != null && daysDoneIn != null) {
+    
+	if (activeDaysIn != null && daysDoneIn != null) {
         if (activeDaysIn.length == 7 && daysDoneIn.length == 7) {
             this.activeDays = activeDaysIn;
             this.daysDone = daysDoneIn;
         }
     }
-    this.unit = unitCountIn || 0; //0 is no count, 1 is reps, 2 is minutes
+	
     this.name = nameIn || "New Task";
     this.id = idIn || -1;
     this.icon = iconIn || 1;
@@ -34,10 +34,6 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
         rowText += "<img class='halfIcon'  id='" + this.id + "-e' src='..//img//tile//editButton.png'>";
         rowText += "</td>"
         //edit button
-        rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon'  id='" + this.id + "-del' src='..//img//tile//deleteButton.png'>";
-        rowText += "</td>"
-        //delete
         return rowText;
     }
     //creates normal task row and returns string
@@ -62,11 +58,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
         rowText += "<td class='halfIconGrid'>";
         rowText += "<img class='halfIcon' id='" + this.id + "-e' src='..//img//tile//editButton.png'";
         rowText += ">";
-        //edit button
-        rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon'  id='" + this.id + "-del' src='..//img//tile//deleteButton.png'>";
         rowText += "</td>"
-        //delete button
+        //edit button
         return rowText;
     }
     //creates row for edit mode and returns string
@@ -108,17 +101,11 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
             editButton.onclick = function() {
                 switchToTask(id)
             };
-            //edit button
-
-            editButton.onclick = function() {
-                switchToTask(id)
-            };
             tb = document.getElementById(this.id + "-tf");
             tb.onkeydown = function() {
                 if (event.keyCode == 13) {
                     switchToTask(id)
                 }
-                //textfield input eventing
             };
         } else {
             for (var i = 0; i < this.daysDone.length; i++) {
@@ -162,18 +149,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
                 switchToEdit(id)
             };
         }
-        deleteButton = document.getElementById(this.id + "-del")
-        deleteButton.onmouseover = function() {
-            this.src = "..//img//tile//ldeleteButton.png"
-        };
-        deleteButton.onmouseout = function() {
-            this.src = "..//img//tile//deleteButton.png"
-        };
-		deleteButton.onclick = function() {
-            deleteTask(id);
-        };
     }
-	
     //output row text and paste to end of table at start build of page, when called
     //
     this.buttonGen = function(dayIn, inDaysActive) {
@@ -223,8 +199,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
     this.addToTable = function() {
         table = document.getElementById("tasks");
         var row = table.insertRow(table.rows.length)
-        row.id = this.id;
-        row.innerHTML = this.createTaskRow();
+		row.id=this.id;
+		row.innerHTML = this.createTaskRow();
     }
     this.dDoneLocal = function(dayIn) {
         switch (this.daysDone[dayIn]) {

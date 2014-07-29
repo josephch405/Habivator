@@ -10,8 +10,8 @@
     <div id="banner">
         <img src="..\img\banner.png">
     </div>
-    <div id="face" >
-        <img style="height:68px; width:68px" src="../img/face/up.png" onmouseover="this.src='../img/face/smile.png';"      onmouseout="this.src='../img/face/up.png';" onclick="smileyToggle()">
+    <div id="faceBox" >
+        <img id="face" style="height:68px; width:68px" src="../img/face/up.png" >
     </div>
 
     <div id="popBox">
@@ -24,8 +24,7 @@
     <table id="table">
         <tbody id="tasks">
         <tr>
-            <th></th>
-            <th></th>
+            <th colspan="2"></th>
             <th id="mon">Mon</th>
             <th id="tue">Tue</th>
             <th id="wed">Wed</th>
@@ -33,17 +32,18 @@
             <th id="fri">Fri</th>
             <th id="sat">Sat</th>
             <th id="sun">Sun</th>
-            <th></th>
+            <th colspan="2"></th>
         </tr>
         </tbody>
-        <tr>
-            <td class="iconGrid"><img class="icon" src="..\img\tile\plus.png" onclick = "addNewTask()"></td>
+        <tr id="plusTaskRow">
+            <td colspan="11" class="iconGrid"><img class="icon" id="newTaskButton" src="..\img\tile\plus.png"></td>
         </tr>
     </table>
 
 
 </body>
 <script src="..\js\jquery-2.1.1.min.js"></script>
+<script src="..\js\main.js"></script>
 <script src="..\js\task.js"></script>
 <script src="..\js\popup.js"></script>
 </html>

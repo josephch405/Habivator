@@ -1,20 +1,15 @@
 {
-   "background": {
-    "scripts": ["js/background.js"]
-   },
-   "name": "Motibit",
+   "manifest_version": 2,
+   "name": "Habivator",
    "version": "0.1",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
    "browser_action": {
-      "default_icon": "icons/icon.png",
+      "default_icon": "icon.png",
       "default_popup": "html/popup.html",
-      "default_title": "You are Awesome!"
+      "default_title": "Make a habit!"
    },
    "options_page": "html/options.html",
-   "icons": {"128": "icons/icon128.png",
-             "16": "icons/icon16.png",
-             "48": "icons/icon48.png",
-	     "96": "icons/icon96.png"
- },
-   "manifest_version": 2
+   "icons": {"128": "icon.png"
+ }
+   
 }
