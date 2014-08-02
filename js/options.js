@@ -8,29 +8,6 @@ swidth = $('body').innerWidth();
 swidth-=20;
 console.log(swidth);
 document.getElementById("face").style+=swidth-600;
-
-var importData = function() {
-    saveData = localStorage.save;
-    if (saveData != null) {
-
-        saveData = saveData.split(";;;")
-        if (saveData[0] == "saveVer 1") {
-			maxId=parseInt(saveData[1]);
-            for (var i = 2; i < saveData.length; i++) {
-                var task = saveData[i].split(";;");
-                tActDays = task[3].split(",");
-                for (var ii in tActDays) {
-                    tActDays[ii] = parseInt(tActDays[ii]);
-                }
-                tDoneDays = task[4].split(",");
-                for (var iii in tDoneDays) {
-                    tDoneDays[iii] = parseInt(tDoneDays[iii]);
-                }
-                taskArray.push(new Task(task[0], task[1], task[2], tActDays, tDoneDays))
-            }
-        }
-    }
-}
 //imports from localStorage
 
 

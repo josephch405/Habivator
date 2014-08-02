@@ -1,31 +1,10 @@
 html, body{
     width:600px;
     height:600px;
-    margin: 0px;
-    font-family: "Calibri";
-    font-weight: bold;
-    background-color: rgb(240,240,240);
-}
-
-table,td,th
-{
-    border:2px solid black;
-    border-collapse:collapse
-}
-
-td{
-    padding:2px;
-    height:34px;
-    font-size:20px;
-}
-
-th{
-    font-size: 14px;
 }
 
 table
 {
-    background-color: white;
     height:auto;
     margin:5px;
     width:590px;
@@ -34,9 +13,10 @@ table
 
 #banner
 {
-    width:600;
-    height:80;
+    width:600px;
+    height:80px;
 }
+
 #face{
     position:absolute;
     top:4px ;
@@ -59,38 +39,4 @@ table
 
 #plusTaskRow{
     text-align: center;
-}
-
-.iconGrid
-{
-    width:32px;
-    padding:0px;
-}
-
-.halfIconGrid
-{
-    width:12px;
-    padding:0px;
-}
-
-.icon
-{
-    height:32px;
-    width:32px;
-}
-
-.halfIcon
-{
-    height:32px;
-    width:12px;
-}
-
-.editingTextbox
-{
-    font-weight: bold;
-    font-size: 20px;
-    font-family:calibri;
-    margin:0;
-    width:240px;
-    height:28px;
 }

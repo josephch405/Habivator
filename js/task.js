@@ -1,4 +1,4 @@
-function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountIn) {
+function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn) {
     this.name = "new task";
     this.editMode = 0;
     this.activeDays = [1, 1, 1, 1, 1, 1, 1]; //0 is no and 1 is yes
@@ -9,7 +9,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
             this.daysDone = daysDoneIn;
         }
     }
-    this.unit = unitCountIn || 0; //0 is no count, 1 is reps, 2 is minutes
+    this.unit = unitIn || 0; //0 is no count, 1 is reps, 2 is minutes
+    this.quantity = quantityIn || 0;
     this.name = nameIn || "New Task";
     this.id = idIn || -1;
     this.icon = iconIn || 1;
@@ -19,8 +20,28 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
         rowText = "";
         rowText += "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
         //icon
-        rowText += "<td>" + this.name + "</td>";
+
+        rowText += "<td";
+        if (this.unit == 0) {
+            rowText += " colspan = 3";
+        }
+		else {
+			rowText += " style='width:180px;'"
+		}
+		//spreads out colspan in case of non unit task
+        rowText += ">" + this.name + "</td>";
         //title
+		
+		switch (this.unit){
+			case 1:
+				rowText+="<td colspan=2>" + this.quantity + " Reps</td>";
+				break;
+			case 2:
+				rowText+="<td colspan=2>" + this.quantity + " Mins</td>";
+				break;
+		}
+		//unit if applicable
+		
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
             //opens grid
@@ -46,10 +67,37 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
         rowText = "";
         rowText += "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
         //icon 
-        rowText += "<td>";
+        rowText += "<td"
+		if (this.unit == 0) {
+            rowText += " colspan = 2";
+        }
+		else if (this.unit > 0) {
+            rowText += " colspan = 1";
+        }
+		rowText+=">";
         rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "'"
         rowText += "</td>";
         //title
+		
+		switch (this.unit) {
+			case 0:
+				rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>N/A</td>";
+				break;
+			case 1:
+			case 2:
+				rowText+="<td>" + this.quantity + "</td>";
+				break;
+		}
+		switch (this.unit){
+			case 1:
+				rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>Reps</td>";
+				break;
+			case 2:
+				rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>Mins</td>";
+				break;
+		}
+		//unit editing
+		
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
             //opens grid
@@ -74,6 +122,9 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
     this.attachEvents = function() {
         var id = this.id;
         if (this.editMode == 1) {
+			
+			
+			
             for (var i = 0; i < this.activeDays.length; i++) {
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
                 switch (this.activeDays[i]) {
@@ -169,11 +220,11 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
         deleteButton.onmouseout = function() {
             this.src = "..//img//tile//deleteButton.png"
         };
-		deleteButton.onclick = function() {
+        deleteButton.onclick = function() {
             deleteTask(id);
         };
     }
-	
+
     //output row text and paste to end of table at start build of page, when called
     //
     this.buttonGen = function(dayIn, inDaysActive) {
@@ -280,11 +331,9 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, unitCountI
     }
     this.exportInfo = function() {
         string = "";
-        string += this.name + ";;";
-        string += this.icon + ";;";
-        string += this.id + ";;";
-        string += this.activeDays + ";;";
-        string += this.daysDone;
+        string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
+        string += this.activeDays + ";;" + this.daysDone + ";;";
+        string += this.unit + ";;" + this.quantity;
         return string;
     }
 }

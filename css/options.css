@@ -1,26 +1,3 @@
-html, body{
-    margin: 0px;
-    font-family: "Calibri";
-    font-weight: bold;
-    background-color: rgb(240,240,240);
-}
-
-table,td,th
-{
-    border:2px solid black;
-    border-collapse:collapse
-}
-
-td{
-    padding:2px;
-    height:34px;
-    font-size:20px;
-}
-
-th{
-    font-size: 14px;
-}
-
 table
 {
     top:100px;
@@ -50,36 +27,3 @@ table
     font-size: 20px;
 }
 
-.iconGrid
-{
-    width:32px;
-    padding:0px;
-}
-
-.halfIconGrid
-{
-    width:12px;
-    padding:0px;
-}
-
-.icon
-{
-    height:32px;
-    width:32px;
-}
-
-.halfIcon
-{
-    height:32px;
-    width:12px;
-}
-
-.editingTextbox
-{
-    font-weight: bold;
-    font-size: 20px;
-    font-family:calibri;
-    margin:0;
-    width:240px;
-    height:28px;
-}
