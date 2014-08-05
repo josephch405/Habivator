@@ -110,9 +110,11 @@ var checkIfDatePassed = function() {
         //}
         //new week!
     } else {
-        for (i in taskArray) {
+        for (var i in taskArray) {
             taskArray[i].scrub();
         }
+		this.lockdown=false;
+		localStorage.lockdown=false;
     }
     saveToLS();
 };
@@ -133,4 +135,9 @@ var deleteTask = function(idIn){
     var row = document.getElementById(idIn);
     row.parentElement.removeChild(row);
     saveToLS();
+}
+
+var toggleUnitOutside = function(id){
+	console.log(id);
+	findTaskById(id).toggleUnit();
 }

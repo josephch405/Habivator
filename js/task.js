@@ -123,7 +123,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         var id = this.id;
         if (this.editMode == 1) {
 			
-			
+			var editButton = document.getElementById(this.id + "-cUnit");
+			editButton.onclick = function(){toggleUnitOutside(id);}
 			
             for (var i = 0; i < this.activeDays.length; i++) {
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
@@ -305,10 +306,17 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             break;
         }
     }
+	
+	this.toggleUnit = function(){
+		this.unit = (this.unit + 1)%3;
+		saveToLS();
+		var id = this.id;
+		switchToEdit(id);
+	}
     //local handler of main dActive function, toggles day activation
     //
     this.scrub = function() {
-        for (i in this.daysDone) {
+        for (var i in this.daysDone) {
             if (this.activeDays[i] == 0) {
                 this.daysDone[i] = 0;
             } else if (this.activeDays[i] == 1) {
@@ -324,10 +332,12 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }
     //scrubbles task; checks for discrepancies in daysdone and activedays
     this.scrubClean = function() {
-        for (i in this.daysDone) {
+        for (var i in this.daysDone) {
             this.daysDone[i] = 1;
         }
+		debugger;
         this.scrub();
+		debugger;
     }
     this.exportInfo = function() {
         string = "";
