@@ -1,7 +1,22 @@
+@font-face {
+    font-family: aller;
+    src: url(Aller_Rg.ttf);
+}
+
+@font-face {
+    font-family: openSans;
+    src: url(OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(Roboto-Regular.ttf);
+}
+
+
 html, body{
     margin: 0px;
-    font-family: "Calibri";
-    font-weight: bold;
+    font-family: "roboto";
     background-color: rgb(240,240,240);
 }
 
@@ -20,7 +35,7 @@ td{
 }
 
 th{
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .iconGrid
@@ -49,7 +64,6 @@ th{
 
 .editingTextbox
 {
-    font-weight: bold;
     font-size: 20px;
     font-family:calibri;
     margin:0;
@@ -59,7 +73,6 @@ th{
 
 .editUnitTextBox
 {
-    font-weight: bold;
     font-size: 20px;
     font-family:calibri;
     margin:0;
