@@ -57,6 +57,16 @@ th{
     height:28px;
 }
 
+.editUnitTextBox
+{
+    font-weight: bold;
+    font-size: 20px;
+    font-family:calibri;
+    margin:0;
+    width:42px;
+    height:28px;
+}
+
 .unitGrid{
     width:50px;
 }

@@ -5,7 +5,7 @@ var dayOfWeek = d.getDay();
 if (dayOfWeek == 0) {
     dayOfWeek = 7;
 }
-var maxId=1;
+var maxId = 1;
 //converts sunday from 0 to 7
 var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var taskArray = [];
@@ -17,7 +17,7 @@ var importData = function() {
 
         saveData = saveData.split(";;;")
         if (saveData[0] == "saveVer 1") {
-			maxId=parseInt(saveData[1]);
+            maxId = parseInt(saveData[1]);
             for (var i = 2; i < saveData.length; i++) {
                 var task = saveData[i].split(";;");
                 tActDays = task[3].split(",");
@@ -28,19 +28,19 @@ var importData = function() {
                 for (var iii in tDoneDays) {
                     tDoneDays[iii] = parseInt(tDoneDays[iii]);
                 }
-                taskArray.push(new Task(task[0], task[1], task[2], tActDays, tDoneDays))
+                taskArray.push(new Task(task[0], task[1], task[2], tActDays, tDoneDays, parseInt(task[5]), parseInt(task[6])))
             }
         }
     }
 }
 
 var addNewTask = function() {
-	maxId=parseInt(maxId);
+    maxId = parseInt(maxId);
     taskArray.push(new Task(null, null, maxId));
     findTaskById(maxId).scrub();
     findTaskById(maxId).addToTable();
     findTaskById(maxId).attachEvents();
-    maxId+=1;
+    maxId += 1;
     saveToLS();
 }
 //adds new default task
@@ -59,7 +59,7 @@ var dActiveHandler = function(idIn, dayIn) {
 //handles tile dActive events
 var saveToLS = function() {
     var string = "saveVer 1;;;";
-	string += maxId;
+    string += maxId;
     for (var i in taskArray) {
         string += ";;;"
         string += taskArray[i].exportInfo();
@@ -77,6 +77,9 @@ var switchToEdit = function(idIn) {
 //switches row to edit mode
 var switchToTask = function(idIn) {
     findTaskById(idIn).name = document.getElementById(idIn + "-tf").value;
+    if (document.getElementById(idIn + "-quant")) {
+        findTaskById(idIn).quantity = document.getElementById(idIn + "-quant").value;
+    }
     findTaskById(idIn).scrub();
     findTaskById(idIn).editMode = 0;
     saveToLS();
@@ -113,15 +116,15 @@ var checkIfDatePassed = function() {
         for (var i in taskArray) {
             taskArray[i].scrub();
         }
-		this.lockdown=false;
-		localStorage.lockdown=false;
+        this.lockdown = false;
+        localStorage.lockdown = false;
     }
     saveToLS();
 };
 
-var findTaskById = function(idIn){
-    for (var i=0; i<taskArray.length;i++){
-        if (taskArray[i].id==parseInt(idIn)) {
+var findTaskById = function(idIn) {
+    for (var i = 0; i < taskArray.length; i++) {
+        if (taskArray[i].id == parseInt(idIn)) {
             return taskArray[i];
             break;
         }
@@ -129,15 +132,15 @@ var findTaskById = function(idIn){
     return null;
 }
 
-var deleteTask = function(idIn){
+var deleteTask = function(idIn) {
     var task = findTaskById(idIn);
-    taskArray.splice(taskArray.indexOf(task),1);
+    taskArray.splice(taskArray.indexOf(task), 1);
     var row = document.getElementById(idIn);
     row.parentElement.removeChild(row);
     saveToLS();
 }
 
-var toggleUnitOutside = function(id){
-	console.log(id);
-	findTaskById(id).toggleUnit();
+var toggleUnitOutside = function(id) {
+    console.log(id);
+    findTaskById(id).toggleUnit();
 }

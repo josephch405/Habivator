@@ -1,6 +1,4 @@
--weekend count implementation
-	-passes week endpoint = recount
-	-on options page
+-fix editing bug - doesn't keep name or quant after unit change due to bad saving order
 
 -archive system
 	-separate objects of taskArchives
@@ -10,6 +8,10 @@
 
 -icon system
 	-change on click?
+	
+-weekend count implementation
+-passes week endpoint = recount
+-on options page
 
 -smiley face
 	-randomized messages

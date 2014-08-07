@@ -24,24 +24,23 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         rowText += "<td";
         if (this.unit == 0) {
             rowText += " colspan = 3";
+        } else {
+            rowText += " style='width:180px;'"
         }
-		else {
-			rowText += " style='width:180px;'"
-		}
-		//spreads out colspan in case of non unit task
+        //spreads out colspan in case of non unit task
         rowText += ">" + this.name + "</td>";
         //title
-		
-		switch (this.unit){
-			case 1:
-				rowText+="<td colspan=2>" + this.quantity + " Reps</td>";
-				break;
-			case 2:
-				rowText+="<td colspan=2>" + this.quantity + " Mins</td>";
-				break;
-		}
-		//unit if applicable
-		
+
+        switch (this.unit) {
+        case 1:
+            rowText += "<td colspan=2>" + this.quantity + " Reps</td>";
+            break;
+        case 2:
+            rowText += "<td colspan=2>" + this.quantity + " Mins</td>";
+            break;
+        }
+        //unit if applicable
+
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
             //opens grid
@@ -68,36 +67,35 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         rowText += "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
         //icon 
         rowText += "<td"
-		if (this.unit == 0) {
+        if (this.unit == 0) {
             rowText += " colspan = 2";
+        } else if (this.unit > 0) {
+            rowText += " colspan = 1 ";
         }
-		else if (this.unit > 0) {
-            rowText += " colspan = 1";
-        }
-		rowText+=">";
-        rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "'"
+        rowText += "width = 180 >";
+        rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "' >"
         rowText += "</td>";
         //title
-		
-		switch (this.unit) {
-			case 0:
-				rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>N/A</td>";
-				break;
-			case 1:
-			case 2:
-				rowText+="<td>" + this.quantity + "</td>";
-				break;
-		}
-		switch (this.unit){
-			case 1:
-				rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>Reps</td>";
-				break;
-			case 2:
-				rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>Mins</td>";
-				break;
-		}
-		//unit editing
-		
+
+        switch (this.unit) {
+        case 0:
+            rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>N/A</td>";
+            break;
+        case 1:
+        case 2:
+            rowText += "<td class='unitGrid'>" + "<input id=" + this.id + "-quant type='number' min='0' class='editUnitTextBox' value=" + this.quantity + ">" + "</td>";
+            break;
+        }
+        switch (this.unit) {
+        case 1:
+            rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>Reps</td>";
+            break;
+        case 2:
+            rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>Mins</td>";
+            break;
+        }
+        //unit editing
+
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
             //opens grid
@@ -122,10 +120,12 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     this.attachEvents = function() {
         var id = this.id;
         if (this.editMode == 1) {
-			
-			var editButton = document.getElementById(this.id + "-cUnit");
-			editButton.onclick = function(){toggleUnitOutside(id);}
-			
+
+            var editButton = document.getElementById(this.id + "-cUnit");
+            editButton.onclick = function() {
+                toggleUnitOutside(id);
+            }
+
             for (var i = 0; i < this.activeDays.length; i++) {
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
                 switch (this.activeDays[i]) {
@@ -166,12 +166,23 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 switchToTask(id)
             };
             tb = document.getElementById(this.id + "-tf");
+
             tb.onkeydown = function() {
                 if (event.keyCode == 13) {
                     switchToTask(id)
                 }
                 //textfield input eventing
             };
+            if (document.getElementById(this.id + "-quant")) {
+                tb2 = document.getElementById(this.id + "-quant");
+                tb2.onkeydown = function() {
+                    if (event.keyCode == 13) {
+                        switchToTask(id)
+                    }
+                    //quantity field input eventing
+                };
+            }
+
         } else {
             for (var i = 0; i < this.daysDone.length; i++) {
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
@@ -306,13 +317,13 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             break;
         }
     }
-	
-	this.toggleUnit = function(){
-		this.unit = (this.unit + 1)%3;
-		saveToLS();
-		var id = this.id;
-		switchToEdit(id);
-	}
+
+    this.toggleUnit = function() {
+        this.unit = (this.unit + 1) % 3;
+        saveToLS();
+        var id = this.id;
+        switchToEdit(id);
+    }
     //local handler of main dActive function, toggles day activation
     //
     this.scrub = function() {
@@ -335,9 +346,9 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         for (var i in this.daysDone) {
             this.daysDone[i] = 1;
         }
-		debugger;
+        debugger;
         this.scrub();
-		debugger;
+        debugger;
     }
     this.exportInfo = function() {
         string = "";
