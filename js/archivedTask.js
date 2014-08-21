@@ -1,195 +1,118 @@
-function archivedTask(nameIn, iconIn, idIn, daysDoneIn) {
+function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
+    //essentially static records of past tasks
+
     this.name = "new task";
     this.editMode = 0;
     this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
-    
-	if (activeDaysIn != null && daysDoneIn != null) {
-        if (activeDaysIn.length == 7 && daysDoneIn.length == 7) {
-            this.activeDays = activeDaysIn;
-            this.daysDone = daysDoneIn;
-        }
+
+    if (daysDoneIn != null && daysDoneIn.length == 7) {
+        this.daysDone = daysDoneIn;
     }
-	
+
+    this.unit = unitIn || 0; //0 is no count, 1 is reps, 2 is minutes
+    this.quantity = quantityIn || 0;
     this.name = nameIn || "New Task";
     this.id = idIn || -1;
     this.icon = iconIn || 1;
     //basic init. management
     //
     this.createTaskRow = function() {
-        rowText = "";
-        rowText += "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
+
+        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
         //icon
-        rowText += "<td>" + this.name + "</td>";
-        //title
+
+        rowText += "<td";
+        if (this.unit == 0) {
+            rowText += " colspan = 3;";
+            rowText += ">" + this.name + "</td>";
+        } else {
+            rowText += " style='width:180px;'";
+            rowText += ">" + this.name + "</td>";
+            if (this.unit == 1) {
+                rowText += "<td colspan=2>" + this.quantity + " Reps</td>";
+            } else if (this.unit == 2) {
+                rowText += "<td colspan=2>" + this.quantity + " Mins</td>";
+            }
+        }
+        //colspanning for each case of unit and edit/taskrow
+
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
-            //opens grid
             rowText += this.buttonGen(i);
-            //uses buttonGen to add button for day
+            console.log(this.buttonGen(i))
             rowText += "</td>"
-            //closes the grid
         }
-        //week grids
+
         rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon'  id='" + this.id + "-e' src='..//img//tile//editButton.png'>";
+        rowText += "<img class='halfIcon' id='" + this.id + "-del' src='..//img//tile//deleteButton.png'>";
         rowText += "</td>"
-        //edit button
+        //del button
+
         return rowText;
     }
     //creates normal task row and returns string
     //
-    this.createEditRow = function() {
-        rowText = "";
-        rowText += "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
-        //icon 
-        rowText += "<td>";
-        rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "'"
-        rowText += "</td>";
-        //title
-        for (var i = 0; i < 7; i++) {
-            rowText += "<td class='iconGrid'>";
-            //opens grid
-            rowText += this.buttonGen(i, true);
-            //uses buttonGen to add button for day
-            rowText += "</td>"
-            //closes the grid
-        }
-        //week grids
-        rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon' id='" + this.id + "-e' src='..//img//tile//editButton.png'";
-        rowText += ">";
-        rowText += "</td>"
-        //edit button
-        return rowText;
-    }
-    //creates row for edit mode and returns string
-    //
     this.attachEvents = function() {
         var id = this.id;
-        if (this.editMode == 1) {
-            for (var i = 0; i < this.activeDays.length; i++) {
-                var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
-                switch (this.activeDays[i]) {
-                case 0:
-                    pic.onmouseover = function() {
-                        this.src = "..//img//tile//lr.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "..//img//tile//r.png"
-                    }
-                    break;
-                case 1:
-                    pic.onmouseover = function() {
-                        this.src = "..//img//tile//lg.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "..//img//tile//g.png"
-                    };
-                    break;
-                }
-                pic.onclick = function() {
-                    dActiveHandler(parseInt(id), parseInt(this.id.split("-")[1]))
-                };
-            }
-            editButton = document.getElementById(this.id + "-e")
-            editButton.onmouseover = function() {
-                this.src = "..//img//tile//leditButton.png"
-            };
-            editButton.onmouseout = function() {
-                this.src = "..//img//tile//editButton.png"
-            };
-            editButton.onclick = function() {
-                switchToTask(id)
-            };
-            tb = document.getElementById(this.id + "-tf");
-            tb.onkeydown = function() {
-                if (event.keyCode == 13) {
-                    switchToTask(id)
-                }
-            };
-        } else {
-            for (var i = 0; i < this.daysDone.length; i++) {
-                var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
-                var clickable = false;
-                switch (this.daysDone[i]) {
-                case 2:
-                    pic.onmouseover = function() {
-                        this.src = "..//img//tile//lr.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "..//img//tile//r.png"
-                    }
-                    clickable = true;
-                    break;
-                case 4:
-                    pic.onmouseover = function() {
-                        this.src = "..//img//tile//lg.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "..//img//tile//g.png"
-                    }
-                    clickable = true;
-                    break;
-                }
-                clickable = clickable && i < dayOfWeek;
-                if (clickable) {
-                    pic.onclick = function() {
-                        dDoneHandler(parseInt(id), parseInt(this.id.split("-")[1]))
-                    };
-                }
-            }
-            editButton = document.getElementById(this.id + "-e")
-            editButton.onmouseover = function() {
-                this.src = "..//img//tile//leditButton.png"
-            };
-            editButton.onmouseout = function() {
-                this.src = "..//img//tile//editButton.png"
-            };
-            editButton.onclick = function() {
-                switchToEdit(id)
-            };
-        }
-    }
-    //output row text and paste to end of table at start build of page, when called
-    //
-    this.buttonGen = function(dayIn, inDaysActive) {
-        var result = "";
-        var daysActive = inDaysActive || false;
-        result += "<img class='icon'"; //opens icon
-        result += "id='" + this.id + "-" + (dayIn + 1) + "'";
-        var referenceArray;
-        if (daysActive) {
-            referenceArray = this.activeDays;
-        } else {
-            referenceArray = this.daysDone;
-        }
-        if (inDaysActive) {
-            switch (referenceArray[dayIn]) {
-            case 0:
-                result += "src='..//img//tile//r.png'";
-                break;
-            case 1:
-                result += "src='..//img//tile//g.png'";
-                break;
-            }
-        } else {
-            switch (referenceArray[dayIn]) {
-            case 0:
-                result += "src='..//img//tile//b.png'/";
-                break;
-            case 1:
-                result += "src='..//img//tile//w.png'/"
-                break;
+
+        for (var i = 0; i < this.daysDone.length; i++) {
+            var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
+            switch (parseInt(this.daysDone[i])) {
             case 2:
-                result += "src='..//img//tile//r.png'";
-                break;
-            case 3:
-                result += "src='..//img//tile//y.png'";
+                pic.onmouseover = function() {
+                    this.src = "..//img//tile//lr.png"
+                };
+                pic.onmouseout = function() {
+                    this.src = "..//img//tile//r.png"
+                }
+                clickable = false;
                 break;
             case 4:
-                result += "src='..//img//tile//g.png'";
+                pic.onmouseover = function() {
+                    this.src = "..//img//tile//lg.png"
+                };
+                pic.onmouseout = function() {
+                    this.src = "..//img//tile//g.png"
+                }
                 break;
             }
+        }
+
+        deleteButton = document.getElementById(this.id + "-del")
+        deleteButton.onmouseover = function() {
+            this.src = "..//img//tile//ldeleteButton.png"
+        };
+        deleteButton.onmouseout = function() {
+            this.src = "..//img//tile//deleteButton.png"
+        };
+        deleteButton.onclick = function() {
+            deleteTask(id);
+        };
+    }
+
+    //output row text and paste to end of table at start build of page, when called
+    //
+    this.buttonGen = function(dayIn) {
+        var result = "";
+        result += "<img class='icon'"; //opens icon
+        result += "id='" + this.id + "-" + (dayIn + 1) + "'";
+        switch (parseInt(this.daysDone[dayIn])) {
+        case 0:
+            result += "src='..//img//tile//b.png'/";
+            break;
+        case 1:
+            result += "src='..//img//tile//w.png'/"
+            break;
+        case 2:
+            result += "src='..//img//tile//r.png'";
+            console.log("asdf")
+            break;
+        case 3:
+            result += "src='..//img//tile//y.png'";
+            break;
+        case 4:
+            result += "src='..//img//tile//g.png'";
+            break;
         }
         result += ">" //closes icon
         return result;
@@ -197,11 +120,12 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn) {
     //creates a button, based on day and daysactive if mentioned
     //
     this.addToTable = function() {
-        table = document.getElementById("tasks");
+        table = document.getElementById("archiveTasks");
         var row = table.insertRow(table.rows.length)
-		row.id=this.id;
-		row.innerHTML = this.createTaskRow();
+        row.id = this.id;
+        row.innerHTML = this.createTaskRow();
     }
+
     this.dDoneLocal = function(dayIn) {
         switch (this.daysDone[dayIn]) {
         case 1:
@@ -217,20 +141,7 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn) {
             break;
         }
     }
-    //local handler of main dDone function, toggles day completion
-    this.dActiveLocal = function(dayIn) {
-        switch (this.activeDays[dayIn]) {
-        case 1:
-            this.activeDays[dayIn] = 0;
-            document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn, true);
-            break;
-        case 0:
-            this.activeDays[dayIn] = 1;
-            document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn, true);
-            break;
-        }
-    }
-    //local handler of main dActive function, toggles day activation
+    //local handler of main dLocal function, toggles day done
     //
     this.scrub = function() {
         for (i in this.daysDone) {
@@ -248,19 +159,12 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn) {
         }
     }
     //scrubbles task; checks for discrepancies in daysdone and activedays
-    this.scrubClean = function() {
-        for (i in this.daysDone) {
-            this.daysDone[i] = 1;
-        }
-        this.scrub();
-    }
+
     this.exportInfo = function() {
-        string = "";
-        string += this.name + ";;";
-        string += this.icon + ";;";
-        string += this.id + ";;";
-        string += this.activeDays + ";;";
-        string += this.daysDone;
+        string = "arch;;";
+        string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
+        string += this.daysDone + ";;";
+        string += this.unit + ";;" + this.quantity;
         return string;
     }
 }

@@ -1,9 +1,4 @@
 
-document.getElementById(weekArray[dayOfWeek - 1]).style.backgroundColor = "yellow"; //changes color of current day
-
-//
-//
-
 swidth = $('body').innerWidth();
 swidth-=20;
 console.log(swidth);
@@ -13,19 +8,13 @@ document.getElementById("face").style+=swidth-600;
 
 importData();
 checkIfDatePassed();
-if (taskArray.length == 0) {
-    addNewTask();
-    console.log("bo");
-}
 
-else {
 //
-    for (var i in taskArray) {
-        taskArray[i].addToTable();
-    }
-    for (var i in taskArray) {
-        taskArray[i].attachEvents();
-    }
+for (var i in archiveArray) {
+    archiveArray[i].addToTable();
+}
+for (var i in archiveArray) {
+    archiveArray[i].attachEvents();
 }
 //shuffle at start of day?
 

@@ -8,6 +8,9 @@
       "default_popup": "html/popup.html",
       "default_title": "Make a habit!"
    },
+   "permissions": [
+      "storage"
+   ],
    "options_page": "html/options.html",
    "icons": {"128": "icon.png"
  }

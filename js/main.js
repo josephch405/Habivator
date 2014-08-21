@@ -6,29 +6,42 @@ if (dayOfWeek == 0) {
     dayOfWeek = 7;
 }
 var maxId = 1;
+var maxArchiveId = 1;
 //converts sunday from 0 to 7
 var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var taskArray = [];
+var archiveArray = [];
 var archive = [];
 
 var importData = function() {
+    
     saveData = localStorage.save;
     if (saveData != null) {
-
         saveData = saveData.split(";;;")
         if (saveData[0] == "saveVer 1") {
             maxId = parseInt(saveData[1]);
             for (var i = 2; i < saveData.length; i++) {
                 var task = saveData[i].split(";;");
-                tActDays = task[3].split(",");
-                for (var ii in tActDays) {
-                    tActDays[ii] = parseInt(tActDays[ii]);
+                type = task[0];
+                
+                if (type=="task") {
+                    tActDays = task[4].split(",");
+                    for (var ii in tActDays) {
+                        tActDays[ii] = parseInt(tActDays[ii]);
+                    }
+                    tDoneDays = task[5].split(",");
+                    for (var iii in tDoneDays) {
+                        tDoneDays[iii] = parseInt(tDoneDays[iii]);
+                    }
+                    taskArray.push(new Task(task[1], task[2], task[3], tActDays, tDoneDays, parseInt(task[6]), parseInt(task[7])))
                 }
-                tDoneDays = task[4].split(",");
-                for (var iii in tDoneDays) {
-                    tDoneDays[iii] = parseInt(tDoneDays[iii]);
+                else if (type=="arch") {
+                    tDoneDays = task[4].split(",");
+                    for (var iv in tDoneDays) {
+                        tActDays[iv] = parseInt(tDoneDays[ii]);
+                    }
+                    archiveArray.push(new archivedTask(task[1], task[2], task[3], tDoneDays, parseInt(task[5]), parseInt(task[6])))
                 }
-                taskArray.push(new Task(task[0], task[1], task[2], tActDays, tDoneDays, parseInt(task[5]), parseInt(task[6])))
             }
         }
     }
@@ -64,13 +77,18 @@ var saveToLS = function() {
         string += ";;;"
         string += taskArray[i].exportInfo();
     }
+    for (var i in archiveArray) {
+        string += ";;;"
+        string += archiveArray[i].exportInfo();
+    }
     localStorage.save = string;
+    console.log(string);
 }
 //saves everything to localstorage
 var switchToEdit = function(idIn) {
     row = document.getElementById(idIn);
     findTaskById(idIn).editMode = 1;
-    rowText = findTaskById(idIn).createEditRow();
+    rowText = findTaskById(idIn).createRow(false);
     row.innerHTML = rowText;
     findTaskById(idIn).attachEvents();
 }
@@ -84,7 +102,7 @@ var switchToTask = function(idIn) {
     findTaskById(idIn).editMode = 0;
     saveToLS();
     row = document.getElementById(idIn);
-    rowText = findTaskById(idIn).createTaskRow();
+    rowText = findTaskById(idIn).createRow();
     row.innerHTML = rowText;
     findTaskById(idIn).attachEvents();
 }
@@ -107,10 +125,10 @@ var checkIfDatePassed = function() {
         lockdown = true;
         localStorage.lockdown = true;
         //should be moved to another review page
-        //localStorage.timer = nextTriggerDate();
-        //for (i in taskArray) {
-        //    taskArray[i].scrubClean();
-        //}
+        localStorage.timer = nextTriggerDate();
+        for (i in taskArray) {
+            taskArray[i].scrubClean();
+        }
         //new week!
     } else {
         for (var i in taskArray) {
@@ -143,4 +161,10 @@ var deleteTask = function(idIn) {
 var toggleUnitOutside = function(id) {
     console.log(id);
     findTaskById(id).toggleUnit();
+}
+
+var pushTasksToArchive = function (){
+    for (var i in taskArray){
+        archiveArray.push(taskArray[i].exportAsArchive());
+    }
 }

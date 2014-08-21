@@ -1,10 +1,11 @@
 table
 {
     top:100px;
+    display: inline-block;
     height:auto;
-    margin:100px;
+    margin:0px;
+    margin-top:100px;
     width:580px;
-    font-weight: 800;
 }
 
 #banner

@@ -6,6 +6,7 @@ document.getElementById(weekArray[dayOfWeek - 1]).style.backgroundColor = "yello
 //imports from localStorage
 
 importData();
+
 checkIfDatePassed();
 if (taskArray.length == 0) {
     addNewTask();
