@@ -10,21 +10,22 @@ var maxArchiveId = 1;
 //converts sunday from 0 to 7
 var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var taskArray = [];
-var archiveArray = [];
+var archGroupArray = [];
 var archive = [];
 
 var importData = function() {
-    
+
     saveData = localStorage.save;
     if (saveData != null) {
         saveData = saveData.split(";;;")
         if (saveData[0] == "saveVer 1") {
             maxId = parseInt(saveData[1]);
-            for (var i = 2; i < saveData.length; i++) {
+            maxArchiveId = parseInt(saveData[2]);
+            for (var i = 3; i < saveData.length; i++) {
                 var task = saveData[i].split(";;");
                 type = task[0];
-                
-                if (type=="task") {
+
+                if (type == "task") {
                     tActDays = task[4].split(",");
                     for (var ii in tActDays) {
                         tActDays[ii] = parseInt(tActDays[ii]);
@@ -34,13 +35,8 @@ var importData = function() {
                         tDoneDays[iii] = parseInt(tDoneDays[iii]);
                     }
                     taskArray.push(new Task(task[1], task[2], task[3], tActDays, tDoneDays, parseInt(task[6]), parseInt(task[7])))
-                }
-                else if (type=="arch") {
-                    tDoneDays = task[4].split(",");
-                    for (var iv in tDoneDays) {
-                        tActDays[iv] = parseInt(tDoneDays[ii]);
-                    }
-                    archiveArray.push(new archivedTask(task[1], task[2], task[3], tDoneDays, parseInt(task[5]), parseInt(task[6])))
+                } else if (type == "archGroup") {
+                    archGroupArray.push(new archivedTaskGroup(task[1], task[2], task[3]));
                 }
             }
         }
@@ -72,14 +68,15 @@ var dActiveHandler = function(idIn, dayIn) {
 //handles tile dActive events
 var saveToLS = function() {
     var string = "saveVer 1;;;";
-    string += maxId;
+    string += maxId + ";;;";
+    string += maxArchiveId;
     for (var i in taskArray) {
         string += ";;;"
         string += taskArray[i].exportInfo();
     }
-    for (var i in archiveArray) {
+    for (var ii in archGroupArray) {
         string += ";;;"
-        string += archiveArray[i].exportInfo();
+        string += archGroupArray[ii].exportInfo();
     }
     localStorage.save = string;
     console.log(string);
@@ -158,13 +155,23 @@ var deleteTask = function(idIn) {
     saveToLS();
 }
 
+var deleteArchive = function(idIn) {
+    var task = findTaskById(idIn);
+    taskArray.splice(taskArray.indexOf(task), 1);
+    var row = document.getElementById(idIn);
+    row.parentElement.removeChild(row);
+    saveToLS();
+}
+
 var toggleUnitOutside = function(id) {
     console.log(id);
     findTaskById(id).toggleUnit();
 }
 
-var pushTasksToArchive = function (){
-    for (var i in taskArray){
-        archiveArray.push(taskArray[i].exportAsArchive());
+var pushTasksToArchive = function() {
+    archGroup = new archivedTaskGroup();
+    for (var i in taskArray) {
+        archGroup.addArch(taskArray[i].exportAsArchive());
     }
+    archGroupArray.push(archGroup);
 }

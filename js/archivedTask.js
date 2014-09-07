@@ -161,10 +161,10 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     //scrubbles task; checks for discrepancies in daysdone and activedays
 
     this.exportInfo = function() {
-        string = "arch;;";
-        string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
-        string += this.daysDone + ";;";
-        string += this.unit + ";;" + this.quantity;
+        string = "arch;,;";
+        string += this.name + ";,;" + this.icon + ";,;" + this.id + ";,;";
+        string += this.daysDone + ";,;";
+        string += this.unit + ";,;" + this.quantity;
         return string;
     }
 }

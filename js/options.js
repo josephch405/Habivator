@@ -10,11 +10,11 @@ importData();
 checkIfDatePassed();
 
 //
-for (var i in archiveArray) {
-    archiveArray[i].addToTable();
+for (var i in archGroupArray) {
+    archGroupArray[i].addToTable();
 }
-for (var i in archiveArray) {
-    archiveArray[i].attachEvents();
+for (var i in archGroupArray) {
+    archGroupArray[i].attachEvents();
 }
 //shuffle at start of day?
 
