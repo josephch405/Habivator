@@ -39,14 +39,8 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
             rowText += this.buttonGen(i);
-            console.log(this.buttonGen(i))
             rowText += "</td>"
         }
-
-        rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon' id='" + this.id + "-del' src='..//img//tile//deleteButton.png'>";
-        rowText += "</td>"
-        //del button
 
         return rowText;
     }
@@ -77,17 +71,6 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
                 break;
             }
         }
-
-        deleteButton = document.getElementById(this.id + "-del")
-        deleteButton.onmouseover = function() {
-            this.src = "..//img//tile//ldeleteButton.png"
-        };
-        deleteButton.onmouseout = function() {
-            this.src = "..//img//tile//deleteButton.png"
-        };
-        deleteButton.onclick = function() {
-            deleteTask(id);
-        };
     }
 
     //output row text and paste to end of table at start build of page, when called
@@ -105,7 +88,6 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             break;
         case 2:
             result += "src='..//img//tile//r.png'";
-            console.log("asdf")
             break;
         case 3:
             result += "src='..//img//tile//y.png'";

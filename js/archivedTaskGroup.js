@@ -1,6 +1,7 @@
 function archivedTaskGroup(inDateString, inarchString) {
 
-    this.date = Date.parse(inDateString) || Date();
+    console.log(inDateString+"asdf");
+    this.date = inDateString || Date();
     this.archArray = [];
 
     if (inarchString != null) {
@@ -35,7 +36,8 @@ function archivedTaskGroup(inDateString, inarchString) {
 
     this.exportInfo = function() {
         var string = "archGroup;;";
-        string += this.date.toString() + ";;";
+        string += this.date + ";;";
+        console.log(string);
         for (var i = 0; i < this.archArray.length; i++) {
             string += this.archArray[i].exportInfo() + ";.;";
         }

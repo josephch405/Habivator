@@ -36,12 +36,14 @@ var importData = function() {
                     }
                     taskArray.push(new Task(task[1], task[2], task[3], tActDays, tDoneDays, parseInt(task[6]), parseInt(task[7])))
                 } else if (type == "archGroup") {
-                    archGroupArray.push(new archivedTaskGroup(task[1], task[2], task[3]));
+                    archGroupArray.push(new archivedTaskGroup(task[1], task[2]));
                 }
             }
         }
     }
 }
+//import tasks and archiveGroups+tasks from localStorage
+//initiation process
 
 var addNewTask = function() {
     maxId = parseInt(maxId);
@@ -52,20 +54,24 @@ var addNewTask = function() {
     maxId += 1;
     saveToLS();
 }
-//adds new default task
+//adds new default task to taskArray
 var dDoneHandler = function(idIn, dayIn) {
-    console.log(idIn + " " + dayIn)
     findTaskById(idIn).dDoneLocal(dayIn - 1);
     saveToLS();
     findTaskById(idIn).attachEvents();
 }
-//handles tile ddone events
+//handles tile ddone events; finds appropriate task, then passes toggling
+//reattaches events
+//SAVES
 var dActiveHandler = function(idIn, dayIn) {
     findTaskById(idIn).dActiveLocal(dayIn - 1);
     saveToLS();
     findTaskById(idIn).attachEvents();
 }
-//handles tile dActive events
+//handles tile dActive events; finds appropriate task, then passes toggling
+//reattaches events
+//SAVES
+
 var saveToLS = function() {
     var string = "saveVer 1;;;";
     string += maxId + ";;;";
@@ -79,9 +85,10 @@ var saveToLS = function() {
         string += archGroupArray[ii].exportInfo();
     }
     localStorage.save = string;
-    console.log(string);
+    return (string);
 }
 //saves everything to localstorage
+
 var switchToEdit = function(idIn) {
     row = document.getElementById(idIn);
     findTaskById(idIn).editMode = 1;
@@ -90,6 +97,8 @@ var switchToEdit = function(idIn) {
     findTaskById(idIn).attachEvents();
 }
 //switches row to edit mode
+//attaches events
+
 var switchToTask = function(idIn) {
     findTaskById(idIn).name = document.getElementById(idIn + "-tf").value;
     if (document.getElementById(idIn + "-quant")) {
@@ -104,6 +113,8 @@ var switchToTask = function(idIn) {
     findTaskById(idIn).attachEvents();
 }
 //switches row to task mode
+//only tasks
+
 var nextTriggerDate = function() {
     var timerDate = new Date(d);
     timerDate.setDate(d.getDate() + 8 - dayOfWeek);
@@ -112,30 +123,37 @@ var nextTriggerDate = function() {
     timerDate.setSeconds(0);
     return timerDate;
 }
-//returns the next trigger date, or the next monday 0 midnight
+//returns the next trigger date, the next monday 0 midnight
+
 var checkIfDatePassed = function() {
-    console.log(localStorage.timer);
     if (localStorage.timer == null) {
         localStorage.timer = nextTriggerDate();
-    }
-    if (d - (new Date(localStorage.timer)) > 0) {
-        lockdown = true;
-        localStorage.lockdown = true;
-        //should be moved to another review page
-        localStorage.timer = nextTriggerDate();
-        for (i in taskArray) {
-            taskArray[i].scrubClean();
-        }
-        //new week!
     } else {
-        for (var i in taskArray) {
-            taskArray[i].scrub();
+        if (d - (new Date(localStorage.timer)) > 0) {
+            lockdown = true;
+            localStorage.lockdown = true;
+            pushTasksToArchive();
+            saveToLs();
+            //should be moved to another review page
+            localStorage.timer = nextTriggerDate();
+            for (i in taskArray) {
+                taskArray[i].scrubClean();
+            }
+            location.reload();
+            //new week!
+        } else {
+            for (var i in taskArray) {
+                taskArray[i].scrub();
+            }
+            this.lockdown = false;
+            localStorage.lockdown = false;
         }
-        this.lockdown = false;
-        localStorage.lockdown = false;
     }
     saveToLS();
 };
+//manages date events; if date passed, triggers lockdown, otherwise scrubs
+    //saves
+
 
 var findTaskById = function(idIn) {
     for (var i = 0; i < taskArray.length; i++) {
@@ -146,6 +164,7 @@ var findTaskById = function(idIn) {
     }
     return null;
 }
+//returns task by id, searches through array of tasks
 
 var deleteTask = function(idIn) {
     var task = findTaskById(idIn);
@@ -155,6 +174,9 @@ var deleteTask = function(idIn) {
     saveToLS();
 }
 
+//removes a task from array of tasks and removes row from popup table
+//depends on findTaskById for finding task
+
 var deleteArchive = function(idIn) {
     var task = findTaskById(idIn);
     taskArray.splice(taskArray.indexOf(task), 1);
@@ -162,11 +184,14 @@ var deleteArchive = function(idIn) {
     row.parentElement.removeChild(row);
     saveToLS();
 }
+//OBSOLETE(?); will be modified to reflect changes in archive grouping
 
 var toggleUnitOutside = function(id) {
     console.log(id);
     findTaskById(id).toggleUnit();
 }
+//passes toggling of unit to respective task of id
+//task, no archiveTask
 
 var pushTasksToArchive = function() {
     archGroup = new archivedTaskGroup();
@@ -175,3 +200,14 @@ var pushTasksToArchive = function() {
     }
     archGroupArray.push(archGroup);
 }
+//pushes all tasks to a date-labelled (coming soon) group of archs
+
+var exportTxt = function() {
+    var text = saveToLS();
+    var link = document.createElement('a');
+
+    link.setAttribute('download', "habivatorSave");
+    link.setAttribute('href', 'data:text/plain;charset=utf-8,' + text);
+    link.click();
+}
+
