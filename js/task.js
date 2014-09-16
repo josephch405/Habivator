@@ -329,7 +329,9 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }
     
     this.exportAsArchive = function(){
-        var archive = new archivedTask(this.name, this.icon, maxArchiveId, this.daysDone, this.unit, this.quantity);
+        console.log("archive exported");
+        var dDone = this.daysDone;
+        var archive = new archivedTask(String(this.name), String(this.icon), +maxArchiveId, dDone, +this.unit, +this.quantity);
         maxArchiveId += 1;
         return archive;
     }

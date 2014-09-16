@@ -13,9 +13,9 @@
    height="80"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="lr.svg"
-   inkscape:export-filename="D:\You Are Awesome\ti\lr.png"
+   inkscape:export-filename="D:\Student_Data\Habivator\img\tile\lr.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -28,7 +28,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="-91.785714"
+     inkscape:cx="19.642857"
      inkscape:cy="19.164111"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -71,5 +71,13 @@
        height="80"
        x="0"
        y="972.36218" />
+    <rect
+       style="fill:#a80000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect4838"
+       width="80"
+       height="5"
+       x="0"
+       y="75"
+       transform="translate(0,972.36218)" />
   </g>
 </svg>

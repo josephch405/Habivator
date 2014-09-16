@@ -3,9 +3,8 @@ swidth -= 20;
 document.getElementById("face").style += swidth - 600;
 //imports from localStorage
 
-
 importData();
-checkIfDatePassed();
+
 
 //
 for (var i in archGroupArray) {
@@ -24,30 +23,6 @@ var smileyToggle = function() {
     }
 }
 
-var importTxt = function() {
-    if (!window.FileReader) {
-        alert('Your browser is not supported')
-    }
-    var input = fileInput.get(0);
-
-    // Create a reader object
-    var reader = new FileReader();
-    if (input.files.length) {
-        var textFile = input.files[0];
-        reader.readAsText(textFile);
-        var text;
-        reader.onload = function(e) {
-            text = reader.result;
-            localStorage.save = text;
-            location.reload();
-        };
-
-    } else {
-        alert('Please upload a file before continuing')
-    }
-}
-
-
 document.getElementById("face").onmouseover = function() {
     document.getElementById("face").src = '../img/face/smile.png';
 }
@@ -58,3 +33,6 @@ document.getElementById("face").onclick = smileyToggle;
 var fileInput = $('#files');
 var uploadButton = $('#upload')[0];
 uploadButton.addEventListener("click", importTxt);
+var exportButton = $('#export')[0];
+exportButton.addEventListener("click", exportTxt);
+

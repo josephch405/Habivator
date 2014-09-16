@@ -7,37 +7,91 @@ document.getElementById(weekArray[dayOfWeek - 1]).style.backgroundColor = "yello
 
 importData();
 
+var justClicked = false;
+
 checkIfDatePassed();
+if (localStorage.scrubNow == true) {
+    for (i in taskArray) {
+        taskArray[i].scrubClean();
+    }
+    localStorage.scrubNow = false;
+    saveToLS();
+    console.log("scrubbed")
+}
 if (taskArray.length == 0) {
     addNewTask();
-    console.log("bo");
 }
 //
 else {
-	for (var i in taskArray) {
-		taskArray[i].addToTable();
-	}
-	for (var i in taskArray) {
-		taskArray[i].attachEvents();
-	}
+    for (var i in taskArray) {
+	taskArray[i].addToTable();
+    }
+    for (var i in taskArray) {
+	taskArray[i].attachEvents();
+    }
 }
 //shuffle at start of day?
 
 var smileyToggle = function() {
-    if (document.getElementById("popBox").style.visibility == "visible") {
-        document.getElementById("popBox").style.visibility = "hidden";
+    var popBox = document.getElementById("popBox");
+    if (popBox.style.visibility == "visible") {
+        popBox.style.visibility = "hidden";
+	justClicked=true;
     } else {
-        document.getElementById("popBox").style.visibility = "visible";
+        popBox.style.visibility = "visible";
+	justClicked=true;
+    }
+    window.setTimeout(function(){justClicked=false},100);
+}
+var smileyOff= function() {
+    var popBox = document.getElementById("popBox");
+    if (!justClicked) {
+	if (popBox.style.visibility == "visible") {
+	    popBox.style.visibility = "hidden";
+	}
     }
 }
-//
-//
 
+var smileyKeepOn= function() {
+    var popBox = document.getElementById("popBox");
+    justClicked=true;
+    window.setTimeout(function(){justClicked=false},100);
+}
+//
+var checkout = function(){
+    pushTasksToArchive();
+    //should be moved to another review page
+    localStorage.timer = nextTriggerDate();
+    localStorage.scrubNow=true;
+    saveToLS();
+    chrome.tabs.create({url: "html\options.html"});
+}
+//
+//
 document.getElementById("newTaskButton").onclick = addNewTask;
-document.getElementById("face").onmouseover = function() {
-    document.getElementById("face").src = '../img/face/smile.png';
+//
+var faceButton = document.getElementById("face");
+faceButton.onmouseover = function() {
+    faceButton.src = '../img/face/smile.png';
 }
-document.getElementById("face").onmouseout = function() {
-    document.getElementById("face").src = '../img/face/up.png';
+faceButton.onmouseout = function() {
+    faceButton.src = '../img/face/up.png';
 }
-document.getElementById("face").onclick = smileyToggle;
+faceButton.onclick = smileyToggle;
+var popBox = document.getElementById("popBox");
+popBox.onclick = smileyKeepOn;
+document.body.onclick = smileyOff;
+//
+var arrowButton = document.getElementById("arrow");
+arrowButton.onmouseover = function() {
+    arrowButton.src = '../img/checkItL.png';
+}
+arrowButton.onmouseout = function() {
+    arrowButton.src = '../img/checkIt.png';
+}
+if (lockdown) {
+    arrowButton.style.visibility = "visible";
+} else {
+    arrowButton.style.visibility = "hidden";
+}
+arrowButton.onclick = checkout;

@@ -23,7 +23,21 @@ table
     right:4px;
 }
 
-#banner img{
+#arrow{
+    position:absolute;
+    top:4px ;
+    right:80px;
+    width:136px;
+    height:68px;
+}
+
+#popup{
+    position:absolute;
+    top:4px ;
+    right:4px;
+}
+
+#banner img #banner{
     width:600px;
 }
 

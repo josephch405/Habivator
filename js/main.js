@@ -14,7 +14,6 @@ var archGroupArray = [];
 var archive = [];
 
 var importData = function() {
-
     saveData = localStorage.save;
     if (saveData != null) {
         saveData = saveData.split(";;;")
@@ -132,14 +131,8 @@ var checkIfDatePassed = function() {
         if (d - (new Date(localStorage.timer)) > 0) {
             lockdown = true;
             localStorage.lockdown = true;
-            pushTasksToArchive();
-            saveToLs();
-            //should be moved to another review page
-            localStorage.timer = nextTriggerDate();
-            for (i in taskArray) {
-                taskArray[i].scrubClean();
-            }
-            location.reload();
+            saveToLS();
+            //location.reload();
             //new week!
         } else {
             for (var i in taskArray) {
@@ -193,14 +186,45 @@ var toggleUnitOutside = function(id) {
 //passes toggling of unit to respective task of id
 //task, no archiveTask
 
+
+
 var pushTasksToArchive = function() {
-    archGroup = new archivedTaskGroup();
+    var archGroup = new archivedTaskGroup();
     for (var i in taskArray) {
         archGroup.addArch(taskArray[i].exportAsArchive());
     }
     archGroupArray.push(archGroup);
+    saveToLS();
 }
+
 //pushes all tasks to a date-labelled (coming soon) group of archs
+
+
+//txt API
+//
+//
+var importTxt = function() {
+    if (!window.FileReader) {
+        alert('Your browser is not supported')
+    }
+    var input = fileInput.get(0);
+
+    // Create a reader object
+    var reader = new FileReader();
+    if (input.files.length) {
+        var textFile = input.files[0];
+        reader.readAsText(textFile);
+        var text;
+        reader.onload = function(e) {
+            text = reader.result;
+            localStorage.save = text;
+            location.reload();
+        };
+
+    } else {
+        alert('Please upload a file before continuing')
+    }
+}
 
 var exportTxt = function() {
     var text = saveToLS();
@@ -210,4 +234,3 @@ var exportTxt = function() {
     link.setAttribute('href', 'data:text/plain;charset=utf-8,' + text);
     link.click();
 }
-
