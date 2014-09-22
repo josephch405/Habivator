@@ -1,7 +1,7 @@
-var d = new Date();
+var today = new Date();
 var lockdown = localStorage.locked || false;
-d.setDate(d.getDate());
-var dayOfWeek = d.getDay();
+today.setDate(today.getDate());
+var dayOfWeek = today.getDay();
 if (dayOfWeek == 0) {
     dayOfWeek = 7;
 }
@@ -115,8 +115,8 @@ var switchToTask = function(idIn) {
 //only tasks
 
 var nextTriggerDate = function() {
-    var timerDate = new Date(d);
-    timerDate.setDate(d.getDate() + 8 - dayOfWeek);
+    var timerDate = new Date(today);
+    timerDate.setDate(today.getDate() + 8 - dayOfWeek);
     timerDate.setHours(0);
     timerDate.setMinutes(0);
     timerDate.setSeconds(0);
@@ -128,9 +128,10 @@ var checkIfDatePassed = function() {
     if (localStorage.timer == null) {
         localStorage.timer = nextTriggerDate();
     } else {
-        if (d - (new Date(localStorage.timer)) > 0) {
+        if (today - (new Date(localStorage.timer)) > 0) {
             lockdown = true;
             localStorage.lockdown = true;
+            
             saveToLS();
             //location.reload();
             //new week!
@@ -188,8 +189,10 @@ var toggleUnitOutside = function(id) {
 
 
 
-var pushTasksToArchive = function() {
-    var archGroup = new archivedTaskGroup();
+var pushTasksToArchive = function(dateString) {
+    var tempDate = new Date(Date.parse(dateString));
+    tempDate.setDate(tempDate.getDate()-1);
+    var archGroup = new archivedTaskGroup(tempDate.toDateString());
     for (var i in taskArray) {
         archGroup.addArch(taskArray[i].exportAsArchive());
     }
@@ -220,7 +223,6 @@ var importTxt = function() {
             localStorage.save = text;
             location.reload();
         };
-
     } else {
         alert('Please upload a file before continuing')
     }

@@ -101,8 +101,8 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     }
     //creates a button, based on day and daysactive if mentioned
     //
-    this.addToTable = function() {
-        table = document.getElementById("archiveTasks");
+    this.addToTable = function(tableTag) {
+        table = document.getElementById(tableTag);
         var row = table.insertRow(table.rows.length)
         row.id = this.id;
         row.innerHTML = this.createTaskRow();

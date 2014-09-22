@@ -10,11 +10,11 @@ importData();
 var justClicked = false;
 
 checkIfDatePassed();
-if (localStorage.scrubNow == true) {
+if (localStorage.scrubNow == "true") {
     for (i in taskArray) {
         taskArray[i].scrubClean();
     }
-    localStorage.scrubNow = false;
+    localStorage.scrubNow = "false";
     saveToLS();
     console.log("scrubbed")
 }
@@ -59,12 +59,12 @@ var smileyKeepOn= function() {
 }
 //
 var checkout = function(){
-    pushTasksToArchive();
+    pushTasksToArchive(localStorage.timer);
     //should be moved to another review page
     localStorage.timer = nextTriggerDate();
     localStorage.scrubNow=true;
     saveToLS();
-    chrome.tabs.create({url: "html\options.html"});
+    chrome.tabs.create({url: "html/options.html"});
 }
 //
 //
@@ -89,9 +89,10 @@ arrowButton.onmouseover = function() {
 arrowButton.onmouseout = function() {
     arrowButton.src = '../img/checkIt.png';
 }
-if (lockdown) {
+if (lockdown == true) {
     arrowButton.style.visibility = "visible";
 } else {
     arrowButton.style.visibility = "hidden";
+    console.log("hidden here")
 }
 arrowButton.onclick = checkout;

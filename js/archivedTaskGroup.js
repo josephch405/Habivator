@@ -1,5 +1,5 @@
 function archivedTaskGroup(inDateString, inarchString) {
-    this.date = inDateString || Date();
+    this.date = inDateString || Date().toDateString;
     this.archArray = [];
 
     if (inarchString != null) {
@@ -20,8 +20,27 @@ function archivedTaskGroup(inDateString, inarchString) {
 
 
     this.addToTable = function() {
+        
+        tableText = '<table id="'
+        console.log(this.date);
+        tableText += this.date;
+        tableText += '" style="margin-left:100px"><tbody id="archiveTasks"><tr>';
+        tableText += '<th width=312 colspan="4">';
+        var tempDate = new Date(Date.parse(this.date));
+        tempDate.setDate(tempDate.getDate()-6);
+        tableText += tempDate.toDateString();
+        tableText += ' - '
+        tableText += this.date;
+        tableText += '</th><th class="iconGrid">Mon</th>';
+        tableText += '<th class="iconGrid">Tue</th><th class="iconGrid">Wed</th>';
+        tableText += '<th class="iconGrid">Thu</th><th class="iconGrid">Fri</th>';
+        tableText += '<th class="iconGrid">Sat</th><th class="iconGrid">Sun</th>';
+        tableText += '</tr></tbody></table>';
+        //yes, a rather messy blob, but better than a huge line IMO
+    
+        document.getElementById("archiveTables").innerHTML += tableText;
         for (var i = 0; i < this.archArray.length; i++) {
-            this.archArray[i].addToTable();
+            this.archArray[i].addToTable(this.date);
         }
     }
 

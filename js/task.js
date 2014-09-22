@@ -292,9 +292,10 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }
 
     this.toggleUnit = function() {
+        var id = this.id;
+        switchToTask(id);
         this.unit = (this.unit + 1) % 3;
         saveToLS();
-        var id = this.id;
         switchToEdit(id);
     }
     this.scrub = function() {
