@@ -12,6 +12,8 @@ var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var taskArray = [];
 var archGroupArray = [];
 var archive = [];
+var smileyBob = new Smiley();
+var justClickedFace = false;
 
 var importData = function() {
     saveData = localStorage.save;
@@ -131,7 +133,10 @@ var checkIfDatePassed = function() {
         if (today - (new Date(localStorage.timer)) > 0) {
             lockdown = true;
             localStorage.lockdown = true;
-            
+            dayOfWeek = 7;
+            for (var i in taskArray) {
+                taskArray[i].scrub();
+            }
             saveToLS();
             //location.reload();
             //new week!
@@ -235,4 +240,35 @@ var exportTxt = function() {
     link.setAttribute('download', "habivatorSave");
     link.setAttribute('href', 'data:text/plain;charset=utf-8,' + text);
     link.click();
+}
+
+var smileyToggle = function() {
+    var popBox = document.getElementById("popBox");
+    console.log("smileyToggles")
+    if (popBox.style.visibility == "visible") {
+        popBox.style.visibility = "hidden";
+	justClickedFace=true;
+    } else {
+        popBox.style.visibility = "visible";
+        popBox.children[1].innerHTML = smileyBob.chooseText();
+	justClickedFace=true;
+    }
+    window.setTimeout(function(){justClickedFace=false},100);
+    
+}
+
+var smileyOff= function() {
+    var popBox = document.getElementById("popBox");
+    if (!justClickedFace) {
+	if (popBox.style.visibility == "visible") {
+	    popBox.style.visibility = "hidden";
+	}
+    }
+    console.log("smileyOffed")
+}
+
+var smileyKeepOn= function() {
+    var popBox = document.getElementById("popBox");
+    justClickedFace=true;
+    window.setTimeout(function(){justClickedFace=false},100);
 }

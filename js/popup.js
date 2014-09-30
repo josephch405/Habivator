@@ -7,7 +7,6 @@ document.getElementById(weekArray[dayOfWeek - 1]).style.backgroundColor = "yello
 
 importData();
 
-var justClicked = false;
 
 checkIfDatePassed();
 if (localStorage.scrubNow == "true") {
@@ -16,7 +15,7 @@ if (localStorage.scrubNow == "true") {
     }
     localStorage.scrubNow = "false";
     saveToLS();
-    console.log("scrubbed")
+    console.log("scrubbed");
 }
 if (taskArray.length == 0) {
     addNewTask();
@@ -32,31 +31,8 @@ else {
 }
 //shuffle at start of day?
 
-var smileyToggle = function() {
-    var popBox = document.getElementById("popBox");
-    if (popBox.style.visibility == "visible") {
-        popBox.style.visibility = "hidden";
-	justClicked=true;
-    } else {
-        popBox.style.visibility = "visible";
-	justClicked=true;
-    }
-    window.setTimeout(function(){justClicked=false},100);
-}
-var smileyOff= function() {
-    var popBox = document.getElementById("popBox");
-    if (!justClicked) {
-	if (popBox.style.visibility == "visible") {
-	    popBox.style.visibility = "hidden";
-	}
-    }
-}
 
-var smileyKeepOn= function() {
-    var popBox = document.getElementById("popBox");
-    justClicked=true;
-    window.setTimeout(function(){justClicked=false},100);
-}
+
 //
 var checkout = function(){
     pushTasksToArchive(localStorage.timer);

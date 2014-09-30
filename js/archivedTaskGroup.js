@@ -24,7 +24,7 @@ function archivedTaskGroup(inDateString, inarchString) {
         tableText = '<table id="'
         console.log(this.date);
         tableText += this.date;
-        tableText += '" style="margin-left:100px"><tbody id="archiveTasks"><tr>';
+        tableText += '" style="margin-left:10px"><tbody id="archiveTasks"><tr>';
         tableText += '<th width=312 colspan="4">';
         var tempDate = new Date(Date.parse(this.date));
         tempDate.setDate(tempDate.getDate()-6);

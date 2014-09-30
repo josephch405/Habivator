@@ -5,6 +5,9 @@ document.getElementById("face").style += swidth - 600;
 
 importData();
 
+var justClicked = false;
+
+archGroupArray.sort(function(a,b){return Date.parse(b.date)-Date.parse(a.date)})
 
 //
 for (var i in archGroupArray) {
@@ -15,21 +18,21 @@ for (var i in archGroupArray) {
 }
 //shuffle at start of day?
 
-var smileyToggle = function() {
-    if (document.getElementById("popBox").style.visibility == "visible") {
-        document.getElementById("popBox").style.visibility = "hidden";
-    } else {
-        document.getElementById("popBox").style.visibility = "visible";
-    }
-}
+document.body.style.width=600*archGroupArray.length;
+//set page dimensions
 
-document.getElementById("face").onmouseover = function() {
-    document.getElementById("face").src = '../img/face/smile.png';
+var faceButton = document.getElementById("face");
+faceButton.onmouseover = function() {
+    faceButton.src = '../img/face/smile.png';
 }
-document.getElementById("face").onmouseout = function() {
-    document.getElementById("face").src = '../img/face/up.png';
+faceButton.onmouseout = function() {
+    faceButton.src = '../img/face/up.png';
 }
-document.getElementById("face").onclick = smileyToggle;
+faceButton.onclick = smileyToggle;
+var popBox = document.getElementById("popBox");
+popBox.onclick = smileyKeepOn;
+document.body.onclick = smileyOff;
+
 var fileInput = $('#files');
 var uploadButton = $('#upload')[0];
 uploadButton.addEventListener("click", importTxt);
