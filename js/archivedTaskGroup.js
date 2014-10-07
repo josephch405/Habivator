@@ -60,5 +60,24 @@ function archivedTaskGroup(inDateString, inarchString) {
         string = string.substring(0, string.length - 3);
         return string;
     }
+    
+    this.calculateTotalPercentage = function(){
+        var tempTotalOpen = 0;
+        var tempTotalCounted = 0;
+        for (var i = 0; i<this.archArray.length;i++) {
+            for (var ii=0; ii<this.archArray[i].daysDone.length; ii++){
+                if (this.archArray[i].daysDone[ii]>=2) {
+                    tempTotalOpen += 1;
+                }
+                if (this.archArray[i].daysDone[ii]==4) {
+                    tempTotalCounted += 1;
+                }
+            }
+        }
+        console.log( tempTotalCounted);
+        console.log( tempTotalOpen);
+    
+        return tempTotalCounted/tempTotalOpen;
+    }
 
 }

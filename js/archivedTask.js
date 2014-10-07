@@ -149,4 +149,10 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
         string += this.unit + ";,;" + this.quantity;
         return string;
     }
+    
+    this.totalPercentage = new function(){
+        
+    }
+    
+    
 }

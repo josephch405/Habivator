@@ -32,11 +32,14 @@ else {
 //shuffle at start of day?
 
 
-
 //
 var checkout = function(){
     pushTasksToArchive(localStorage.timer);
     //should be moved to another review page
+    dayOfWeek = today.getDay();
+    if (dayOfWeek == 0) {
+	dayOfWeek = 7;
+    }
     localStorage.timer = nextTriggerDate();
     localStorage.scrubNow=true;
     saveToLS();

@@ -2,9 +2,11 @@ var today = new Date();
 var lockdown = localStorage.locked || false;
 today.setDate(today.getDate());
 var dayOfWeek = today.getDay();
+console.log(dayOfWeek);
 if (dayOfWeek == 0) {
     dayOfWeek = 7;
 }
+console.log(dayOfWeek);
 var maxId = 1;
 var maxArchiveId = 1;
 //converts sunday from 0 to 7
