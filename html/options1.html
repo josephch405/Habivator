@@ -1,43 +1,36 @@
 <html>
 
 
-<title>Awesome Options</title>
-<center>
-<br>
-<style>
-body {
-background-image:url('awesomePromo.jpg');
-background-repeat:no-repeat;
-background-attachment:fixed;
-background-position: center top;
-}
-</style>
 <head>
-<!-- <b><font size=8 face="arial black">You are... </font></b>//-->
+    <link rel="stylesheet" type="text/css" href="..\css\main.css">
+    <link rel="stylesheet" type="text/css" href="..\css\options.css">
+    <title>Habivator Options</title>
 </head>
-<br><br>
-<br><br>
 
-<font size=4 face="verdana">
+<body>
+    
+    <div id="faceBox">
+        <img id="face" style="position:fixed; height:68px; width:68px" src="../img/face/up.png" >
+    </div>
 
-<textarea id="word" rows="2" cols="50" style="font-family:verdana" ></textarea>
+    <div id="popBox">
+        <img style="z-index:10;position:fixed" src="../img/bubble.png">
+        <div style="z-index:20;position:fixed;margin:16px">
+            Hi!
+        </div>
+    </div>
+    
+<canvas id="chart1" width = "400" height = "400"></canvas>
 
-<br>
-<input type="checkbox" id="animation">Animate!<br>
-<br>
+</body>
 
-<button id="save">Save</button>
-<br><br>
-<br>
-*RANDOM! for <b>RANDOM AWESOME PHRASES</b><br><br>
-**set <b>MORE THAN 1 AWESOME TEXT</b> by typing <b>";"</b> between phrases
-<br>
+<script src="..\js\jquery-2.1.1.min.js"></script>
+<script src="..\js\Chart.min.js"></script>
+<script src="..\js\smiley.js"></script>
+<script src="..\js\main.js"></script>
+<script src="..\js\task.js"></script>
+<script src="..\js\archivedTask.js"></script>
+<script src="..\js\archivedTaskGroup.js"></script>
+<script src="..\js\options1.js"></script>
 
-<font size=2 face="verdana">
-<br>
-<input type="checkbox" id="ownPhrase">Customize entire phrase</font>
-
-</font>
 </html>
-
-<script src="../js/options.js"></script>
