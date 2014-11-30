@@ -167,6 +167,15 @@ var findTaskById = function(idIn) {
 }
 //returns task by id, searches through array of tasks
 
+var findArchById = function(idIn) {
+    for (var i = 0; i < archGroupArray.length; i++) {
+        if (archGroupArray[i].id == idIn) {
+            return archGroupArray[i];
+            break;
+        }
+    }
+}
+
 var deleteTask = function(idIn) {
     var task = findTaskById(idIn);
     taskArray.splice(taskArray.indexOf(task), 1);
@@ -179,9 +188,12 @@ var deleteTask = function(idIn) {
 //depends on findTaskById for finding task
 
 var deleteArchive = function(idIn) {
-    var task = findTaskById(idIn);
-    taskArray.splice(taskArray.indexOf(task), 1);
+    var task = findArchById(idIn);
+    console.log("task"+task);
+    archGroupArray.splice(archGroupArray.indexOf(task), 1);
     var row = document.getElementById(idIn);
+    console.log(idIn);
+    console.log(row);
     row.parentElement.removeChild(row);
     saveToLS();
 }

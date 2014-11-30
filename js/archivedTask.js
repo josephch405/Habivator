@@ -15,10 +15,10 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     this.id = idIn || -1;
     this.icon = iconIn || 1;
     //basic init. management
-    //
+    
     this.createTaskRow = function() {
 
-        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
+        rowText = "<tr><td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
         //icon
 
         rowText += "<td";
@@ -41,6 +41,7 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             rowText += this.buttonGen(i);
             rowText += "</td>"
         }
+        rowText+="</tr>"
 
         return rowText;
     }
@@ -102,10 +103,13 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     //creates a button, based on day and daysactive if mentioned
     //
     this.addToTable = function(tableTag) {
-        table = document.getElementById(tableTag);
-        var row = table.insertRow(table.rows.length)
-        row.id = this.id;
-        row.innerHTML = this.createTaskRow();
+        table = $("#"+tableTag);
+        console.log(table);
+        archTaskRow =$('#' + tableTag + ' #archiveTasks');
+        console.log(archTaskRow);
+        archTaskRow.after(this.createTaskRow());
+        //row.id = this.id;
+        //row.innerHTML = this.createTaskRow();
     }
 
     this.dDoneLocal = function(dayIn) {

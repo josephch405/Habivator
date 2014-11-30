@@ -1,5 +1,6 @@
 function archivedTaskGroup(inDateString, inarchString) {
     this.date = inDateString || Date().toDateString;
+    this.id = this.date.replace(/\s+/g, '-');
     this.archArray = [];
 
     if (inarchString != null) {
@@ -22,8 +23,8 @@ function archivedTaskGroup(inDateString, inarchString) {
     this.addToTable = function() {
         
         tableText = '<table id="'
-        console.log(this.date);
-        tableText += this.date;
+        console.log(this.id);
+        tableText += this.id;
         tableText += '" style="margin-left:10px"><tbody id="archiveTasks"><tr>';
         tableText += '<th width=312 colspan="4">';
         var tempDate = new Date(Date.parse(this.date));
@@ -35,12 +36,18 @@ function archivedTaskGroup(inDateString, inarchString) {
         tableText += '<th class="iconGrid">Tue</th><th class="iconGrid">Wed</th>';
         tableText += '<th class="iconGrid">Thu</th><th class="iconGrid">Fri</th>';
         tableText += '<th class="iconGrid">Sat</th><th class="iconGrid">Sun</th>';
-        tableText += '</tr></tbody></table>';
+        tableText += '</tr>';
+        tableText +='</tbody>';
+        tableText += '<tfoot><tr id="deleteArchive"><td colspan="1" class="iconGrid"><img class="icon" id="deleteTaskButton" src="..\\img\\tile\\cross.png"></td>';
+        tableText += '<td colspan="1" class="iconGrid">' + Math.floor(this.calculateTotalPercentage()*1000)/10 + '% achieved</td></tr>'
+        tableText += '</tfoot>'
+
+        tableText +='</table>';
         //yes, a rather messy blob, but better than a huge line IMO
     
         document.getElementById("archiveTables").innerHTML += tableText;
         for (var i = 0; i < this.archArray.length; i++) {
-            this.archArray[i].addToTable(this.date);
+            this.archArray[i].addToTable(this.id);
         }
     }
 
@@ -48,6 +55,10 @@ function archivedTaskGroup(inDateString, inarchString) {
         for (var i = 0; i < this.archArray.length; i++) {
             this.archArray[i].attachEvents();
         }
+        console.log(bob);
+        var bob = this.id;
+        console.log($("#" + this.id + " #deleteTaskButton").click());
+        $("#" + this.id + " #deleteTaskButton").click(function(){deleteArchive(bob); console.log(bob)});
     }
 
 
