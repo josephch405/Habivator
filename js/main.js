@@ -1,19 +1,16 @@
 var today = new Date();
-var lockdown = localStorage.locked || false;
-today.setDate(today.getDate());
 var dayOfWeek = today.getDay();
-console.log(dayOfWeek);
 if (dayOfWeek == 0) {
     dayOfWeek = 7;
 }
-console.log(dayOfWeek);
+//initializing date vars
+
+var lockdown = localStorage.locked || false;
 var maxId = 1;
 var maxArchiveId = 1;
-//converts sunday from 0 to 7
 var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var taskArray = [];
 var archGroupArray = [];
-var archive = [];
 var smileyBob = new Smiley();
 var justClickedFace = false;
 
@@ -21,35 +18,42 @@ var importData = function() {
     saveData = localStorage.save;
     if (saveData != null) {
         saveData = saveData.split(";;;")
+
         if (saveData[0] == "saveVer 1") {
             maxId = parseInt(saveData[1]);
             maxArchiveId = parseInt(saveData[2]);
+            //at this point, all basic global vars inputed
+
             for (var i = 3; i < saveData.length; i++) {
-                var task = saveData[i].split(";;");
-                type = task[0];
+                var taskString = saveData[i].split(";;");
+                type = taskString[0];
 
                 if (type == "task") {
-                    tActDays = task[4].split(",");
+
+                    tActDays = taskString[4].split(",");
                     for (var ii in tActDays) {
                         tActDays[ii] = parseInt(tActDays[ii]);
                     }
-                    tDoneDays = task[5].split(",");
+                    tDoneDays = taskString[5].split(",");
                     for (var iii in tDoneDays) {
                         tDoneDays[iii] = parseInt(tDoneDays[iii]);
                     }
-                    taskArray.push(new Task(task[1], task[2], task[3], tActDays, tDoneDays, parseInt(task[6]), parseInt(task[7])))
+                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7])))
+                    //parsing for task
+
                 } else if (type == "archGroup") {
-                    archGroupArray.push(new archivedTaskGroup(task[1], task[2]));
+                    archGroupArray.push(new archivedTaskGroup(taskString[1], taskString[2]));
+                    //parsing for archGroup instead
                 }
             }
         }
+
     }
 }
 //import tasks and archiveGroups+tasks from localStorage
 //initiation process
 
 var addNewTask = function() {
-    maxId = parseInt(maxId);
     taskArray.push(new Task(null, null, maxId));
     findTaskById(maxId).scrub();
     findTaskById(maxId).addToTable();
@@ -58,6 +62,7 @@ var addNewTask = function() {
     saveToLS();
 }
 //adds new default task to taskArray
+
 var dDoneHandler = function(idIn, dayIn) {
     findTaskById(idIn).dDoneLocal(dayIn - 1);
     saveToLS();
@@ -66,6 +71,7 @@ var dDoneHandler = function(idIn, dayIn) {
 //handles tile ddone events; finds appropriate task, then passes toggling
 //reattaches events
 //SAVES
+
 var dActiveHandler = function(idIn, dayIn) {
     findTaskById(idIn).dActiveLocal(dayIn - 1);
     saveToLS();
@@ -77,8 +83,7 @@ var dActiveHandler = function(idIn, dayIn) {
 
 var saveToLS = function() {
     var string = "saveVer 1;;;";
-    string += maxId + ";;;";
-    string += maxArchiveId;
+    string += maxId + ";;;" + maxArchiveId;
     for (var i in taskArray) {
         string += ";;;"
         string += taskArray[i].exportInfo();

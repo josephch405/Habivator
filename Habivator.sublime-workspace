@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getElementById"
+			],
+			[
 				"arch",
 				"archTaskRow"
 			]
@@ -12,10 +16,34 @@
 	"buffers":
 	[
 		{
-			"file": "js/main.js",
+			"file": "js/options.js",
 			"settings":
 			{
-				"buffer_size": 8313,
+				"buffer_size": 1572,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/options.html",
+			"settings":
+			{
+				"buffer_size": 1169,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "html/options1.html",
+			"settings":
+			{
+				"buffer_size": 1093,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/options1.js",
+			"settings":
+			{
+				"buffer_size": 1830,
 				"line_ending": "Unix"
 			}
 		},
@@ -25,70 +53,6 @@
 			{
 				"buffer_size": 3560,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/popup.css",
-			"settings":
-			{
-				"buffer_size": 614,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/archivedTask.js",
-			"settings":
-			{
-				"buffer_size": 5326,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/options.css",
-			"settings":
-			{
-				"buffer_size": 359,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/task.js",
-			"settings":
-			{
-				"buffer_size": 12325,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "html/options1.html",
-			"settings":
-			{
-				"buffer_size": 970,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "manifest.json",
-			"settings":
-			{
-				"buffer_size": 525,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/options1.js",
-			"settings":
-			{
-				"buffer_size": 1585,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/Users/Administrator/Desktop/Chart.js/Chart.min.js",
-			"settings":
-			{
-				"buffer_size": 50937,
-				"line_ending": "Windows"
 			}
 		}
 	],
@@ -121,16 +85,27 @@
 	[
 		"/C/Users/Administrator/Google Drive/11grade/Habivator",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/.komodotools",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js"
 	],
 	"file_history":
 	[
+		"/C/Users/Administrator/Desktop/Chart.js/Chart.min.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/manifest.json",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
 		"/C/Users/Administrator/Desktop/Chart1.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/Chart.js",
 		"/C/Users/Administrator/Desktop/Chart.js/Chart.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/D/Student_Data/MAI/index.html",
@@ -152,6 +127,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"file",
+			"style",
+			"perce",
+			"percen",
+			"calculateT",
 			"split(\"\\r",
 			"findTaskB",
 			"find",
@@ -181,24 +161,112 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "js/main.js",
+					"file": "js/options.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8313,
+						"buffer_size": 1572,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5864,
-								5864
+								1572,
+								1278
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 414.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "html/options.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								334,
+								334
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "html/options1.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1093,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								643,
+								643
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/options1.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1822,
+								1822
 							]
 						],
 						"settings":
@@ -208,14 +276,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2543.0,
+						"translation.y": 735.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 4,
 					"file": "js/archivedTaskGroup.js",
 					"semi_transient": false,
 					"settings":
@@ -227,8 +295,8 @@
 						"selection":
 						[
 							[
-								1882,
-								1887
+								2949,
+								2954
 							]
 						],
 						"settings":
@@ -238,241 +306,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "css/popup.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 614,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								614,
-								614
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 225.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/archivedTask.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5326,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2237,
-								2237
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 690.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "css/options.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 359,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								158,
-								158
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "js/task.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12325,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 450.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "html/options1.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 970,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								663,
-								663
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "manifest.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 525,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								440,
-								440
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "js/options1.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1585,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1546,
-								1546
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 274.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "/C/Users/Administrator/Desktop/Chart.js/Chart.min.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 50937,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4893,
-								4902
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 31969.0,
-						"translation.y": 0.0,
+						"translation.y": 705.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
