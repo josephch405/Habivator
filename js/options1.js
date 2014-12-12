@@ -7,12 +7,14 @@ archGroupArray.sort(function(a,b){return Date.parse(b.date)-Date.parse(a.date)})
 //set page dimensions
 
 var percentageArray = [];
+var percentageLabels = [];
 
-for (var i = 0; i<10; i++) {
-    //var n = archGroupArray.length-i;
-    //if (n>=0){
-    percentageArray.unshift(Math.floor(archGroupArray[i].calculateTotalPercentage()*1000)/10);
-//}
+for (var i = 0; i<20; i++) {
+    var n = archGroupArray.length-i;
+    if (n>0){
+        percentageArray.unshift(Math.floor(archGroupArray[i].calculateTotalPercentage()*1000)/10);
+        percentageLabels.unshift(simplifyDate(archGroupArray[i].dateObject));
+    }
 }
 
 var faceButton = document.getElementById("face");
@@ -28,10 +30,10 @@ popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
 
 var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July",,,,,,,,],
+    labels: percentageLabels,
     datasets: [
         {
-            label: "My First dataset",
+            //label: "My First dataset",
             fillColor: "rgba(220,0,220,0.2)",
             strokeColor: "rgba(220,0,220,1)",
             pointColor: "rgba(220,0,220,1)",

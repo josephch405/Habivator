@@ -1,6 +1,5 @@
 function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     //essentially static records of past tasks
-
     this.name = "new task";
     this.editMode = 0;
     this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
@@ -17,7 +16,6 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     //basic init. management
     
     this.createTaskRow = function() {
-
         rowText = "<tr><td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
         //icon
 
@@ -26,8 +24,7 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             rowText += " colspan = 3;";
             rowText += ">" + this.name + "</td>";
         } else {
-            rowText += " style='width:180px;'";
-            rowText += ">" + this.name + "</td>";
+            rowText += " style='width:180px;'>" + this.name + "</td>";
             if (this.unit == 1) {
                 rowText += "<td colspan=2>" + this.quantity + " Reps</td>";
             } else if (this.unit == 2) {
@@ -52,6 +49,7 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
 
         for (var i = 0; i < this.daysDone.length; i++) {
             var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
+            
             switch (parseInt(this.daysDone[i])) {
             case 2:
                 pic.onmouseover = function() {

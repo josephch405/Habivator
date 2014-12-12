@@ -1,4 +1,4 @@
-table
+#chart1
 {
     top:100px;
     display: inline-block;
@@ -12,6 +12,7 @@ table
 {
     height:80;
 }
+
 #face{
     position:absolute;
     top:4px ;

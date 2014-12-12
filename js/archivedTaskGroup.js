@@ -1,5 +1,6 @@
 function archivedTaskGroup(inDateString, inarchString) {
     this.date = inDateString || Date().toDateString;
+    this.dateObject = new Date(Date.parse(this.date));
     this.id = this.date.replace(/\s+/g, '-');
     this.archArray = [];
 

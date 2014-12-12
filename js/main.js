@@ -160,7 +160,6 @@ var checkIfDatePassed = function() {
 //manages date events; if date passed, triggers lockdown, otherwise scrubs
     //saves
 
-
 var findTaskById = function(idIn) {
     for (var i = 0; i < taskArray.length; i++) {
         if (taskArray[i].id == parseInt(idIn)) {
@@ -188,7 +187,6 @@ var deleteTask = function(idIn) {
     row.parentElement.removeChild(row);
     saveToLS();
 }
-
 //removes a task from array of tasks and removes row from popup table
 //depends on findTaskById for finding task
 
@@ -211,8 +209,6 @@ var toggleUnitOutside = function(id) {
 //passes toggling of unit to respective task of id
 //task, no archiveTask
 
-
-
 var pushTasksToArchive = function(dateString) {
     var tempDate = new Date(Date.parse(dateString));
     tempDate.setDate(tempDate.getDate()-1);
@@ -225,7 +221,6 @@ var pushTasksToArchive = function(dateString) {
 }
 
 //pushes all tasks to a date-labelled (coming soon) group of archs
-
 
 //txt API
 //
@@ -266,11 +261,11 @@ var smileyToggle = function() {
     console.log("smileyToggles")
     if (popBox.style.visibility == "visible") {
         popBox.style.visibility = "hidden";
-	justClickedFace=true;
+        justClickedFace=true;
     } else {
         popBox.style.visibility = "visible";
         popBox.children[1].innerHTML = smileyBob.chooseText();
-	justClickedFace=true;
+        justClickedFace=true;
     }
     window.setTimeout(function(){justClickedFace=false},100);
     
@@ -279,9 +274,9 @@ var smileyToggle = function() {
 var smileyOff= function() {
     var popBox = document.getElementById("popBox");
     if (!justClickedFace) {
-	if (popBox.style.visibility == "visible") {
-	    popBox.style.visibility = "hidden";
-	}
+    	if (popBox.style.visibility == "visible") {
+    	    popBox.style.visibility = "hidden";
+    	}
     }
     console.log("smileyOffed")
 }
@@ -290,4 +285,15 @@ var smileyKeepOn= function() {
     var popBox = document.getElementById("popBox");
     justClickedFace=true;
     window.setTimeout(function(){justClickedFace=false},100);
+}
+
+var simplifyDate = function(date){
+    console.log(date);
+    var temp = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+    return temp;
+}
+
+var simplifyDateEuro = function(date){
+    var temp = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+    return temp;
 }
