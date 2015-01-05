@@ -20,11 +20,9 @@ function archivedTaskGroup(inDateString, inarchString) {
         this.archArray.push(arch);
     }
 
-
     this.addToTable = function() {
         
-        tableText = '<table id="'
-        console.log(this.id);
+        tableText = '<table id="';
         tableText += this.id;
         tableText += '" style="margin-left:10px"><tbody id="archiveTasks"><tr>';
         tableText += '<th width=312 colspan="4">';
@@ -34,32 +32,33 @@ function archivedTaskGroup(inDateString, inarchString) {
         tableText += ' - '
         tableText += this.date;
         tableText += '</th><th class="iconGrid">Mon</th>';
-        tableText += '<th class="iconGrid">Tue</th><th class="iconGrid">Wed</th>';
-        tableText += '<th class="iconGrid">Thu</th><th class="iconGrid">Fri</th>';
+        tableText += '<th class="iconGrid">Tue</th><th class="iconGrid">Wed</th>'
+        + '<th class="iconGrid">Thu</th><th class="iconGrid">Fri</th>';
         tableText += '<th class="iconGrid">Sat</th><th class="iconGrid">Sun</th>';
         tableText += '</tr>';
         tableText +='</tbody>';
-        tableText += '<tfoot><tr id="deleteArchive"><td colspan="1" class="iconGrid"><img class="icon" id="deleteTaskButton" src="..\\img\\tile\\cross.png"></td>';
-        tableText += '<td colspan="1" class="iconGrid">' + Math.floor(this.calculateTotalPercentage()*1000)/10 + '% achieved</td></tr>'
-        tableText += '</tfoot>'
-
         tableText +='</table>';
         //yes, a rather messy blob, but better than a huge line IMO
-    
         document.getElementById("archiveTables").innerHTML += tableText;
+
+        archTaskRow = document.getElementById(this.id);
+
         for (var i = 0; i < this.archArray.length; i++) {
-            this.archArray[i].addToTable(this.id);
+            this.archArray[i].addToTable(archTaskRow);
         }
+
+        temp = archTaskRow.insertRow();
+        temp.innerHTML = '<tfoot><tr id="deleteArchive"><td colspan="1" class="iconGrid"><img class="icon" id="deleteTaskButton" src="..\\img\\tile\\cross.png"></td>'
+        + '<td colspan="1" class="iconGrid">' + floatToPercentagePoint(this.calculateTotalPercentage()) + '% achieved</td></tr>'
+        + '</tfoot>'
     }
 
     this.attachEvents = function() {
         for (var i = 0; i < this.archArray.length; i++) {
             this.archArray[i].attachEvents();
         }
-        console.log(bob);
         var bob = this.id;
-        console.log($("#" + this.id + " #deleteTaskButton").click());
-        $("#" + this.id + " #deleteTaskButton").click(function(){deleteArchive(bob); console.log(bob)});
+        $("#" + this.id + " #deleteTaskButton").click(function(){deleteArchive(bob);});
     }
 
 
@@ -86,10 +85,24 @@ function archivedTaskGroup(inDateString, inarchString) {
                 }
             }
         }
-        console.log( tempTotalCounted);
-        console.log( tempTotalOpen);
     
         return tempTotalCounted/tempTotalOpen;
     }
+
+    this.calculateDayPercentage = function(day){
+        var tempTotalOpen = 0;
+        var tempTotalCounted = 0;
+        for (var i = 0; i<this.archArray.length;i++) {
+            if (this.archArray[i].daysDone[day]>=2) {
+                tempTotalOpen += 1;
+            }
+            if (this.archArray[i].daysDone[day]==4) {
+                tempTotalCounted += 1;
+            }
+        }
+    
+        return tempTotalCounted/tempTotalOpen;
+    }
+
 
 }

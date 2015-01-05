@@ -13,6 +13,7 @@ var taskArray = [];
 var archGroupArray = [];
 var smileyBob = new Smiley();
 var justClickedFace = false;
+var nameBoxWidth= 200;
 
 var importData = function() {
     saveData = localStorage.save;
@@ -103,6 +104,7 @@ var switchToEdit = function(idIn) {
     rowText = findTaskById(idIn).createRow(false);
     row.innerHTML = rowText;
     findTaskById(idIn).attachEvents();
+    row.style.border = "5px";
 }
 //switches row to edit mode
 //attaches events
@@ -296,4 +298,12 @@ var simplifyDate = function(date){
 var simplifyDateEuro = function(date){
     var temp = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
     return temp;
+}
+
+var floatToPercentagePoint = function(input){
+    return Math.floor(input*1000)/10
+}
+
+var floatToPercentage = function(input){
+    return Math.floor(input*100)
 }

@@ -75,3 +75,5 @@ if (lockdown == true) {
     console.log("hidden here")
 }
 arrowButton.onclick = checkout;
+
+//document.getElementById("tutorial").ondragstart = function() { return false; };

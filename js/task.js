@@ -27,17 +27,24 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             ifTaskRow = inIfTaskRow;
         }
 
-        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
+        //snippet gets percentage, then color tag
+        var iconTag = "green";
+        var tPercentage = this.calculateTaskPercentage();
+        if (tPercentage <= .3){
+            iconTag = "red";
+        }
+        else if (tPercentage <= .6){
+            iconTag = "orange";
+        }
+        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\" + iconTag + ".png'></td>";
         //icon
 
         rowText += "<td";
         if (ifTaskRow) {
             if (this.unit == 0) {
-                rowText += " colspan = 3;";
-                rowText += ">" + this.name + "</td>";
+                rowText += " colspan = 3;>" + this.name + "</td>";
             } else {
-                rowText += " style='width:180px;'";
-                rowText += ">" + this.name + "</td>";
+                rowText += " style='width:" + nameBoxWidth + "px;'>" + this.name + "</td>";
                 if (this.unit == 1) {
                     rowText += "<td colspan=2>" + this.quantity + " Reps</td>";
                 } else if (this.unit == 2) {
@@ -51,9 +58,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 rowText += " colspan = 1 ";
             }
 
-            rowText += "width = 180 >";
-            rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "' >"
-            rowText += "</td>";
+            rowText += ">"
+            + "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "' ></td>";
 
             if (this.unit == 0) {
                 rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>N/A</td>";
@@ -132,11 +138,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             editButton.onclick = function() {
                 switchToTask(id)
             };
-            //edit button
+            //edit button\
 
-            editButton.onclick = function() {
-                switchToTask(id)
-            };
             tb = document.getElementById(this.id + "-tf");
 
             tb.onkeydown = function() {
@@ -336,4 +339,25 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         maxArchiveId += 1;
         return archive;
     }
+
+    this.calculateTaskPercentage = function(){
+        var tempTotalOpen = 0;
+        var tempTotalCounted = 0;
+
+        for (var ii=0; ii<this.daysDone.length; ii++){
+            if (this.daysDone[ii]>=2) {
+                tempTotalOpen += 1;
+            }
+            if (this.daysDone[ii]==4) {
+                tempTotalCounted += 1;
+            }
+        }
+
+        if (tempTotalOpen == 0){
+            return 1;
+        }
+
+        return tempTotalCounted/tempTotalOpen;
+    }
+
 }

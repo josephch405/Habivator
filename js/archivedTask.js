@@ -16,7 +16,16 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     //basic init. management
     
     this.createTaskRow = function() {
-        rowText = "<tr><td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\1.png'></td>";
+
+        var iconTag = "green";
+        var tPercentage = this.calculateTaskPercentage();
+        if (tPercentage <= .3){
+            iconTag = "red";
+        }
+        else if (tPercentage <= .6){
+            iconTag = "orange";
+        }
+        rowText = "<tr><td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\" + iconTag + ".png'></td>";
         //icon
 
         rowText += "<td";
@@ -24,7 +33,7 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             rowText += " colspan = 3;";
             rowText += ">" + this.name + "</td>";
         } else {
-            rowText += " style='width:180px;'>" + this.name + "</td>";
+            rowText += " style='width:" + nameBoxWidth + "px;'>" + this.name + "</td>";
             if (this.unit == 1) {
                 rowText += "<td colspan=2>" + this.quantity + " Reps</td>";
             } else if (this.unit == 2) {
@@ -38,6 +47,12 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             rowText += this.buttonGen(i);
             rowText += "</td>"
         }
+
+        rowText += "<td class='smallText'>";
+        rowText += floatToPercentage(this.calculateTaskPercentage()) + "%";
+        rowText += "</td>"
+        //use for task percentaging
+
         rowText+="</tr>"
 
         return rowText;
@@ -100,14 +115,9 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     }
     //creates a button, based on day and daysactive if mentioned
     //
-    this.addToTable = function(tableTag) {
-        table = $("#"+tableTag);
-        console.log(table);
-        archTaskRow =$('#' + tableTag + ' #archiveTasks');
-        console.log(archTaskRow);
-        archTaskRow.after(this.createTaskRow());
-        //row.id = this.id;
-        //row.innerHTML = this.createTaskRow();
+    this.addToTable = function(archTaskRow) {
+        temp = archTaskRow.insertRow();
+        temp.innerHTML = this.createTaskRow();
     }
 
     this.dDoneLocal = function(dayIn) {
@@ -152,9 +162,25 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
         return string;
     }
     
-    this.totalPercentage = new function(){
-        
+    this.calculateTaskPercentage = function(){
+        var tempTotalOpen = 0;
+        var tempTotalCounted = 0;
+
+        for (var ii=0; ii<this.daysDone.length; ii++){
+            if (this.daysDone[ii]>=2) {
+                tempTotalOpen += 1;
+            }
+            if (this.daysDone[ii]==4) {
+                tempTotalCounted += 1;
+            }
+        }
+
+        if (tempTotalOpen == 0){
+            return 1;
+        }
+
+        return tempTotalCounted/tempTotalOpen;
     }
-    
+
     
 }

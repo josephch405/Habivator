@@ -30,9 +30,9 @@ table,td,th
 
 
 td{
-    padding:2px;
-    height:34px;
-    font-size:20px;
+    padding:0px;
+    height:30px;
+    font-size:18px;
 }
 
 th{
@@ -41,7 +41,7 @@ th{
 
 .iconGrid
 {
-    width:32px;
+    width:28px;
     padding:0px;
 }
 
@@ -53,34 +53,37 @@ th{
 
 .icon
 {
-    height:32px;
-    width:32px;
+    height:28px;
+    width:28px;
 }
 
 .halfIcon
 {
-    height:32px;
+    height:28px;
     width:12px;
 }
 
 .editingTextbox
 {
-    font-size: 20px;
+    font-size: 18px;
     font-family:calibri;
     margin:0;
-    width:180px;
     height:28px;
 }
 
 .editUnitTextBox
 {
-    font-size: 20px;
+    font-size: 18px;
     font-family:calibri;
     margin:0;
-    width:42px;
+    width:64px;
     height:28px;
 }
 
 .unitGrid{
     width:50px;
+}
+
+.smallText{
+    font-size: 14px;
 }
