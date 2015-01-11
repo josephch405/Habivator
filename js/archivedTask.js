@@ -1,7 +1,6 @@
 function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     //essentially static records of past tasks
     this.name = "new task";
-    this.editMode = 0;
     this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
 
     if (daysDoneIn != null && daysDoneIn.length == 7) {
@@ -9,9 +8,9 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     }
 
     this.unit = unitIn || 0; //0 is no count, 1 is reps, 2 is minutes
-    this.quantity = quantityIn || 0;
+    this.quantity = parseInt(quantityIn) || 0;
     this.name = nameIn || "New Task";
-    this.id = idIn || -1;
+    this.id = parseInt(idIn) || -1;
     this.icon = iconIn || 1;
     //basic init. management
     

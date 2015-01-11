@@ -1,8 +1,9 @@
-function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn) {
+function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn, karmaIn) {
 
     this.name = nameIn || "New Task";
     this.icon = iconIn || 1;
     this.id = idIn || -1;
+    this.karma = karmaIn || 0;
     this.activeDays = [1, 1, 1, 1, 1, 1, 1]; //0 is no and 1 is yes
     this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
     if (activeDaysIn != null && daysDoneIn != null) {
@@ -328,6 +329,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         string = "task;;";
         string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
         string += this.activeDays + ";;" + this.daysDone + ";;";
+        string += this.unit + ";;" + this.quantity + ";;" + this.karma;
         string += this.unit + ";;" + this.quantity;
         return string;
     }
@@ -337,6 +339,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         var dDone = this.daysDone;
         var archive = new archivedTask(String(this.name), String(this.icon), +maxArchiveId, dDone, +this.unit, +this.quantity);
         maxArchiveId += 1;
+        this.karma += this.calculateKarma();
         return archive;
     }
 
@@ -358,6 +361,17 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         }
 
         return tempTotalCounted/tempTotalOpen;
+    }
+
+    this.calculateKarma = function(){
+        percentage = this.calculateTaskPercentage();
+        if (percentage >= 80){
+            return 1;
+        }
+        else if(percentage <= 20){
+            return -1;
+        }
+        return 0;
     }
 
 }

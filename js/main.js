@@ -39,7 +39,11 @@ var importData = function() {
                     for (var iii in tDoneDays) {
                         tDoneDays[iii] = parseInt(tDoneDays[iii]);
                     }
-                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7])))
+                    var tempKarma = 0;
+                    if (taskString[8] != null){
+                        tempKarma = parseInt(taskString[8]);
+                    }
+                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma))
                     //parsing for task
 
                 } else if (type == "archGroup") {
@@ -219,6 +223,7 @@ var pushTasksToArchive = function(dateString) {
         archGroup.addArch(taskArray[i].exportAsArchive());
     }
     archGroupArray.push(archGroup);
+    maxArchiveId+=1;
     saveToLS();
 }
 

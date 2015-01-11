@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"calcula",
+				"calculateKarma"
+			],
+			[
+				"max",
+				"maxArchiveId"
+			],
+			[
 				"back",
 				"background-color"
 			],
@@ -24,50 +32,10 @@
 	"buffers":
 	[
 		{
-			"file": "html/options.html",
+			"file": "js/smiley.js",
 			"settings":
 			{
-				"buffer_size": 1205,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/options1.js",
-			"settings":
-			{
-				"buffer_size": 1882,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/archivedTask.js",
-			"settings":
-			{
-				"buffer_size": 5997,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/main.js",
-			"settings":
-			{
-				"buffer_size": 8938,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/options.css",
-			"settings":
-			{
-				"buffer_size": 612,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "css/main.css",
-			"settings":
-			{
-				"buffer_size": 982,
+				"buffer_size": 303,
 				"line_ending": "Windows"
 			}
 		},
@@ -75,7 +43,7 @@
 			"file": "js/task.js",
 			"settings":
 			{
-				"buffer_size": 12925,
+				"buffer_size": 13329,
 				"line_ending": "Unix"
 			}
 		},
@@ -85,6 +53,25 @@
 			{
 				"buffer_size": 1882,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/archivedTask.js",
+			"settings":
+			{
+				"buffer_size": 5994,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var today = new Date();\nvar dayOfWeek = today.getDay();\nif (dayOfWeek == 0) {\n    dayOfWeek = 7;\n}\n//initializing date vars\n\nvar lockdown = localStorage.locked || false;\nvar maxId = 1;\nvar maxArchiveId = 1;\nvar weekArray = [\"mon\", \"tue\", \"wed\", \"thu\", \"fri\", \"sat\", \"sun\"];\nvar taskArray = [];\nvar archGroupArray = [];\nvar smileyBob = new Smiley();\nvar justClickedFace = false;\nvar nameBoxWidth= 200;\n\nvar importData = function() {\n    saveData = localStorage.save;\n    if (saveData != null) {\n        saveData = saveData.split(\";;;\")\n\n        if (saveData[0] == \"saveVer 1\") {\n            maxId = parseInt(saveData[1]);\n            maxArchiveId = parseInt(saveData[2]);\n            //at this point, all basic global vars inputed\n\n            for (var i = 3; i < saveData.length; i++) {\n                var taskString = saveData[i].split(\";;\");\n                type = taskString[0];\n\n                if (type == \"task\") {\n\n                    tActDays = taskString[4].split(\",\");\n                    for (var ii in tActDays) {\n                        tActDays[ii] = parseInt(tActDays[ii]);\n                    }\n                    tDoneDays = taskString[5].split(\",\");\n                    for (var iii in tDoneDays) {\n                        tDoneDays[iii] = parseInt(tDoneDays[iii]);\n                    }\n                    var tempKarma = 0;\n                    if (taskString[8] != null){\n                        tempKarma = parseInt(taskString[8]);\n                    }\n                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma))\n                    //parsing for task\n\n                } else if (type == \"archGroup\") {\n                    archGroupArray.push(new archivedTaskGroup(taskString[1], taskString[2]));\n                    //parsing for archGroup instead\n                }\n            }\n        }\n\n    }\n}\n//import tasks and archiveGroups+tasks from localStorage\n//initiation process\n\nvar addNewTask = function() {\n    taskArray.push(new Task(null, null, maxId));\n    findTaskById(maxId).scrub();\n    findTaskById(maxId).addToTable();\n    findTaskById(maxId).attachEvents();\n    maxId += 1;\n    saveToLS();\n}\n//adds new default task to taskArray\n\nvar dDoneHandler = function(idIn, dayIn) {\n    findTaskById(idIn).dDoneLocal(dayIn - 1);\n    saveToLS();\n    findTaskById(idIn).attachEvents();\n}\n//handles tile ddone events; finds appropriate task, then passes toggling\n//reattaches events\n//SAVES\n\nvar dActiveHandler = function(idIn, dayIn) {\n    findTaskById(idIn).dActiveLocal(dayIn - 1);\n    saveToLS();\n    findTaskById(idIn).attachEvents();\n}\n//handles tile dActive events; finds appropriate task, then passes toggling\n//reattaches events\n//SAVES\n\nvar saveToLS = function() {\n    var string = \"saveVer 1;;;\";\n    string += maxId + \";;;\" + maxArchiveId;\n    for (var i in taskArray) {\n        string += \";;;\"\n        string += taskArray[i].exportInfo();\n    }\n    for (var ii in archGroupArray) {\n        string += \";;;\"\n        string += archGroupArray[ii].exportInfo();\n    }\n    localStorage.save = string;\n    return (string);\n}\n//saves everything to localstorage\n\nvar switchToEdit = function(idIn) {\n    row = document.getElementById(idIn);\n    findTaskById(idIn).editMode = 1;\n    rowText = findTaskById(idIn).createRow(false);\n    row.innerHTML = rowText;\n    findTaskById(idIn).attachEvents();\n    row.style.border = \"5px\";\n}\n//switches row to edit mode\n//attaches events\n\nvar switchToTask = function(idIn) {\n    findTaskById(idIn).name = document.getElementById(idIn + \"-tf\").value;\n    if (document.getElementById(idIn + \"-quant\")) {\n        findTaskById(idIn).quantity = document.getElementById(idIn + \"-quant\").value;\n    }\n    findTaskById(idIn).scrub();\n    findTaskById(idIn).editMode = 0;\n    saveToLS();\n    row = document.getElementById(idIn);\n    rowText = findTaskById(idIn).createRow();\n    row.innerHTML = rowText;\n    findTaskById(idIn).attachEvents();\n}\n//switches row to task mode\n//only tasks\n\nvar nextTriggerDate = function() {\n    var timerDate = new Date(today);\n    timerDate.setDate(today.getDate() + 8 - dayOfWeek);\n    timerDate.setHours(0);\n    timerDate.setMinutes(0);\n    timerDate.setSeconds(0);\n    return timerDate;\n}\n//returns the next trigger date, the next monday 0 midnight\n\nvar checkIfDatePassed = function() {\n    if (localStorage.timer == null) {\n        localStorage.timer = nextTriggerDate();\n    } else {\n        if (today - (new Date(localStorage.timer)) > 0) {\n            lockdown = true;\n            localStorage.lockdown = true;\n            dayOfWeek = 7;\n            for (var i in taskArray) {\n                taskArray[i].scrub();\n            }\n            saveToLS();\n            //location.reload();\n            //new week!\n        } else {\n            for (var i in taskArray) {\n                taskArray[i].scrub();\n            }\n            this.lockdown = false;\n            localStorage.lockdown = false;\n        }\n    }\n    saveToLS();\n};\n//manages date events; if date passed, triggers lockdown, otherwise scrubs\n    //saves\n\nvar findTaskById = function(idIn) {\n    for (var i = 0; i < taskArray.length; i++) {\n        if (taskArray[i].id == parseInt(idIn)) {\n            return taskArray[i];\n            break;\n        }\n    }\n    return null;\n}\n//returns task by id, searches through array of tasks\n\nvar findArchById = function(idIn) {\n    for (var i = 0; i < archGroupArray.length; i++) {\n        if (archGroupArray[i].id == idIn) {\n            return archGroupArray[i];\n            break;\n        }\n    }\n}\n\nvar deleteTask = function(idIn) {\n    var task = findTaskById(idIn);\n    taskArray.splice(taskArray.indexOf(task), 1);\n    var row = document.getElementById(idIn);\n    row.parentElement.removeChild(row);\n    saveToLS();\n}\n//removes a task from array of tasks and removes row from popup table\n//depends on findTaskById for finding task\n\nvar deleteArchive = function(idIn) {\n    var task = findArchById(idIn);\n    console.log(\"task\"+task);\n    archGroupArray.splice(archGroupArray.indexOf(task), 1);\n    var row = document.getElementById(idIn);\n    console.log(idIn);\n    console.log(row);\n    row.parentElement.removeChild(row);\n    saveToLS();\n}\n//OBSOLETE(?); will be modified to reflect changes in archive grouping\n\nvar toggleUnitOutside = function(id) {\n    console.log(id);\n    findTaskById(id).toggleUnit();\n}\n//passes toggling of unit to respective task of id\n//task, no archiveTask\n\nvar pushTasksToArchive = function(dateString) {\n    var tempDate = new Date(Date.parse(dateString));\n    tempDate.setDate(tempDate.getDate()-1);\n    var archGroup = new archivedTaskGroup(tempDate.toDateString());\n    for (var i in taskArray) {\n        archGroup.addArch(taskArray[i].exportAsArchive());\n    }\n    archGroupArray.push(archGroup);\n    saveToLS();\n}\n\n//pushes all tasks to a date-labelled (coming soon) group of archs\n\n//txt API\n//\n//\nvar importTxt = function() {\n    if (!window.FileReader) {\n        alert('Your browser is not supported')\n    }\n    var input = fileInput.get(0);\n\n    // Create a reader object\n    var reader = new FileReader();\n    if (input.files.length) {\n        var textFile = input.files[0];\n        reader.readAsText(textFile);\n        var text;\n        reader.onload = function(e) {\n            text = reader.result;\n            localStorage.save = text;\n            location.reload();\n        };\n    } else {\n        alert('Please upload a file before continuing')\n    }\n}\n\nvar exportTxt = function() {\n    var text = saveToLS();\n    var link = document.createElement('a');\n\n    link.setAttribute('download', \"habivatorSave\");\n    link.setAttribute('href', 'data:text/plain;charset=utf-8,' + text);\n    link.click();\n}\n\nvar smileyToggle = function() {\n    var popBox = document.getElementById(\"popBox\");\n    console.log(\"smileyToggles\")\n    if (popBox.style.visibility == \"visible\") {\n        popBox.style.visibility = \"hidden\";\n        justClickedFace=true;\n    } else {\n        popBox.style.visibility = \"visible\";\n        popBox.children[1].innerHTML = smileyBob.chooseText();\n        justClickedFace=true;\n    }\n    window.setTimeout(function(){justClickedFace=false},100);\n    \n}\n\nvar smileyOff= function() {\n    var popBox = document.getElementById(\"popBox\");\n    if (!justClickedFace) {\n    	if (popBox.style.visibility == \"visible\") {\n    	    popBox.style.visibility = \"hidden\";\n    	}\n    }\n    console.log(\"smileyOffed\")\n}\n\nvar smileyKeepOn= function() {\n    var popBox = document.getElementById(\"popBox\");\n    justClickedFace=true;\n    window.setTimeout(function(){justClickedFace=false},100);\n}\n\nvar simplifyDate = function(date){\n    console.log(date);\n    var temp = (date.getMonth()+1) + \"/\" + date.getDate() + \"/\" + date.getFullYear();\n    return temp;\n}\n\nvar simplifyDateEuro = function(date){\n    var temp = date.getDate() + \"/\" + (date.getMonth()+1) + \"/\" + date.getFullYear();\n    return temp;\n}\n\nvar floatToPercentagePoint = function(input){\n    return Math.floor(input*1000)/10\n}\n\nvar floatToPercentage = function(input){\n    return Math.floor(input*100)\n}",
+			"file": "js/main.js",
+			"file_size": 9140,
+			"file_write_time": 130649207973925297,
+			"settings":
+			{
+				"buffer_size": 9119,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -123,21 +110,22 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
+		"/C/Users/Administrator/Documents/GitHub/2014-Aerial-Assist/src/com/team1160/assistant/OI.java",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options1.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options1.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
 		"/C/Users/Administrator/Videos/4K Video Downloader/The skill of self confidence   Dr. Ivan Joseph   TEDxRyersonU.srt",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
 		"/C/Users/Administrator/Desktop/Chart.js/Chart.min.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/manifest.json",
 		"/C/Users/Administrator/Desktop/Chart1.js",
@@ -164,6 +152,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"calcula",
+			"pushTasks",
+			"checkou",
+			"checkout",
+			"maxarchive",
+			"maxarchiveid",
+			"maxarchive",
+			"editmode",
 			"switchto",
 			"table",
 			"attach",
@@ -206,204 +202,52 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "html/options.html",
+					"file": "js/smiley.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1205,
+						"buffer_size": 303,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								982,
-								982
+								190,
+								190
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/options1.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1882,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/archivedTask.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5997,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1207,
-								1207
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 228.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8938,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3283,
-								3283
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1727.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "css/options.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 612,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								610,
-								610
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 540.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "css/main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 982,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								321,
-								321
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1035.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 1,
 					"file": "js/task.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12925,
+						"buffer_size": 13329,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1439,
-								1439
+								12550,
+								12550
 							]
 						],
 						"settings":
@@ -413,14 +257,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1125.0,
+						"translation.y": 4832.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 2,
 					"file": "js/popup.js",
 					"semi_transient": false,
 					"settings":
@@ -432,8 +276,8 @@
 						"selection":
 						[
 							[
-								408,
-								408
+								876,
+								876
 							]
 						],
 						"settings":
@@ -443,10 +287,70 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 750.0,
+						"translation.y": 309.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/archivedTask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5994,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								543,
+								543
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1454,
+								1454
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 395.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
