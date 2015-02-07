@@ -9,52 +9,48 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="400"
-   height="100"
-   id="svg2989"
+   width="100"
+   height="80"
+   id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="bubble.svg"
-   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\bubble.png"
+   sodipodi:docname="lrow.svg"
+   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\lrow.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
-     id="defs2991">
-    <inkscape:path-effect
-       effect="spiro"
-       id="path-effect3779"
-       is_visible="true" />
+     id="defs4">
     <filter
        style="color-interpolation-filters:sRGB;"
        inkscape:label="Drop Shadow"
-       id="filter3812">
+       id="filter3832">
       <feFlood
          flood-opacity="0.5"
          flood-color="rgb(0,0,0)"
          result="flood"
-         id="feFlood3814" />
+         id="feFlood3834" />
       <feComposite
          in="flood"
          in2="SourceGraphic"
          operator="in"
          result="composite1"
-         id="feComposite3816" />
+         id="feComposite3836" />
       <feGaussianBlur
          in="composite"
-         stdDeviation="2"
+         stdDeviation="3"
          result="blur"
-         id="feGaussianBlur3818" />
+         id="feGaussianBlur3838" />
       <feOffset
          dx="0"
          dy="0"
          result="offset"
-         id="feOffset3820" />
+         id="feOffset3840" />
       <feComposite
          in="SourceGraphic"
          in2="offset"
          operator="over"
          result="composite2"
-         id="feComposite3822" />
+         id="feComposite3842" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -64,13 +60,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="365.47143"
-     inkscape:cy="48.525697"
+     inkscape:zoom="3.959798"
+     inkscape:cx="21.694598"
+     inkscape:cy="40.564548"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:snap-bbox="true"
      inkscape:window-width="1366"
      inkscape:window-height="706"
      inkscape:window-x="-8"
@@ -78,14 +73,14 @@
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
-       id="grid2997"
+       id="grid2985"
        empspacing="5"
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
   <metadata
-     id="metadata2994">
+     id="metadata7">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -100,14 +95,25 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-952.36218)">
-    <path
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3812)"
-       d="m 5,957.36218 0,90.00002 355,0 0,-40 35,-20.00002 -35,0 0,-30 z"
-       id="rect2999"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccc"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+     transform="translate(0,-972.36218)">
+    <rect
+       style="fill:#99ff64;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3832)"
+       id="rect3764"
+       width="90"
+       height="70"
+       x="5"
+       y="977.36218" />
+    <text
+       xml:space="preserve"
+       style="font-size:80px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
+       x="10"
+       y="1037.3622"
+       id="text3757"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3759"
+         x="10"
+         y="1037.3622"
+         style="font-size:28px">Row</tspan></text>
   </g>
 </svg>

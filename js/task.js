@@ -1,9 +1,9 @@
 function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn, karmaIn) {
 
     this.name = nameIn || "New Task";
-    this.icon = iconIn || 1;
-    this.id = idIn || -1;
-    this.karma = karmaIn || 0;
+    this.icon = parseInt(iconIn) || 1;
+    this.id = parseInt(idIn) || -1;
+    this.karma = parseInt(karmaIn) || 0;
     this.activeDays = [1, 1, 1, 1, 1, 1, 1]; //0 is no and 1 is yes
     this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
     if (activeDaysIn != null && daysDoneIn != null) {
@@ -31,13 +31,14 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         //snippet gets percentage, then color tag
         var iconTag = "green";
         var tPercentage = this.calculateTaskPercentage();
-        if (tPercentage <= .3){
+        var tempKarma = floatToKarma(tPercentage);
+        if (tempKarma == -1){
             iconTag = "red";
         }
-        else if (tPercentage <= .6){
+        else if (tempKarma == 0){
             iconTag = "orange";
         }
-        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\" + iconTag + ".png'></td>";
+        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='../img/tile/" + iconTag + ".png'></td>";
         //icon
 
         rowText += "<td";
@@ -82,12 +83,12 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         }
 
         rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon' id='" + this.id + "-e' src='..//img//tile//editButton.png'>";
+        rowText += "<img class='halfIcon' id='" + this.id + "-e' src='../img/tile/editButton.png'>";
         rowText += "</td>"
         //edit button
 
         rowText += "<td class='halfIconGrid'>";
-        rowText += "<img class='halfIcon' id='" + this.id + "-del' src='..//img//tile//deleteButton.png'>";
+        rowText += "<img class='halfIcon' id='" + this.id + "-del' src='../img/tile/deleteButton.png'>";
         rowText += "</td>"
         //del button
 
@@ -110,18 +111,18 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 switch (this.activeDays[i]) {
                 case 0:
                     pic.onmouseover = function() {
-                        this.src = "..//img//tile//lr.png"
+                        this.src = "../img/tile/lr.png"
                     };
                     pic.onmouseout = function() {
-                        this.src = "..//img//tile//r.png"
+                        this.src = "../img/tile/r.png"
                     }
                     break;
                 case 1:
                     pic.onmouseover = function() {
-                        this.src = "..//img//tile//lg.png"
+                        this.src = "../img/tile/lg.png"
                     };
                     pic.onmouseout = function() {
-                        this.src = "..//img//tile//g.png"
+                        this.src = "../img/tile/g.png"
                     };
                     break;
                 }
@@ -131,10 +132,10 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             }
             editButton = document.getElementById(this.id + "-e")
             editButton.onmouseover = function() {
-                this.src = "..//img//tile//leditButton.png"
+                this.src = "../img/tile/leditButton.png"
             };
             editButton.onmouseout = function() {
-                this.src = "..//img//tile//editButton.png"
+                this.src = "../img/tile/editButton.png"
             };
             editButton.onclick = function() {
                 switchToTask(id)
@@ -166,19 +167,19 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 switch (this.daysDone[i]) {
                 case 2:
                     pic.onmouseover = function() {
-                        this.src = "..//img//tile//lr.png"
+                        this.src = "../img/tile/lr.png"
                     };
                     pic.onmouseout = function() {
-                        this.src = "..//img//tile//r.png"
+                        this.src = "../img/tile/r.png"
                     }
                     clickable = true;
                     break;
                 case 4:
                     pic.onmouseover = function() {
-                        this.src = "..//img//tile//lg.png"
+                        this.src = "../img/tile/lg.png"
                     };
                     pic.onmouseout = function() {
-                        this.src = "..//img//tile//g.png"
+                        this.src = "../img/tile/g.png"
                     }
                     clickable = true;
                     break;
@@ -189,28 +190,32 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                         dDoneHandler(parseInt(id), parseInt(this.id.split("-")[1]))
                     };
                 }
+                pic.draggable = false;
             }
             editButton = document.getElementById(this.id + "-e")
             editButton.onmouseover = function() {
-                this.src = "..//img//tile//leditButton.png"
+                this.src = "../img/tile/leditButton.png"
             };
             editButton.onmouseout = function() {
-                this.src = "..//img//tile//editButton.png"
+                this.src = "../img/tile/editButton.png"
             };
             editButton.onclick = function() {
                 switchToEdit(id)
             };
+            editButton.draggable = false;
         }
         deleteButton = document.getElementById(this.id + "-del")
         deleteButton.onmouseover = function() {
-            this.src = "..//img//tile//ldeleteButton.png"
+            this.src = "../img/tile/ldeleteButton.png"
         };
         deleteButton.onmouseout = function() {
-            this.src = "..//img//tile//deleteButton.png"
+            this.src = "../img/tile/deleteButton.png"
         };
         deleteButton.onclick = function() {
             deleteTask(id);
         };
+        deleteButton.draggable = false;
+
     }
 
     //output row text and paste to end of table at start build of page, when called
@@ -229,28 +234,28 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         if (inDaysActive) {
             switch (referenceArray[dayIn]) {
             case 0:
-                result += "src='..//img//tile//r.png'";
+                result += "src='../img/tile/r.png'";
                 break;
             case 1:
-                result += "src='..//img//tile//g.png'";
+                result += "src='../img/tile/g.png'";
                 break;
             }
         } else {
             switch (referenceArray[dayIn]) {
             case 0:
-                result += "src='..//img//tile//b.png'/";
+                result += "src='../img/tile/b.png'";
                 break;
             case 1:
-                result += "src='..//img//tile//w.png'/"
+                result += "src='../img/tile/w.png'"
                 break;
             case 2:
-                result += "src='..//img//tile//r.png'";
+                result += "src='../img/tile/r.png'";
                 break;
             case 3:
-                result += "src='..//img//tile//y.png'";
+                result += "src='../img/tile/y.png'";
                 break;
             case 4:
-                result += "src='..//img//tile//g.png'";
+                result += "src='../img/tile/g.png'";
                 break;
             }
         }
@@ -295,6 +300,19 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         }
     }
 
+    this.dDoneButtonLocal = function(){
+        switch (this.daysDone[dayOfWeek-1]) {
+        case 2:
+            this.daysDone[dayOfWeek-1] = 4;
+            document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek-1,2);
+            break;
+        case 4:
+            this.daysDone[dayOfWeek-1] = 2;
+            document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek-1,2);
+            break;
+        }
+    }
+
     this.toggleUnit = function() {
         var id = this.id;
         switchToTask(id);
@@ -329,7 +347,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         string = "task;;";
         string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
         string += this.activeDays + ";;" + this.daysDone + ";;";
-        string += this.unit + ";;" + this.quantity + ";;" + this.karma;
+        string += this.unit + ";;" + this.quantity + ";;" + this.karma + ";;";
         string += this.unit + ";;" + this.quantity;
         return string;
     }
@@ -365,13 +383,121 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
     this.calculateKarma = function(){
         percentage = this.calculateTaskPercentage();
-        if (percentage >= 80){
+        if (percentage >= .8){
             return 1;
         }
-        else if(percentage <= 20){
+        else if(percentage <= .2){
             return -1;
         }
         return 0;
     }
+
+
+
+
+
+
+
+
+
+
+
+    this.createButton = function(dayIn, ifUp) {
+        var text;
+        if (ifUp == 1){
+            text = "<td id='" + this.id + "-i'>";
+            text += "<div class='bigIconDiv'>";
+            text += this.name;
+            if (this.unit == 1){
+                text += "<br>" + this.quantity + "reps";
+            }
+            else if (this.unit == 2){
+                text += "<br>" + this.quantity + " mins";
+            }
+            text += "</div></td>";
+            return text;
+        }
+
+        else {
+            text = "<td><img class='bigIcon'"; //opens icon
+            text += "id='" + this.id + "'";
+            var referenceArray;
+            referenceArray = this.daysDone;
+            switch (referenceArray[dayIn-1]) {
+                case 0:
+                    text += "src='../img/tile/b.png'/";
+                    break;
+                case 1:
+                    text += "src='../img/tile/w.png'/"
+                    break;
+                case 2:
+                    text += "src='../img/tile/r.png'";
+                    break;
+                case 3:
+                    text += "src='../img/tile/y.png'";
+                    break;
+                case 4:
+                    text += "src='../img/tile/g.png'";
+                    break;
+            }
+            text += "</td>";
+            return text;
+        }
+    }
+
+    this.addButton = function() {
+        table = document.getElementById("tasks");
+        var row, row2;
+        if((cellsInRow >= maxCellsPerRow) || (maxRow==0 && cellsInRow == 0))
+        {
+            row = table.insertRow(table.rows.length)
+            row.id = "row"+maxRow;
+            row2 = table.insertRow(table.rows.length)
+            row2.id = "row"+(maxRow+"b");
+            maxRow += 2;
+            cellsInRow = 1;
+        }
+        else {
+            row = document.getElementById("row"+(maxRow-2));
+            row2 = document.getElementById("row"+(maxRow-2)+"b");
+            cellsInRow += 1;
+            console.log(row);
+        }
+        var cell = row.insertCell(cellsInRow-1);
+        var button = row2.insertCell(cellsInRow-1);
+        cell.innerHTML = this.createButton(dayOfWeek, 1);
+        console.log("cellc");
+        button.innerHTML = this.createButton(dayOfWeek, 2);
+        console.log("buttonc");
+    }
+
+    this.attachButtons = function(){
+        var pic = document.getElementById(this.id);
+        switch (this.daysDone[dayOfWeek-1]) {
+        case 2:
+            pic.onmouseover = function() {
+                this.src = "../img/tile/lr.png"
+            };
+            pic.onmouseout = function() {
+                this.src = "../img/tile/r.png"
+            }
+            break;
+        case 4:
+            pic.onmouseover = function() {
+                this.src = "../img/tile/lg.png"
+            };
+            pic.onmouseout = function() {
+                this.src = "../img/tile/g.png"
+            }
+            clickable = true;
+            break;
+        }
+        console.log(pic)
+        pic.onclick = function() {
+            dDoneButtonHandler(parseInt(this.id));
+        };
+        pic.draggable = false;
+    }
+
 
 }

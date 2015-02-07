@@ -41,11 +41,19 @@ table
     width:600px;
 }
 
+
+
 #plusTaskRow{
     text-align: center;
 }
 
-#face{
-    height:72px;
-    width:72px;
+.bigIcon{
+    width: 96px;
+}
+
+.bigIconDiv{
+   word-wrap: break-word;
+   width: 96px;
+   white-space:normal;
+   font-size:14px;
 }

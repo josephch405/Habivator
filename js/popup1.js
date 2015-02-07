@@ -1,10 +1,9 @@
-if (localStorage.rowOrTileMode == "tile"){
-    document.location = 'popup1.html'
+//imports from localStorage
+
+if (localStorage.rowOrTileMode == "row"){
+    document.location = 'popup.html'
 }
 
-document.getElementById(weekArray[dayOfWeek - 1]).style.backgroundColor = "yellow"; //changes color of current day
-
-//imports from localStorage
 importData(localStorage.save);
 checkIfDatePassed();
 
@@ -16,15 +15,23 @@ if (localStorage.scrubNow == "true") {
     saveToLS();
 }
 
+var maxRow = 0;
+var maxCellsPerRow = 6;
+var cellsInRow = 0;
+
 if (taskArray.length == 0) {
     addNewTask();
 }
 else {
     for (var i in taskArray) {
-	taskArray[i].addToTable();
+        if (taskArray[i].daysDone[dayOfWeek-1] != 0){
+            taskArray[i].addButton();
+        }
     }
     for (var i in taskArray) {
-	taskArray[i].attachEvents();
+        if (taskArray[i].daysDone[dayOfWeek-1] != 0){
+        taskArray[i].attachButtons();
+        }
     }
 }
 //shuffle at start of day?
@@ -41,9 +48,6 @@ var checkout = function(){
     saveToLS();
     chrome.tabs.create({url: "html/options.html"});
 }
-
-
-document.getElementById("newTaskButton").onclick = addNewTask;
 
 var faceButton = document.getElementById("face");
 faceButton.onmouseover = function() {
@@ -72,9 +76,10 @@ if (lockdown == true) {
 }
 arrowButton.onclick = checkout;
 
-if(Math.random()<0.5 && localStorage.firstTime != null){
+if(Math.random()<0.5 && localStorage.firstTime != true){
     smileyToggle();
 }
+
 
 var rowMode = document.getElementById("rowMode");
 rowMode.onmouseover = function() {
@@ -100,18 +105,3 @@ tileMode.onmouseout = function() {
 tileMode.onclick=function(){
     localStorage.rowOrTileMode = "tile";
     document.location='popup1.html'};
-
-if (localStorage.firstTime == null){
-    console.log("toot o");
-    var i=document.createElement('IMG');
-    i.src = "..\\img\\tutorialCover.png";
-    i.id="tutorial";
-    i.style.cssText = "position:absolute; top:0px; left:0px;z-index:10";    
-    console.log(i);
-    document.body.appendChild(i);
-    document.getElementById("tutorial").onclick = function(){
-        var image = document.getElementById("tutorial");
-        image.parentNode.removeChild(image);
-        localStorage.firstTime = true;
-    }
-}

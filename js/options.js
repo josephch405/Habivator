@@ -1,9 +1,8 @@
+importData(localStorage.save);
+
 swidth = $('body').innerWidth();
 swidth -= 20;
 document.getElementById("face").style += swidth - 600;
-//imports from localStorage
-
-importData();
 
 var justClicked = false;
 

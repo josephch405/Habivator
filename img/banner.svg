@@ -15,7 +15,10 @@
    inkscape:version="0.48.5 r10040"
    width="600"
    height="80"
-   sodipodi:docname="banner.png">
+   sodipodi:docname="banner.svg"
+   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\banner.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <metadata
      id="metadata2991">
     <rdf:RDF>
@@ -52,28 +55,24 @@
      inkscape:current-layer="svg2985">
     <inkscape:grid
        type="xygrid"
-       id="grid2995" />
+       id="grid2995"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
   <image
      width="600"
-     height="80"
-     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAABQCAIAAABKyJzPAAAAA3NCSVQICAjb4U/gAAABVUlEQVR4
-nO3VMRHAMBDAsLYXAIEeqIFQGD9YQuDN7znnAYCqde+dbgCAMd90AABMMkIA0owQgDQjBCDNCAFI
-M0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDN
-CAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQj
-BCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQ
-gDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA
-0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIW3vv6QYAGPMDPncFVLJr
-ukoAAAAASUVORK5CYII=
-"
+     height="77.142853"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAABQCAIAAABKyJzPAAAAA3NCSVQICAjb4U/gAAABVUlEQVR4 nO3VMRHAMBDAsLYXAIEeqIFQGD9YQuDN7znnAYCqde+dbgCAMd90AABMMkIA0owQgDQjBCDNCAFI M0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDN CAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQj BCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQ gDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA 0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIM0IA0owQgDQjBCDNCAFIW3vv6QYAGPMDPncFVLJr ukoAAAAASUVORK5CYII= "
      id="image2993"
      x="0"
-     y="0" />
+     y="6.2172489e-015" />
   <rect
      style="fill:#4b4b4b;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
      id="rect2997"
      width="600"
-     height="4.3712893"
+     height="3.1223493"
      x="0"
-     y="75.628708" />
+     y="76.877655" />
 </svg>

@@ -18,10 +18,11 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
 
         var iconTag = "green";
         var tPercentage = this.calculateTaskPercentage();
-        if (tPercentage <= .3){
+        var tempKarma = floatToKarma(tPercentage);
+        if (tempKarma == -1){
             iconTag = "red";
         }
-        else if (tPercentage <= .6){
+        else if (tempKarma == 0){
             iconTag = "orange";
         }
         rowText = "<tr><td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='..\\img\\tile\\" + iconTag + ".png'></td>";
@@ -67,19 +68,19 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             switch (parseInt(this.daysDone[i])) {
             case 2:
                 pic.onmouseover = function() {
-                    this.src = "..//img//tile//lr.png"
+                    this.src = "../img/tile/lr.png"
                 };
                 pic.onmouseout = function() {
-                    this.src = "..//img//tile//r.png"
+                    this.src = "../img/tile/r.png"
                 }
                 clickable = false;
                 break;
             case 4:
                 pic.onmouseover = function() {
-                    this.src = "..//img//tile//lg.png"
+                    this.src = "../img/tile/lg.png"
                 };
                 pic.onmouseout = function() {
-                    this.src = "..//img//tile//g.png"
+                    this.src = "../img/tile/g.png"
                 }
                 break;
             }
@@ -94,19 +95,19 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
         result += "id='" + this.id + "-" + (dayIn + 1) + "'";
         switch (parseInt(this.daysDone[dayIn])) {
         case 0:
-            result += "src='..//img//tile//b.png'/";
+            result += "src='../img/tile/b.png'/";
             break;
         case 1:
-            result += "src='..//img//tile//w.png'/"
+            result += "src='../img/tile/w.png'/"
             break;
         case 2:
-            result += "src='..//img//tile//r.png'";
+            result += "src='../img/tile/r.png'";
             break;
         case 3:
-            result += "src='..//img//tile//y.png'";
+            result += "src='../img/tile/y.png'";
             break;
         case 4:
-            result += "src='..//img//tile//g.png'";
+            result += "src='../img/tile/g.png'";
             break;
         }
         result += ">" //closes icon

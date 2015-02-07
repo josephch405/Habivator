@@ -2,17 +2,17 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="..\css\main.css">
-    <link rel="stylesheet" type="text/css" href="..\css\popup.css">
+    <link rel="stylesheet" type="text/css" href="..\css\popup1.css">
 </head>
 
 <body>
-<div id="banner">
+    <div id="banner">
         <img src="..\img\banner.png">
         <img id = "rowMode" style = "position:absolute; top:0px; height:74px" src="..\img\row.png">
         <img id = "tileMode" style = "position:absolute; top:0px; left:100px; height:74px" src="..\img\tile.png">
         <img id="arrow" src="..\img\checkIt.png">
         <div id="faceBox">
-            <img id="face" src="../img/face/up.png" >
+            <img id="face" style="height:68px; width:68px" src="../img/face/up.png" >
         </div>
     </div>
 
@@ -25,21 +25,8 @@
     
     <table id="table">
         <tbody id="tasks">
-        <tr>
-            <th colspan="4"></th>
-            <th id="mon">Mon</th>
-            <th id="tue">Tue</th>
-            <th id="wed">Wed</th>
-            <th id="thu">Thu</th>
-            <th id="fri">Fri</th>
-            <th id="sat">Sat</th>
-            <th id="sun">Sun</th>
-            <th colspan="2"></th>
-        </tr>
+        
         </tbody>
-        <tr id="plusTaskRow">
-            <td colspan="13" class="iconGrid"><img class="icon" id="newTaskButton" src="..\img\tile\plus.png"></td>
-        </tr>
     </table>
 
     <!--
@@ -54,6 +41,6 @@
 <script src="..\js\task.js"></script>
 <script src="..\js\archivedTask.js"></script>
 <script src="..\js\archivedTaskGroup.js"></script>
-<script src="..\js\popup.js"></script>
+<script src="..\js\popup1.js"></script>
 
 </html>

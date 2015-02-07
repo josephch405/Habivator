@@ -9,17 +9,47 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="600"
-   height="600"
+   width="100"
+   height="80"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\TUTTEMP.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
    sodipodi:docname="New document 1">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter3785">
+      <feFlood
+         flood-opacity="0.5"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood3787" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite3789" />
+      <feGaussianBlur
+         in="composite"
+         stdDeviation="2"
+         result="blur"
+         id="feGaussianBlur3791" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset3793" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite3795" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -27,9 +57,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="266.02764"
-     inkscape:cy="373.59318"
+     inkscape:zoom="1.979899"
+     inkscape:cx="31.922387"
+     inkscape:cy="5.7142854"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -62,26 +92,26 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-452.36218)">
+     transform="translate(0,-972.36218)">
     <rect
-       style="fill:#000000;fill-opacity:0.37234041;stroke:none;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#69ff1b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3785)"
        id="rect2987"
-       width="600"
-       height="600"
-       x="0"
-       y="0"
-       transform="translate(0,452.36218)" />
+       width="90"
+       height="70"
+       x="5"
+       y="5"
+       transform="translate(0,972.36218)" />
     <text
        xml:space="preserve"
-       style="font-size:80px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#000000;font-family:Segoe UI;-inkscape-font-specification:Segoe UI Bold;stroke-opacity:1;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none"
-       x="80"
-       y="612.36218"
-       id="text3759"
+       style="font-size:80px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
+       x="10"
+       y="1037.3622"
+       id="text3757"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan3761"
-         x="80"
-         y="612.36218"
-         style="font-weight:bold;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Segoe UI Bold;stroke:#000000;stroke-opacity:1;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;font-family:Segoe UI;font-style:normal;font-stretch:normal;font-variant:normal">TUTORIAL</tspan></text>
+         id="tspan3759"
+         x="10"
+         y="1037.3622"
+         style="font-size:28px">Row</tspan></text>
   </g>
 </svg>

@@ -1,62 +1,35 @@
+var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var today = new Date();
 var dayOfWeek = today.getDay();
 if (dayOfWeek == 0) {
     dayOfWeek = 7;
-}
-//initializing date vars
+}                                                                       //initializing date vars
 
-var lockdown = localStorage.locked || false;
-var maxId = 1;
-var maxArchiveId = 1;
-var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+var lockdown = localStorage.locked || false;                            //if the app is on weekend lockdown mode
+var maxId = 1;                                                          //maxId of all active ids, used for creation
+var maxArchiveId = 1;                                                   //maxId of all archives, NOT archiveGroups
 var taskArray = [];
 var archGroupArray = [];
-var smileyBob = new Smiley();
-var justClickedFace = false;
-var nameBoxWidth= 200;
-
-var importData = function() {
-    saveData = localStorage.save;
-    if (saveData != null) {
-        saveData = saveData.split(";;;")
-
-        if (saveData[0] == "saveVer 1") {
-            maxId = parseInt(saveData[1]);
-            maxArchiveId = parseInt(saveData[2]);
-            //at this point, all basic global vars inputed
-
-            for (var i = 3; i < saveData.length; i++) {
-                var taskString = saveData[i].split(";;");
-                type = taskString[0];
-
-                if (type == "task") {
-
-                    tActDays = taskString[4].split(",");
-                    for (var ii in tActDays) {
-                        tActDays[ii] = parseInt(tActDays[ii]);
-                    }
-                    tDoneDays = taskString[5].split(",");
-                    for (var iii in tDoneDays) {
-                        tDoneDays[iii] = parseInt(tDoneDays[iii]);
-                    }
-                    var tempKarma = 0;
-                    if (taskString[8] != null){
-                        tempKarma = parseInt(taskString[8]);
-                    }
-                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma))
-                    //parsing for task
-
-                } else if (type == "archGroup") {
-                    archGroupArray.push(new archivedTaskGroup(taskString[1], taskString[2]));
-                    //parsing for archGroup instead
-                }
-            }
-        }
-
-    }
+var smileyBob = new Smiley();                                           //new smiley instance for popup managing
+var justClickedFace = false;                                            //justclicked variable used for smiley onclick events
+var nameBoxWidth = 200;
+if (localStorage.rowOrTileMode==null){
+    localStorage.rowOrTileMode = "row";
 }
-//import tasks and archiveGroups+tasks from localStorage
-//initiation process
+
+//INDEX
+    //TASK
+    //SAVE
+    //DATE
+    //QUERY
+    //ARCHIVE
+    //TEXTFILE
+    //SMILEY
+    //MATH
+
+/*
+    TASK RELATED METHODS
+*/
 
 var addNewTask = function() {
     taskArray.push(new Task(null, null, maxId));
@@ -86,21 +59,11 @@ var dActiveHandler = function(idIn, dayIn) {
 //reattaches events
 //SAVES
 
-var saveToLS = function() {
-    var string = "saveVer 1;;;";
-    string += maxId + ";;;" + maxArchiveId;
-    for (var i in taskArray) {
-        string += ";;;"
-        string += taskArray[i].exportInfo();
-    }
-    for (var ii in archGroupArray) {
-        string += ";;;"
-        string += archGroupArray[ii].exportInfo();
-    }
-    localStorage.save = string;
-    return (string);
+var dDoneButtonHandler = function(idIn) {
+    findTaskById(idIn).dDoneButtonLocal(dayOfWeek - 1);
+    saveToLS();
+    findTaskById(idIn).attachButtons();
 }
-//saves everything to localstorage
 
 var switchToEdit = function(idIn) {
     row = document.getElementById(idIn);
@@ -129,6 +92,112 @@ var switchToTask = function(idIn) {
 //switches row to task mode
 //only tasks
 
+var deleteTask = function(idIn) {
+    var task = findTaskById(idIn);
+    taskArray.splice(taskArray.indexOf(task), 1);
+    var row = document.getElementById(idIn);
+    row.parentElement.removeChild(row);
+    saveToLS();
+}
+//removes a task from array of tasks and removes row from popup table
+//depends on findTaskById for finding task
+
+var toggleUnitOutside = function(id) {
+    console.log(id);
+    findTaskById(id).toggleUnit();
+}
+//passes toggling of unit to respective task of id
+//task, no archiveTask
+
+var clearAllKarma = function(){
+    for (var i in taskArray){
+        taskArray[i].karma = 0;
+    }
+    return "karma cleared";
+}
+
+
+
+
+
+
+
+
+/*
+    SAVE RELATED METHODS
+*/
+
+var importData = function(input) {                                           //directly imports from local storage
+    saveData = input;
+
+    if (saveData != null) {
+        saveData = saveData.split(";;;");                                   //level one split, into data types: ids, tasks/archive groups
+        
+        if (saveData[0] == "saveVer 1") {
+            maxId = parseInt(saveData[1]);
+            maxArchiveId = parseInt(saveData[2]);                           //at this point, all basic global vars inputted
+
+            for (var i = 3; i < saveData.length; i++) {
+                var taskString = saveData[i].split(";;");                   //level two split, managing tasks and archivegroups
+                type = taskString[0];
+
+                if (type == "task") {
+                    tActDays = taskString[4].split(",");        
+                    for (var ii in tActDays) {
+                        tActDays[ii] = parseInt(tActDays[ii]);
+                    }                                                       //importing active days
+
+                    tDoneDays = taskString[5].split(",");
+                    for (var iii in tDoneDays) {
+                        tDoneDays[iii] = parseInt(tDoneDays[iii]);
+                    }                                                       //importing done days
+
+                    var tempKarma = 0;
+                    if (taskString[8] != null){
+                        tempKarma = parseInt(taskString[8]);
+                    }                                                       //importing karma
+
+                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma));
+                                                                            //parsing for task
+
+                } else if (type == "archGroup") {
+                    archGroupArray.push(new archivedTaskGroup(taskString[1], taskString[2]));
+                                                                            //parsing for archGroup instead
+                }
+            }
+        }
+
+    }
+}
+
+var saveToLS = function() {
+    var string = "saveVer 1;;;";
+    string += maxId + ";;;" + maxArchiveId;
+    for (var i in taskArray) {
+        string += ";;;"
+        string += taskArray[i].exportInfo();
+    }
+    for (var ii in archGroupArray) {
+        string += ";;;"
+        string += archGroupArray[ii].exportInfo();
+    }
+    localStorage.save = string;
+    return (string);
+}
+                                                    //saves everything to localstorage
+
+
+
+
+
+
+
+
+
+/*
+    DATE FUNCTIONS
+*/
+
 var nextTriggerDate = function() {
     var timerDate = new Date(today);
     timerDate.setDate(today.getDate() + 8 - dayOfWeek);
@@ -137,7 +206,7 @@ var nextTriggerDate = function() {
     timerDate.setSeconds(0);
     return timerDate;
 }
-//returns the next trigger date, the next monday 0 midnight
+                                                    //returns the next trigger date, the next monday 0 midnight
 
 var checkIfDatePassed = function() {
     if (localStorage.timer == null) {
@@ -163,8 +232,29 @@ var checkIfDatePassed = function() {
     }
     saveToLS();
 };
-//manages date events; if date passed, triggers lockdown, otherwise scrubs
-    //saves
+                        //manages date events; if date passed, triggers lockdown, otherwise scrubs
+                        //saves
+
+
+var simplifyDate = function(date){
+    console.log(date);
+    var temp = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+    return temp;
+}
+
+var simplifyDateEuro = function(date){
+    var temp = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+    return temp;
+}
+
+
+
+
+
+
+/*
+    QUERY FUNCTIONS
+*/
 
 var findTaskById = function(idIn) {
     for (var i = 0; i < taskArray.length; i++) {
@@ -186,15 +276,14 @@ var findArchById = function(idIn) {
     }
 }
 
-var deleteTask = function(idIn) {
-    var task = findTaskById(idIn);
-    taskArray.splice(taskArray.indexOf(task), 1);
-    var row = document.getElementById(idIn);
-    row.parentElement.removeChild(row);
-    saveToLS();
-}
-//removes a task from array of tasks and removes row from popup table
-//depends on findTaskById for finding task
+
+
+
+
+
+/*
+    ARCHIVE FUNCTIONS
+*/
 
 var deleteArchive = function(idIn) {
     var task = findArchById(idIn);
@@ -208,12 +297,7 @@ var deleteArchive = function(idIn) {
 }
 //OBSOLETE(?); will be modified to reflect changes in archive grouping
 
-var toggleUnitOutside = function(id) {
-    console.log(id);
-    findTaskById(id).toggleUnit();
-}
-//passes toggling of unit to respective task of id
-//task, no archiveTask
+
 
 var pushTasksToArchive = function(dateString) {
     var tempDate = new Date(Date.parse(dateString));
@@ -223,15 +307,20 @@ var pushTasksToArchive = function(dateString) {
         archGroup.addArch(taskArray[i].exportAsArchive());
     }
     archGroupArray.push(archGroup);
-    maxArchiveId+=1;
     saveToLS();
 }
 
 //pushes all tasks to a date-labelled (coming soon) group of archs
 
-//txt API
-//
-//
+
+
+
+
+
+
+/*
+    TEXTFILE FUNCTIONS
+*/
 var importTxt = function() {
     if (!window.FileReader) {
         alert('Your browser is not supported')
@@ -263,6 +352,14 @@ var exportTxt = function() {
     link.click();
 }
 
+
+
+
+
+
+/*
+    SMILEY FUNCTIONS
+*/
 var smileyToggle = function() {
     var popBox = document.getElementById("popBox");
     console.log("smileyToggles")
@@ -294,17 +391,14 @@ var smileyKeepOn= function() {
     window.setTimeout(function(){justClickedFace=false},100);
 }
 
-var simplifyDate = function(date){
-    console.log(date);
-    var temp = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
-    return temp;
-}
 
-var simplifyDateEuro = function(date){
-    var temp = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
-    return temp;
-}
 
+
+
+
+/*
+    MATH FUNCTIONS
+*/
 var floatToPercentagePoint = function(input){
     return Math.floor(input*1000)/10
 }
@@ -312,3 +406,21 @@ var floatToPercentagePoint = function(input){
 var floatToPercentage = function(input){
     return Math.floor(input*100)
 }
+
+var floatToKarma = function(input){
+    if (input <= .3){
+            return -1;
+        }
+        else if (input <= .8){
+            return 0;
+        }
+    return 1;
+}
+
+
+
+
+
+/*
+GLOBAL INIT
+*/
