@@ -22,23 +22,21 @@ function archivedTaskGroup(inDateString, inarchString) {
 
     this.addToTable = function() {
         
-        tableText = '<table id="';
-        tableText += this.id;
-        tableText += '" style="margin-left:10px"><tbody id="archiveTasks"><tr>';
-        tableText += '<th width=312 colspan="4">';
+        tableText = '<table id="'
+            + this.id
+            + '" style="margin-left:10px"><tbody id="archiveTasks"><tr>'
+            + '<th width=312 colspan="4">';
         var tempDate = new Date(Date.parse(this.date));
         tempDate.setDate(tempDate.getDate()-6);
-        tableText += tempDate.toDateString();
-        tableText += ' - '
-        tableText += this.date;
-        tableText += '</th><th class="iconGrid">Mon</th>';
-        tableText += '<th class="iconGrid">Tue</th><th class="iconGrid">Wed</th>'
-        + '<th class="iconGrid">Thu</th><th class="iconGrid">Fri</th>';
-        tableText += '<th class="iconGrid">Sat</th><th class="iconGrid">Sun</th>';
-        tableText += '</tr>';
-        tableText +='</tbody>';
-        tableText +='</table>';
-        //yes, a rather messy blob, but better than a huge line IMO
+        tableText += tempDate.toDateString()
+            + ' - '
+            + this.date
+            + '</th><th class="iconGrid">Mon</th>'
+            + '<th class="iconGrid">Tue</th><th class="iconGrid">Wed</th>'
+            + '<th class="iconGrid">Thu</th><th class="iconGrid">Fri</th>'
+            + '<th class="iconGrid">Sat</th><th class="iconGrid">Sun</th>'
+            + '</tr></tbody></table>'; 
+
         document.getElementById("archiveTables").innerHTML += tableText;
 
         archTaskRow = document.getElementById(this.id);
@@ -48,7 +46,7 @@ function archivedTaskGroup(inDateString, inarchString) {
         }
 
         temp = archTaskRow.insertRow();
-        temp.innerHTML = '<tfoot><tr id="deleteArchive"><td colspan="1" class="iconGrid"><img class="icon" id="deleteTaskButton" src="..\\img\\tile\\cross.png"></td>'
+        temp.innerHTML = '<tfoot><tr id="deleteArchive"><td colspan="1" class="iconGrid"><img class="icon" id="deleteTaskButton" src="../img/tile/cross.png"></td>'
         + '<td colspan="1" class="iconGrid">' + floatToPercentagePoint(this.calculateTotalPercentage()) + '% achieved</td></tr>'
         + '</tfoot>'
     }

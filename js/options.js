@@ -39,8 +39,11 @@ popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
 
 var fileInput = $('#files');
-var uploadButton = $('#upload')[0];
-uploadButton.addEventListener("click", importTxt);
+//var uploadButton = $('#upload')[0];
+
+document.getElementById("files").onchange = function(){importTxt();}
+//uploadButton.addEventListener("click", importTxt);
+
 var exportButton = $('#export')[0];
 exportButton.addEventListener("click", exportTxt);
 

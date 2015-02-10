@@ -43,7 +43,10 @@ var checkout = function(){
 }
 
 
-document.getElementById("newTaskButton").onclick = addNewTask;
+document.getElementById("newTaskButton").onclick = function(){
+    addNewTask();
+    switchToEdit(maxId-1);
+};
 
 var faceButton = document.getElementById("face");
 faceButton.onmouseover = function() {
@@ -104,7 +107,7 @@ tileMode.onclick=function(){
 if (localStorage.firstTime == null){
     console.log("toot o");
     var i=document.createElement('IMG');
-    i.src = "..\\img\\tutorialCover.png";
+    i.src = "../img/tutorialCover.png";
     i.id="tutorial";
     i.style.cssText = "position:absolute; top:0px; left:0px;z-index:10";    
     console.log(i);

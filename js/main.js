@@ -60,7 +60,7 @@ var dActiveHandler = function(idIn, dayIn) {
 //SAVES
 
 var dDoneButtonHandler = function(idIn) {
-    findTaskById(idIn).dDoneButtonLocal(dayOfWeek - 1);
+    findTaskById(idIn).dDoneButtonLocal(dayOfWeek-1);
     saveToLS();
     findTaskById(idIn).attachButtons();
 }

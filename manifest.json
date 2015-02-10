@@ -1,7 +1,7 @@
 {
    "manifest_version": 2,
    "name": "Habivator",
-   "version": "0.52",
+   "version": "0.55",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
    "browser_action": {
       "default_icon": "icon.png",
@@ -9,7 +9,8 @@
       "default_title": "Make a habit!"
    },
    "permissions": [
-      "storage"
+      "storage",
+      "notifications"
    ],
    "options_page": "html/options.html",
    "icons": {"128": "icon.png"

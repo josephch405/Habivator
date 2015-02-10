@@ -1,45 +1,57 @@
 function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn, karmaIn) {
 
-    this.name = nameIn || "New Task";
-    this.icon = parseInt(iconIn) || 1;
-    this.id = parseInt(idIn) || -1;
-    this.karma = parseInt(karmaIn) || 0;
-    this.activeDays = [1, 1, 1, 1, 1, 1, 1]; //0 is no and 1 is yes
-    this.daysDone = [0, 0, 0, 0, 0, 0, 0] //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
+//INDEX
+    //INIT functions
+    //ROW
+    //local HANDLERS
+    //SCRUB, EXPORT
+    //CALCULATIONS
+    //BUTTON/TILE
+
+/*
+    INIT functions
+*/
+
+    this.name = nameIn || "New Task";                       //name
+    this.id = parseInt(idIn) || -1;                         //unique and ascending order according to creation date
+    this.karma = parseInt(karmaIn) || 0;                    //used for recommendations
+    this.activeDays = [1, 1, 1, 1, 1, 1, 1];                //0 is no and 1 is yes
+    this.daysDone = [0, 0, 0, 0, 0, 0, 0]                   //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
     if (activeDaysIn != null && daysDoneIn != null) {
         if (activeDaysIn.length == 7 && daysDoneIn.length == 7) {
             this.activeDays = activeDaysIn;
             this.daysDone = daysDoneIn;
         }
-    }
-    this.unit = unitIn || 0; //0 is no count, 1 is reps, 2 is minutes
-    this.quantity = quantityIn || 0;
+    }                                                       //imports active days and days done if they are correct
+    this.unit = unitIn || 0;                                //0 is no unit count, 1 is reps, 2 is minutes
+    this.quantity = parseInt(quantityIn) || 0;
     this.editMode = 0;
 
-    //basic init. management
-    //
-    //
+
+
+
+
+/*
+    ROW related
+*/
 
     this.createRow = function(inIfTaskRow) {
         var ifTaskRow = false;
-        if (inIfTaskRow == null) {
-            ifTaskRow = true;
-        } else {
-            ifTaskRow = inIfTaskRow;
-        }
+        if (inIfTaskRow == null) {ifTaskRow = true;
+        } else {ifTaskRow = inIfTaskRow;}
+        //catches cases where inIfTaskRow DNE
 
-        //snippet gets percentage, then color tag
-        var iconTag = "green";
+        var iconTagColor = "green";
         var tPercentage = this.calculateTaskPercentage();
         var tempKarma = floatToKarma(tPercentage);
         if (tempKarma == -1){
-            iconTag = "red";
+            iconTagColor = "red";
         }
         else if (tempKarma == 0){
-            iconTag = "orange";
+            iconTagColor = "orange";
         }
-        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='../img/tile/" + iconTag + ".png'></td>";
-        //icon
+        rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='../img/tile/" + iconTagColor + ".png'></td>";
+        //snippet gets percentage, then color tag, builds icon
 
         rowText += "<td";
         if (ifTaskRow) {
@@ -55,13 +67,11 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             }
         } else {
             if (this.unit == 0) {
-                rowText += " colspan = 2";
+                rowText += " colspan = 2>";
             } else if (this.unit > 0) {
-                rowText += " colspan = 1 ";
+                rowText += " colspan = 1>";
             }
-
-            rowText += ">"
-            + "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "' ></td>";
+            rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "' ></td>";
 
             if (this.unit == 0) {
                 rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>N/A</td>";
@@ -81,6 +91,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             rowText += this.buttonGen(i, !ifTaskRow);
             rowText += "</td>"
         }
+        //adds buttons for each day
 
         rowText += "<td class='halfIconGrid'>";
         rowText += "<img class='halfIcon' id='" + this.id + "-e' src='../img/tile/editButton.png'>";
@@ -94,9 +105,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
         return rowText;
     }
+    //creates html rows for edit and dDone mode and returns string
 
-    //creates row for edit mode and returns string
-    //
     this.attachEvents = function() {
         var id = this.id;
         if (this.editMode == 1) {
@@ -111,18 +121,18 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 switch (this.activeDays[i]) {
                 case 0:
                     pic.onmouseover = function() {
-                        this.src = "../img/tile/lr.png"
+                        this.src = "../img/tile/lrEdit.png"
                     };
                     pic.onmouseout = function() {
-                        this.src = "../img/tile/r.png"
+                        this.src = "../img/tile/rEdit.png"
                     }
                     break;
                 case 1:
                     pic.onmouseover = function() {
-                        this.src = "../img/tile/lg.png"
+                        this.src = "../img/tile/lgEdit.png"
                     };
                     pic.onmouseout = function() {
-                        this.src = "../img/tile/g.png"
+                        this.src = "../img/tile/gEdit.png"
                     };
                     break;
                 }
@@ -159,7 +169,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                     //quantity field input eventing
                 };
             }
-
+            //case for edit mode
         } else {
             for (var i = 0; i < this.daysDone.length; i++) {
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
@@ -215,33 +225,26 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             deleteTask(id);
         };
         deleteButton.draggable = false;
-
+        //case for not edit mode
     }
 
-    //output row text and paste to end of table at start build of page, when called
-    //
+    //binds events to row
+
     this.buttonGen = function(dayIn, inDaysActive) {
-        var result = "";
         var daysActive = inDaysActive || false;
-        result += "<img class='icon'"; //opens icon
+        result = "<img class='icon'"; //opens icon
         result += "id='" + this.id + "-" + (dayIn + 1) + "'";
-        var referenceArray;
-        if (daysActive) {
-            referenceArray = this.activeDays;
-        } else {
-            referenceArray = this.daysDone;
-        }
         if (inDaysActive) {
-            switch (referenceArray[dayIn]) {
+            switch (this.activeDays[dayIn]) {
             case 0:
-                result += "src='../img/tile/r.png'";
+                result += "src='../img/tile/rEdit.png'";
                 break;
             case 1:
-                result += "src='../img/tile/g.png'";
+                result += "src='../img/tile/gEdit.png'";
                 break;
             }
         } else {
-            switch (referenceArray[dayIn]) {
+            switch (this.daysDone[dayIn]) {
             case 0:
                 result += "src='../img/tile/b.png'";
                 break;
@@ -264,18 +267,30 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }
     //creates a button, based on day and daysactive if mentioned
     //
+
     this.addToTable = function() {
         table = document.getElementById("tasks");
         var row = table.insertRow(table.rows.length)
         row.id = this.id;
         row.innerHTML = this.createRow(true);
     }
+    //adds row to table, using createRow
+
+
+
+
+
+
+
+
+
+
+/*
+    local handlers
+*/
 
     this.dDoneLocal = function(dayIn) {
         switch (this.daysDone[dayIn]) {
-        case 1:
-            //this.daysDone[dayIn] = 4;
-            //document.getElementById(this.id + "-" + (dayIn+1)).innerHTML = this.buttonGen(dayIn);
         case 2:
             this.daysDone[dayIn] = 4;
             document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn);
@@ -287,6 +302,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         }
     }
     //local handler of main dDone function, toggles day completion
+
     this.dActiveLocal = function(dayIn) {
         switch (this.activeDays[dayIn]) {
         case 1:
@@ -299,19 +315,21 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             break;
         }
     }
+    //local handler of dActive, toggles day active status
 
     this.dDoneButtonLocal = function(){
         switch (this.daysDone[dayOfWeek-1]) {
         case 2:
             this.daysDone[dayOfWeek-1] = 4;
-            document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek-1,2);
+            document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek,2);
             break;
         case 4:
             this.daysDone[dayOfWeek-1] = 2;
-            document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek-1,2);
+            document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek,2);
             break;
         }
     }
+    //local handler of button toggle in button view
 
     this.toggleUnit = function() {
         var id = this.id;
@@ -320,6 +338,18 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         saveToLS();
         switchToEdit(id);
     }
+    //toggles unit
+
+
+
+
+
+
+
+
+/*
+    SCRUB and EXPORT
+*/
     this.scrub = function() {
         for (var i in this.daysDone) {
             if (this.activeDays[i] == 0) {
@@ -336,6 +366,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         }
     }
     //scrubbles task; checks for discrepancies in daysdone and activedays
+
     this.scrubClean = function() {
         for (var i in this.daysDone) {
             this.daysDone[i] = 1;
@@ -361,6 +392,18 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         return archive;
     }
 
+
+
+
+
+
+
+
+
+
+/*
+    calculations
+*/
     this.calculateTaskPercentage = function(){
         var tempTotalOpen = 0;
         var tempTotalCounted = 0;
@@ -400,8 +443,9 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
 
 
-
-
+/*
+    button/tile functions
+*/
     this.createButton = function(dayIn, ifUp) {
         var text;
         if (ifUp == 1){

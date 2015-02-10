@@ -1,0 +1,75 @@
+roadmap
+
+refactor
+	popup page combine!
+	archivetask
+	archivelist
+//--------
+
+first timer tutorial
+	open on install
+----------
+
+recommendation system
+	karma based
+	current %age based
+	actions
+		increase/decrease time, reps
+		toss
+			not listed for 1 week, then totalled at end
+----------
+
+review page
+	list all recommendations
+----------
+
+reminder that makes it have a notification every once in a while
+	var opt = {
+	  type: "basic",
+	  title: "Primary Title",
+	  message: "Primary message to display",
+	  iconUrl: "../icon.png"
+	}
+	undefined
+	chrome.notifications.create("asdlfkajsf",opt,function(){})
+//--------
+
+reset button
+	clear all tasks, archives, settings
+----------
+
+fix graph
+	empty weeks should be 0? or not
+	moar graphs
+----------
+
+fix smiley face
+	smile whenever has quote OR on mouse enter
+	handle by bob object?
+----------
+
+settings page
+	font?
+	color?
+	graph?
+	day of conclusion
+----------
+
+more charts - ideas?
+----------
+
+a counter instead of green box
+	could set how many reps, sets, cups of water to drink
+----------
+
+smiley face
+	more quotes
+		target: 50
+//////----
+
+
+
+
+
+NEW APP
+10 minute alarms, with reflections
