@@ -1,12 +1,12 @@
 function archivedTaskGroup(inDateString, inarchString) {
     this.date = inDateString || Date().toDateString;
-    this.dateObject = new Date(Date.parse(this.date));
     this.id = this.date.replace(/\s+/g, '-');
     this.archArray = [];
+    //initialization of local variables
 
     if (inarchString != null) {
         tarchArray = inarchString.split(";.;");
-        for (var i = 0; i < tarchArray.length; i++) {
+        for (var i in tarchArray) {
             var arch = tarchArray[i].split(";,;");
             tDoneDays = arch[4].split(",");
             for (var iv in tDoneDays) {
@@ -15,13 +15,13 @@ function archivedTaskGroup(inDateString, inarchString) {
             this.archArray.push(new archivedTask(arch[1], arch[2], arch[3], tDoneDays, arch[5], arch[6]));
         }
     }
+    //initialization of archArray from archString
 
     this.addArch = function(arch) {
         this.archArray.push(arch);
     }
 
     this.addToTable = function() {
-        
         tableText = '<table id="'
             + this.id
             + '" style="margin-left:10px"><tbody id="archiveTasks"><tr>'

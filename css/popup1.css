@@ -57,3 +57,9 @@ table
    white-space:normal;
    font-size:14px;
 }
+
+.topPlaceholder{
+    width:96px;
+    height:0px;
+    visibility: hidden;
+}

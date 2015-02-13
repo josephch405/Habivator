@@ -453,7 +453,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             text += "<div class='bigIconDiv'>";
             text += this.name;
             if (this.unit == 1){
-                text += "<br>" + this.quantity + "reps";
+                text += "<br>" + this.quantity + " reps";
             }
             else if (this.unit == 2){
                 text += "<br>" + this.quantity + " mins";
