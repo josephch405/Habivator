@@ -1,5 +1,6 @@
 var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var today = new Date();
+
 var dayOfWeek = today.getDay();
 if (dayOfWeek == 0) {
     dayOfWeek = 7;
@@ -26,6 +27,7 @@ if (localStorage.rowOrTileMode==null){
     //TEXTFILE
     //SMILEY
     //MATH
+    //BADGE
 
 /*
     TASK RELATED METHODS
@@ -45,6 +47,7 @@ var dDoneHandler = function(idIn, dayIn) {
     findTaskById(idIn).dDoneLocal(dayIn - 1);
     saveToLS();
     findTaskById(idIn).attachEvents();
+    updateBadge();
 }
 //handles tile ddone events; finds appropriate task, then passes toggling
 //reattaches events
@@ -63,6 +66,7 @@ var dDoneButtonHandler = function(idIn) {
     findTaskById(idIn).dDoneButtonLocal(dayOfWeek-1);
     saveToLS();
     findTaskById(idIn).attachButtons();
+    updateBadge();
 }
 
 var switchToEdit = function(idIn) {
@@ -103,7 +107,6 @@ var deleteTask = function(idIn) {
 //depends on findTaskById for finding task
 
 var toggleUnitOutside = function(id) {
-    console.log(id);
     findTaskById(id).toggleUnit();
 }
 //passes toggling of unit to respective task of id
@@ -237,7 +240,6 @@ var checkIfDatePassed = function() {
 
 
 var simplifyDate = function(date){
-    console.log(date);
     var temp = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
     return temp;
 }
@@ -287,11 +289,8 @@ var findArchById = function(idIn) {
 
 var deleteArchive = function(idIn) {
     var task = findArchById(idIn);
-    console.log("task"+task);
     archGroupArray.splice(archGroupArray.indexOf(task), 1);
     var row = document.getElementById(idIn);
-    console.log(idIn);
-    console.log(row);
     row.parentElement.removeChild(row);
     saveToLS();
 }
@@ -362,7 +361,6 @@ var exportTxt = function() {
 */
 var smileyToggle = function() {
     var popBox = document.getElementById("popBox");
-    console.log("smileyToggles")
     if (popBox.style.visibility == "visible") {
         popBox.style.visibility = "hidden";
         justClickedFace=true;
@@ -382,7 +380,6 @@ var smileyOff= function() {
     	    popBox.style.visibility = "hidden";
     	}
     }
-    console.log("smileyOffed")
 }
 
 var smileyKeepOn= function() {
@@ -421,6 +418,24 @@ var floatToKarma = function(input){
 
 
 
+
+
 /*
-GLOBAL INIT
+    BADGE FUNCTIONS
 */
+
+var updateBadge = function(){
+    var bob = 0;
+    chrome.browserAction.setBadgeBackgroundColor({color:[0,255,0,255]})
+    for (var i in taskArray) {
+        if (taskArray[i].daysDone[dayOfWeek-1] == 2){
+            bob += 1;
+        }
+    }
+    if(bob == 0){
+        chrome.browserAction.setBadgeText({text:""});
+    }
+    else{
+        chrome.browserAction.setBadgeText({text:bob + ""});
+    }
+}

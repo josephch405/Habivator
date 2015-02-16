@@ -505,14 +505,11 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             row = document.getElementById("row"+(maxRow-2));
             row2 = document.getElementById("row"+(maxRow-2)+"b");
             cellsInRow += 1;
-            console.log(row);
         }
         var cell = row.insertCell(cellsInRow-1);
         var button = row2.insertCell(cellsInRow-1);
         cell.innerHTML = this.createButton(dayOfWeek, 1);
-        console.log("cellc");
         button.innerHTML = this.createButton(dayOfWeek, 2);
-        console.log("buttonc");
     }
 
     this.attachButtons = function(){
@@ -536,7 +533,6 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             clickable = true;
             break;
         }
-        console.log(pic)
         pic.onclick = function() {
             dDoneButtonHandler(parseInt(this.id));
         };

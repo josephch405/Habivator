@@ -8,3 +8,4 @@ function ping(){
 function popupClosed() {
     chrome.browserAction.setIcon({path: '/icons/icon2.png'})
 }
+

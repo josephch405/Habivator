@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"bro",
+				"browserAction"
+			],
+			[
 				"ou",
 				"outString"
 			],
@@ -80,26 +84,50 @@
 			}
 		},
 		{
-			"file": "js/archivedTask.js",
-			"settings":
-			{
-				"buffer_size": 6013,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "js/archivedTaskGroup.js",
 			"settings":
 			{
-				"buffer_size": 3739,
+				"buffer_size": 4117,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/C/Users/Administrator/Desktop/sa.txt",
+			"file": "js/archivedTask.js",
 			"settings":
 			{
-				"buffer_size": 91155,
+				"buffer_size": 4741,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/background.js",
+			"settings":
+			{
+				"buffer_size": 257,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/popup.js",
+			"settings":
+			{
+				"buffer_size": 4547,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 11516,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/task.js",
+			"settings":
+			{
+				"buffer_size": 17405,
 				"line_ending": "Unix"
 			}
 		}
@@ -151,32 +179,36 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
+		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/nidmklgpplnfghikfnkbdgldlkdgddcn/0.55_0/js/archivedTaskGroup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options1.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options1.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/roadmap.txt",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/background.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup1.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup1.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup1.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/smiley.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
+		"/C/Users/Administrator/Desktop/sa.txt",
 		"/C/Users/Administrator/Google Drive/11grade/code/lisp/main.js",
 		"/C/Users/Administrator/Google Drive/11grade/code/lisp/sampleInput.txt",
 		"/C/Users/Administrator/Google Drive/11grade/code/lisp/openThis.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/manifest.json",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup1.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup1.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup1.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/smiley.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/chrome_debug.log",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/roadmap",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options1.html",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Administrator/Google Drive/11grade/code/cityTravel/main.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options1.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/Chart.min.js",
 		"/C/Users/Administrator/Documents/GitHub/2014-Aerial-Assist/src/com/team1160/assistant/OI.java",
 		"/C/Users/Administrator/Videos/4K Video Downloader/The skill of self confidence   Dr. Ivan Joseph   TEDxRyersonU.srt",
@@ -204,6 +236,39 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"chart",
+			"body",
+			"popup",
+			"simplif",
+			"graph",
+			"getdate",
+			"getmonth",
+			"date",
+			"simp",
+			"simplify",
+			"simply",
+			"simpli",
+			"date",
+			"dateobject",
+			"simplif",
+			"date",
+			"face",
+			"deleteta",
+			"delete",
+			"archtaskrow",
+			"archivetasks",
+			"archiveTable",
+			"archivetables",
+			"addarch",
+			"addtota",
+			"totable",
+			"console.",
+			"hidden",
+			"console",
+			"console.l",
+			"scrub",
+			"archtaskrow",
+			"insert",
 			"this.dateobject",
 			"console.log",
 			"instring",
@@ -299,7 +364,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -315,8 +380,8 @@
 						"selection":
 						[
 							[
-								286,
-								286
+								57,
+								57
 							]
 						],
 						"settings":
@@ -325,27 +390,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1008.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/archivedTask.js",
+					"file": "js/archivedTaskGroup.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6013,
+						"buffer_size": 4117,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								799,
+								799
 							]
 						],
 						"settings":
@@ -355,7 +420,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 126.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -363,19 +428,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "js/archivedTaskGroup.js",
+					"file": "js/archivedTask.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3739,
+						"buffer_size": 4741,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								472,
-								472
+								612,
+								612
 							]
 						],
 						"settings":
@@ -385,40 +450,128 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 18.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "/C/Users/Administrator/Desktop/sa.txt",
+					"file": "js/background.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 91155,
+						"buffer_size": 257,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								936,
-								936
+								257,
+								257
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/popup.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4520,
+								4520
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1020.0,
+						"translation.y": 2616.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11516,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11429,
+								11429
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7452.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "js/task.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17405,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13685,
+								13685
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8078.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -426,7 +579,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -466,7 +619,7 @@
 	"project": "Habivator.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":

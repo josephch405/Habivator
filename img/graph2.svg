@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="grid.svg"
-   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\grid.png"
+   sodipodi:docname="graph2.svg"
+   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\graph2.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -61,11 +61,11 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70710678"
-     inkscape:cx="236.10781"
-     inkscape:cy="138.8348"
+     inkscape:cx="341.27344"
+     inkscape:cy="36.705259"
      inkscape:document-units="px"
      inkscape:current-layer="g4366"
-     showgrid="false"
+     showgrid="true"
      inkscape:window-width="1366"
      inkscape:window-height="706"
      inkscape:window-x="-8"
@@ -109,27 +109,49 @@
          x="61.42857"
          y="67.14286" /></text>
     <g
-       id="g4366"
-       style="filter:url(#filter4419)">
+       id="g4366">
       <rect
-         transform="translate(0,852.36218)"
-         y="20"
-         x="20"
-         height="160"
-         width="560"
+         y="852.36218"
+         x="0"
+         height="200"
+         width="600"
          id="rect2987"
-         style="fill:#89fe14;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:6;stroke-miterlimit:4;stroke-dasharray:none" />
+         style="fill:#fee57b;fill-opacity:1;stroke:none" />
       <text
          sodipodi:linespacing="125%"
          id="text2998"
-         y="1012.3622"
+         y="1016.3622"
          x="40"
          style="font-size:100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
          xml:space="preserve"><tspan
-           y="1012.3622"
+           y="1016.3622"
            x="40"
            id="tspan3000"
-           sodipodi:role="line">Grid</tspan></text>
+           sodipodi:role="line">Graph</tspan></text>
+      <rect
+         style="fill:#fecd01;fill-opacity:1;stroke:none"
+         id="rect3897"
+         width="600"
+         height="15.596193"
+         x="0"
+         y="1036.766" />
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:12;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3907"
+         width="600"
+         height="200"
+         x="0"
+         y="852.36218" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 420,897.36216 0,120.00004 120,0 0,0"
+         id="path6084"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 420,992.36218 25,-40 30,25 50,-65.00002 0,0"
+         id="path6086"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>

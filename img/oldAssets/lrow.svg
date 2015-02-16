@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="600"
-   height="200"
+   width="100"
+   height="80"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="grid2.svg"
-   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\grid2.png"
+   sodipodi:docname="lrow.svg"
+   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\lrow.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -23,34 +23,34 @@
     <filter
        style="color-interpolation-filters:sRGB;"
        inkscape:label="Drop Shadow"
-       id="filter4457">
+       id="filter3832">
       <feFlood
          flood-opacity="0.5"
          flood-color="rgb(0,0,0)"
          result="flood"
-         id="feFlood4459" />
+         id="feFlood3834" />
       <feComposite
          in="flood"
          in2="SourceGraphic"
          operator="in"
          result="composite1"
-         id="feComposite4461" />
+         id="feComposite3836" />
       <feGaussianBlur
          in="composite"
-         stdDeviation="8"
+         stdDeviation="3"
          result="blur"
-         id="feGaussianBlur4463" />
+         id="feGaussianBlur3838" />
       <feOffset
          dx="0"
          dy="0"
          result="offset"
-         id="feOffset4465" />
+         id="feOffset3840" />
       <feComposite
          in="SourceGraphic"
          in2="offset"
          operator="over"
          result="composite2"
-         id="feComposite4467" />
+         id="feComposite3842" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -60,12 +60,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="-71.681826"
-     inkscape:cy="138.8348"
+     inkscape:zoom="3.959798"
+     inkscape:cx="21.694598"
+     inkscape:cy="40.564548"
      inkscape:document-units="px"
-     inkscape:current-layer="g4366"
-     showgrid="false"
+     inkscape:current-layer="layer1"
+     showgrid="true"
      inkscape:window-width="1366"
      inkscape:window-height="706"
      inkscape:window-x="-8"
@@ -95,41 +95,25 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-852.36218)">
+     transform="translate(0,-972.36218)">
+    <rect
+       style="fill:#99ff64;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3832)"
+       id="rect3764"
+       width="90"
+       height="70"
+       x="5"
+       y="977.36218" />
     <text
        xml:space="preserve"
        style="font-size:80px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
-       x="61.42857"
-       y="67.14286"
-       id="text2994"
-       sodipodi:linespacing="125%"
-       transform="translate(0,852.36218)"><tspan
+       x="10"
+       y="1037.3622"
+       id="text3757"
+       sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan2996"
-         x="61.42857"
-         y="67.14286" /></text>
-    <g
-       id="g4366"
-       style="filter:url(#filter4457)">
-      <rect
-         transform="translate(0,852.36218)"
-         y="20"
-         x="20"
-         height="160"
-         width="560"
-         id="rect2987"
-         style="fill:#89fe14;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:6;stroke-miterlimit:4;stroke-dasharray:none" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text2998"
-         y="1012.3622"
-         x="40"
-         style="font-size:100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
-         xml:space="preserve"><tspan
-           y="1012.3622"
-           x="40"
-           id="tspan3000"
-           sodipodi:role="line">Grid</tspan></text>
-    </g>
+         id="tspan3759"
+         x="10"
+         y="1037.3622"
+         style="font-size:28px">Row</tspan></text>
   </g>
 </svg>

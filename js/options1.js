@@ -57,12 +57,23 @@ scaleOverride: true,
 });
 
 //mapping events to grid button
-var gridButton = document.getElementById("gridButton");
-gridButton.onmouseover = function() {
-    gridButton.src = '../img/grid2.png';
+var chartButton = document.getElementById("chartsButton");
+chartButton.onmouseover = function() {
+    chartButton.src = '../img/charts2.png';
 }
-gridButton.onmouseout = function() {
-    gridButton.src = '../img/grid.png';
+chartButton.onmouseout = function() {
+    chartButton.src = '../img/charts.png';
 }
 
-gridButton.onclick=function(){document.location='options.html'};
+chartButton.onclick=function(){document.location='options.html'};
+
+var graphButton = document.getElementById("graphButton");
+graphButton.onmouseover = function() {
+    graphButton.src = '../img/graph2.png';
+}
+graphButton.onmouseout = function() {
+    graphButton.src = '../img/graph.png';
+}
+
+graphButton.onclick=function(){document.location='options1.html'};
+

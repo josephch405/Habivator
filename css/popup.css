@@ -21,6 +21,8 @@ table
     position:absolute;
     top:4px ;
     right:4px;
+    height:72px;
+    width:72px;
 }
 
 #arrow{
@@ -45,7 +47,19 @@ table
     text-align: center;
 }
 
-#face{
-    height:72px;
-    width:72px;
+.bigIcon{
+    width: 96px;
+}
+
+.bigIconDiv{
+   word-wrap: break-word;
+   width: 96px;
+   white-space:normal;
+   font-size:14px;
+}
+
+.topPlaceholder{
+    width:96px;
+    height:0px;
+    visibility: hidden;
 }

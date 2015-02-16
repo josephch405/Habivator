@@ -1,11 +1,5 @@
 roadmap
 
-refactor
-	popup page combine!
-	archivetask
-	archivelist
-//--------
-
 first timer tutorial
 	open on install
 ----------
@@ -62,12 +56,16 @@ a counter instead of green box
 	could set how many reps, sets, cups of water to drink
 ----------
 
+make website
+----------
+
 smiley face
 	more quotes
 		target: 50
 //////----
 
-
+long load times for arch groups?
+----------
 
 
 

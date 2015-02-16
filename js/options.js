@@ -10,7 +10,7 @@ archGroupArray.sort(function(a,b){return Date.parse(a.date)-Date.parse(b.date)})
 
 //
 for (var i in archGroupArray) {
-    archGroupArray[i].addToTable();
+    archGroupArray[i].addToPage();
 }
 for (var i in archGroupArray) {
     archGroupArray[i].attachEvents();
@@ -23,7 +23,6 @@ if (archGroupArray.length == 0){
 }
 
 document.body.style.width=600*archGroupArray.length;
-window.scrollTo(600*archGroupArray.length,0);
 //set page dimensions
 
 var faceButton = document.getElementById("face");
@@ -55,4 +54,16 @@ chartButton.onmouseout = function() {
     chartButton.src = '../img/charts.png';
 }
 
-chartButton.onclick=function(){document.location='options1.html'};
+chartButton.onclick=function(){document.location='options.html'};
+
+var graphButton = document.getElementById("graphButton");
+graphButton.onmouseover = function() {
+    graphButton.src = '../img/graph2.png';
+}
+graphButton.onmouseout = function() {
+    graphButton.src = '../img/graph.png';
+}
+
+graphButton.onclick=function(){document.location='options1.html'};
+
+window.scrollTo(600*archGroupArray.length,0);

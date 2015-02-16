@@ -38,3 +38,7 @@ table
 #popBox{
     position:fixed;
 }
+
+.archTable{
+    margin-left: 10px;
+}

@@ -2,14 +2,14 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="..\css\main.css">
-    <link rel="stylesheet" type="text/css" href="..\css\popup.css">
+    <link rel="stylesheet" type="text/css" href="..\css\popup.css"><script src="..\js\jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
-<div id="banner">
+    <div id="banner">
         <img src="..\img\banner.png">
-        <img id = "rowMode" style = "position:absolute; top:0px; height:74px" src="..\img\row.png">
-        <img id = "tileMode" style = "position:absolute; top:0px; left:100px; height:74px" src="..\img\tile.png">
+        <img id = "rowMode" style = "position:absolute; top:0px;" src="..\img\row.png">
+        <img id = "tileMode" style = "position:absolute; top:0px; left:97px;" src="..\img\tile.png">
         <img id="arrow" src="..\img\checkIt.png">
         <div id="faceBox">
             <img id="face" src="../img/face/up.png" >
@@ -22,33 +22,8 @@
             Hi!
         </div>
     </div>
-    
-    <table id="table">
-        <tbody id="tasks">
-        <tr>
-            <th colspan="4"></th>
-            <th id="mon">Mon</th>
-            <th id="tue">Tue</th>
-            <th id="wed">Wed</th>
-            <th id="thu">Thu</th>
-            <th id="fri">Fri</th>
-            <th id="sat">Sat</th>
-            <th id="sun">Sun</th>
-            <th colspan="2"></th>
-        </tr>
-        </tbody>
-        <tr id="plusTaskRow">
-            <td colspan="13" class="iconGrid"><img class="icon" id="newTaskButton" src="..\img\tile\plus.png"></td>
-        </tr>
-    </table>
-
-    <!--
-    <img id = "tutorial" style="position:fixed; top:0px; z-index:100;" src="../img/TUTTEMP.png">
-    -->
-
 </body>
 
-<script src="..\js\jquery-2.1.1.min.js"></script>
 <script src="..\js\smiley.js"></script>
 <script src="..\js\main.js"></script>
 <script src="..\js\task.js"></script>

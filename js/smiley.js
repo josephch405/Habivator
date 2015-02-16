@@ -51,7 +51,6 @@ function Smiley(){
     
     this.chooseText = function(){
     	var temp = Math.random();
-    	console.log(temp)
     	if (temp<=encourageChance){
     		if (goodTasks.length>0)
     		{
