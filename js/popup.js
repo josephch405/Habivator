@@ -3,7 +3,7 @@ importData(localStorage.save);
 checkIfDatePassed();
 
 if (localStorage.scrubNow == "true") {
-    for (i in taskArray) {
+    for (var i in taskArray) {
         taskArray[i].scrubClean();
     }
     localStorage.scrubNow = "false";
@@ -14,7 +14,7 @@ if (localStorage.scrubNow == "true") {
 var checkout = function(){
     pushTasksToArchive(localStorage.timer);
     dayOfWeek = today.getDay();
-    if (dayOfWeek == 0) {
+    if (dayOfWeek === 0) {
     dayOfWeek = 7;
     }
     localStorage.timer = nextTriggerDate();
@@ -33,7 +33,7 @@ faceButton.onmouseout = function() {
 }
 faceButton.onclick = smileyToggle;
 var popBox = document.getElementById("popBox");
-popBox.onclick = smileyKeepOn;
+//popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
 //popbox and face events
 
@@ -57,28 +57,39 @@ if(Math.random()<0.5 && localStorage.firstTime != null){
 }
 //random smiley toggling
 
-var rowMode = document.getElementById("rowMode");
-rowMode.onmouseover = function() {
-    rowMode.src = '../img/lrow.png';
+var weekMode = document.getElementById("weekMode");
+weekMode.onmouseover = function() {
+    weekMode.src = '../img/week2.png';
 }
-rowMode.onmouseout = function() {
-    rowMode.src = '../img/row.png';
+weekMode.onmouseout = function() {
+    weekMode.src = '../img/week.png';
 }
-rowMode.onclick=function(){
-    localStorage.rowOrTileMode = "row";
+weekMode.onclick=function(){
+    localStorage.weekOrDayMode = "week";
     document.location='popup.html'
 };
-var tileMode = document.getElementById("tileMode");
-tileMode.onmouseover = function() {
-    tileMode.src = '../img/ltile.png';
+var dayMode = document.getElementById("dayMode");
+dayMode.onmouseover = function() {
+    dayMode.src = '../img/day2.png';
 }
-tileMode.onmouseout = function() {
-    tileMode.src = '../img/tile.png';
+dayMode.onmouseout = function() {
+    dayMode.src = '../img/day.png';
 }
-tileMode.onclick=function(){
-    localStorage.rowOrTileMode = "tile";
+dayMode.onclick=function(){
+    localStorage.weekOrDayMode = "day";
     document.location='popup.html'};
 //row and tile mode toggling
+
+var moreMode = document.getElementById("moreMode");
+moreMode.onmouseover = function() {
+    moreMode.src = '../img/more2.png';
+}
+moreMode.onmouseout = function() {
+    moreMode.src = '../img/more.png';
+}
+moreMode.onclick=function(){
+    chrome.tabs.create({url: "html/options.html"});
+};
 
 if (localStorage.firstTime == null){
     var i=document.createElement('IMG');
@@ -99,7 +110,7 @@ if (localStorage.firstTime == null){
 
 
 //builds page and constructs respectively based on tile vs row mode
-if (localStorage.rowOrTileMode == "tile"){
+if (localStorage.weekOrDayMode == "day"){
     $("body").append('<table id="table"><tbody id="tasks"><tr><td class = "topPlaceholder"></td>'+
             '<td class = "topPlaceholder"></td><td class = "topPlaceholder"></td>' +
             '<td class = "topPlaceholder"></td><td class = "topPlaceholder"></td>' +
@@ -114,12 +125,12 @@ if (localStorage.rowOrTileMode == "tile"){
     }
     else {
         for (var i in taskArray) {
-            if (taskArray[i].daysDone[dayOfWeek-1] != 0){
+            if (taskArray[i].daysDone[dayOfWeek-1] != 0 && taskArray[i].toss === 0){
                 taskArray[i].addButton();
             }
         }
         for (var i in taskArray) {
-            if (taskArray[i].daysDone[dayOfWeek-1] != 0){
+            if (taskArray[i].daysDone[dayOfWeek-1] != 0 && taskArray[i].toss === 0){
                 taskArray[i].attachButtons();
             }
         }
@@ -127,9 +138,9 @@ if (localStorage.rowOrTileMode == "tile"){
 }
 else {
     $('body').append('<table id="table"><tbody id="tasks"><tr><th colspan="4"></th><th id="mon">Mon</th>' +
-        '<th id="tue">Tue</th><th id="wed">Wed</th><th id="thu">Thu</th><th id="fri">Fri</th>' + 
+        '<th id="tue">Tue</th><th id="wed">Wed</th><th id="thu">Thu</th><th id="fri">Fri</th>' +
         '<th id="sat">Sat</th><th id="sun">Sun</th><th colspan="2"></th></tr></tbody>' +
-        '<tr id="plusTaskRow"><td colspan="13" class="iconGrid"><img class="icon" id="newTaskButton" src="..\img\tile\plus.png"></td>' +
+        '<tr id="plusTaskRow"><td colspan="13" class="iconGrid"><img class="icon" id="newTaskButton" src="../img/tile/plus.png"></td>' +
         '</tr></table>');
 
     document.getElementById(weekArray[dayOfWeek - 1]).style.backgroundColor = "yellow"; //changes color of current day
@@ -139,10 +150,14 @@ else {
     }
     else {
         for (var i in taskArray) {
-    	taskArray[i].addToTable();
+            if (taskArray[i].toss === 0){
+               	taskArray[i].addToTable();
+            }
         }
         for (var i in taskArray) {
-    	taskArray[i].attachEvents();
+            if (taskArray[i].toss === 0){
+                taskArray[i].attachEvents();
+            }
         }
     }
 

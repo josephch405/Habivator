@@ -14,9 +14,16 @@ var archGroupArray = [];
 var smileyBob = new Smiley();                                           //new smiley instance for popup managing
 var justClickedFace = false;                                            //justclicked variable used for smiley onclick events
 var nameBoxWidth = 200;
-if (localStorage.rowOrTileMode==null){
-    localStorage.rowOrTileMode = "row";
+if (localStorage.weekOrDayMode==null){
+    localStorage.weekOrDayMode = "row";
 }
+if (localStorage.notifActive==null){
+    localStorage.notifActive = true;
+}
+if (localStorage.notifInterval==null){
+    localStorage.notifInterval = 60*60*1000;
+}
+
 
 //INDEX
     //TASK
@@ -28,6 +35,7 @@ if (localStorage.rowOrTileMode==null){
     //SMILEY
     //MATH
     //BADGE
+    //PIC
 
 /*
     TASK RELATED METHODS
@@ -83,6 +91,9 @@ var switchToEdit = function(idIn) {
 var switchToTask = function(idIn) {
     findTaskById(idIn).name = document.getElementById(idIn + "-tf").value;
     if (document.getElementById(idIn + "-quant")) {
+        if (findTaskById(idIn).quantity != document.getElementById(idIn + "-quant").value){
+            findTaskById(idIn).karma = 0;
+        };
         findTaskById(idIn).quantity = document.getElementById(idIn + "-quant").value;
     }
     findTaskById(idIn).scrub();
@@ -145,7 +156,7 @@ var importData = function(input) {                                           //d
                 type = taskString[0];
 
                 if (type == "task") {
-                    tActDays = taskString[4].split(",");        
+                    tActDays = taskString[4].split(",");
                     for (var ii in tActDays) {
                         tActDays[ii] = parseInt(tActDays[ii]);
                     }                                                       //importing active days
@@ -160,7 +171,7 @@ var importData = function(input) {                                           //d
                         tempKarma = parseInt(taskString[8]);
                     }                                                       //importing karma
 
-                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma));
+                    taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma, parseInt(taskString[9])));
                                                                             //parsing for task
 
                 } else if (type == "archGroup") {
@@ -303,7 +314,9 @@ var pushTasksToArchive = function(dateString) {
     tempDate.setDate(tempDate.getDate()-1);
     var archGroup = new archivedTaskGroup(tempDate.toDateString());
     for (var i in taskArray) {
-        archGroup.addArch(taskArray[i].exportAsArchive());
+        if (taskArray[i].toss === 0){
+            archGroup.addArch(taskArray[i].exportAsArchive());
+        }
     }
     archGroupArray.push(archGroup);
     saveToLS();
@@ -335,6 +348,8 @@ var importTxt = function() {
         reader.onload = function(e) {
             text = reader.result;
             localStorage.save = text;
+            
+            alert("Save loaded!");
             location.reload();
         };
     } else {
@@ -438,4 +453,22 @@ var updateBadge = function(){
     else{
         chrome.browserAction.setBadgeText({text:bob + ""});
     }
+}
+
+
+
+
+
+
+
+/*
+    PICS
+*/
+
+var picSetup = function(id, icon, icon2, link){
+    var button = document.getElementById(id);
+    button.src = icon;
+    button.onmouseover = function() {button.src = icon2;}
+    button.onmouseout = function() {button.src = icon;}
+    button.onclick = function(){document.location = link};
 }

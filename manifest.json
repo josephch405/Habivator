@@ -1,7 +1,11 @@
 {
    "manifest_version": 2,
-   "name": "Habivator",
-   "version": "0.55",
+   "background": {
+      "scripts": ["js/smiley.js", "js/main.js","js/task.js","js/archivedTask.js","js/archivedTaskGroup.js", "js/background.js"  ]
+   },
+   "name": "Habivator - build a habit!",
+   "short_name": "Habivator",
+   "version": "0.68",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
    "browser_action": {
       "default_icon": "icon.png",

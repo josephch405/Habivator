@@ -16,8 +16,7 @@ for (var i in archGroupArray) {
     archGroupArray[i].attachEvents();
 }
 
-if (archGroupArray.length == 0){
-	console.log("asdfasfd")
+if (archGroupArray.length === 0){
 	document.getElementById("archiveTables").style.height = 400;
 	console.log(document.getElementById("archiveTables").style)
 }
@@ -37,33 +36,10 @@ var popBox = document.getElementById("popBox");
 popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
 
-var fileInput = $('#files');
-//var uploadButton = $('#upload')[0];
-
-document.getElementById("files").onchange = function(){importTxt();}
-//uploadButton.addEventListener("click", importTxt);
-
-var exportButton = $('#export')[0];
-exportButton.addEventListener("click", exportTxt);
-
-var chartButton = document.getElementById("chartsButton");
-chartButton.onmouseover = function() {
-    chartButton.src = '../img/charts2.png';
-}
-chartButton.onmouseout = function() {
-    chartButton.src = '../img/charts.png';
-}
-
-chartButton.onclick=function(){document.location='options.html'};
-
-var graphButton = document.getElementById("graphButton");
-graphButton.onmouseover = function() {
-    graphButton.src = '../img/graph2.png';
-}
-graphButton.onmouseout = function() {
-    graphButton.src = '../img/graph.png';
-}
-
-graphButton.onclick=function(){document.location='options1.html'};
+//mapping events to grid button
+picSetup("chartsButton", '../img/charts.png', '../img/charts2.png', 'options.html');
+picSetup("graphButton", '../img/graph.png', '../img/graph2.png', 'options1.html');
+picSetup("advisorButton", '../img/advisor.png', '../img/advisor2.png', 'advisor.html');
+picSetup("settingsButton", '../img/settings.png', '../img/settings2.png', 'settings.html');
 
 window.scrollTo(600*archGroupArray.length,0);

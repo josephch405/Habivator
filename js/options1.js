@@ -57,23 +57,7 @@ scaleOverride: true,
 });
 
 //mapping events to grid button
-var chartButton = document.getElementById("chartsButton");
-chartButton.onmouseover = function() {
-    chartButton.src = '../img/charts2.png';
-}
-chartButton.onmouseout = function() {
-    chartButton.src = '../img/charts.png';
-}
-
-chartButton.onclick=function(){document.location='options.html'};
-
-var graphButton = document.getElementById("graphButton");
-graphButton.onmouseover = function() {
-    graphButton.src = '../img/graph2.png';
-}
-graphButton.onmouseout = function() {
-    graphButton.src = '../img/graph.png';
-}
-
-graphButton.onclick=function(){document.location='options1.html'};
-
+picSetup("chartsButton", '../img/charts.png', '../img/charts2.png', 'options.html');
+picSetup("graphButton", '../img/graph.png', '../img/graph2.png', 'options1.html');
+picSetup("advisorButton", '../img/advisor.png', '../img/advisor2.png', 'advisor.html');
+picSetup("settingsButton", '../img/settings.png', '../img/settings2.png', 'settings.html');

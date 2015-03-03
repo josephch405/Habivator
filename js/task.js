@@ -1,4 +1,4 @@
-function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn, karmaIn) {
+function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn, karmaIn, tossIn) {
 
 //INDEX
     //INIT functions
@@ -26,6 +26,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     this.unit = unitIn || 0;                                //0 is no unit count, 1 is reps, 2 is minutes
     this.quantity = parseInt(quantityIn) || 0;
     this.editMode = 0;
+    this.toss = tossIn|| 0;
 
 
 
@@ -335,10 +336,18 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         var id = this.id;
         switchToTask(id);
         this.unit = (this.unit + 1) % 3;
+        this.karma = 0;
         saveToLS();
         switchToEdit(id);
     }
     //toggles unit
+    
+    this.setUnit = function(unit) {
+        this.unit = unit;
+        this.karma = 0;
+        saveToLS();
+    }
+    //sets unit
 
 
 
@@ -378,8 +387,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         string = "task;;";
         string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
         string += this.activeDays + ";;" + this.daysDone + ";;";
-        string += this.unit + ";;" + this.quantity + ";;" + this.karma + ";;";
-        string += this.unit + ";;" + this.quantity;
+        string += this.unit + ";;" + this.quantity + ";;" + this.karma + ";;" + this.toss;
         return string;
     }
     
@@ -389,6 +397,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         var archive = new archivedTask(String(this.name), String(this.icon), +maxArchiveId, dDone, +this.unit, +this.quantity);
         maxArchiveId += 1;
         this.karma += this.calculateKarma();
+        saveToLS();
         return archive;
     }
 

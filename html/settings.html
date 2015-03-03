@@ -13,7 +13,7 @@
         <img id = "advisorButton" style = "position:fixed;height: 80px; left:480px" src="../img/advisor.png">
         <img id = "settingsButton" style = "position:fixed;height: 80px; left:560px" src="../img/settings.png">
     </div>
-    
+
     <div id="faceBox">
         <img id="face" style="position:fixed; height:68px; width:68px" src="../img/face/up.png" >
     </div>
@@ -25,8 +25,21 @@
         </div>
     </div>
     
-    <div id="archiveTables">
+    <div id="optionsBox">
+    <h2>Data management</h2>
+    <button id="export">Export as txt</button>
+    , or <b>Upload txt file:</b>
+    <input type=file id="files" value = "Choose backup file" />
+    <h2>Notifications</h2>
+    <button id = "notif_30min">30 min</button>
+    <button id = "notif_1">1 hr</button>
+    <button id = "notif_2">2 hr</button>
+    <button id = "notif_4">4 hr</button>
+    <button id = "notif_never">Never</button>
+    <div id = "notifDiv"></div>
     </div>
+    
+    
 </body>
 
 <script src="..\js\jquery-2.1.1.min.js"></script>
@@ -35,6 +48,6 @@
 <script src="..\js\task.js"></script>
 <script src="..\js\archivedTask.js"></script>
 <script src="..\js\archivedTaskGroup.js"></script>
-<script src="..\js\options.js"></script>
+<script src="..\js\settings.js"></script>
 
 </html>

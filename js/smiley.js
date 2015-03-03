@@ -29,7 +29,28 @@ function Smiley(){
         "I am not afraid of tomorrow, for I have seen yesterday and I love today!<br> - William Allen White",
         "You change your life by changing your heart.<br> - Max Lucado",
         "When you have a dream, you've got to grab it and never let go.<br> - Carol Burnett", 
-	]
+
+        "I believe that if one always looked at the skies, one would end up with wings.<br> - Gustave Flaubert",
+        "Hope is but the dream of those who wake.<br> - Matthew Prior",
+        "The best revenge is massive success.<br> - Frank Sinatra",
+        "People often say that motivation doesn’t last. Well, neither does bathing.  That’s why we recommend it daily.<br> - Zig Ziglar",
+        "Life shrinks or expands in proportion to one’s courage.<br> - Anais Nin",
+        "If you hear a voice within you say “you cannot paint,” then by all means paint and that voice will be silenced.<br> - Vincent Van Gogh",
+        "There is only one way to avoid criticism: do nothing, say nothing, and be nothing.<br> - Aristotle",
+        "Ask and it will be given to you; search, and you will find; knock and the door will be opened for you. - Jesus",
+        "The only person you are destined to become is the person you decide to be.<br> - Ralph Waldo Emerson",
+        "Fall seven times and stand up eight.<br> - Japanese Proverb",
+        "Everything has beauty, but not everyone can see.<br> - Confucius",
+        "How wonderful it is that nobody need wait a single moment before starting to improve the world.<br> - Anne Frank",
+        "When I let go of what I am, I become what I might be.<br> - Lao Tzu",
+        "The question isn’t who is going to let me; it’s who is going to stop me.<br> - Ayn Rand",
+        "We learn something from everyone who passes through our lives.. Some lessons are painful, some are painless.. but, all are priceless.",
+        "Rule #1 of life. Do what makes YOU happy.",
+        "Life has two rules: #1 Never quit, #2 Always remember rule # 1.",
+        "Your problem isn't the problem. Your reaction is the problem.",
+        "You can do anything, but not everything.",
+        "Innovation distinguishes between a leader and a follower.<br> - Steve Jobs"
+    ]
 
     var tryThis = [[],[]];
     tryThis[0] = [
@@ -78,4 +99,7 @@ function Smiley(){
     	return quotes[Math.floor(Math.random()*quotes.length)];
     }
 
+
+   
+ 
 }
