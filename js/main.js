@@ -24,6 +24,18 @@ if (localStorage.notifInterval==null){
     localStorage.notifInterval = 60*60*1000;
 }
 
+var iconDB = {
+    "lr":"../img/tile/lr.png",
+    "r":"../img/tile/r.png",
+    "lg":"../img/tile/lg.png",
+    "g":"../img/tile/g.png",
+    "editButton":"../img/tile/editButton.png",
+    "leditButton":"../img/tile/leditButton.png",
+    "deleteButton":"../img/tile/deleteButton.png",
+    "ldeleteButton":"../img/tile/ldeleteButton.png",
+    "smile": "../img/face/smile.png",
+    "smile_up": "../img/face/up.png",
+}
 
 //INDEX
     //TASK
@@ -173,7 +185,6 @@ var importData = function(input) {                                           //d
 
                     taskArray.push(new Task(taskString[1], taskString[2], taskString[3], tActDays, tDoneDays, parseInt(taskString[6]), parseInt(taskString[7]), tempKarma, parseInt(taskString[9])));
                                                                             //parsing for task
-
                 } else if (type == "archGroup") {
                     archGroupArray.push(new archivedTaskGroup(taskString[1], taskString[2]));
                                                                             //parsing for archGroup instead
@@ -198,8 +209,29 @@ var saveToLS = function() {
     localStorage.save = string;
     return (string);
 }
-                                                    //saves everything to localstorage
+//saves everything to localstorage
 
+var clearRecords = function(){
+    archGroupArray = [];
+    for (var i in taskArray){
+        if(taskArray[i].toss != 1){
+            taskArray[i].karma = 0;
+        }
+    }
+    updateBadge();
+    saveToLS();
+    alert("Records wiped!");
+    location.reload();
+}
+
+var clearAll = function(){
+    archGroupArray = [];
+    taskArray = [];
+    updateBadge();
+    saveToLS();
+    alert("Everything wiped!");
+    location.reload();
+}
 
 
 
@@ -261,6 +293,14 @@ var simplifyDateEuro = function(date){
 }
 
 
+var updateDate = function(){
+    today = new Date();
+
+    dayOfWeek = today.getDay();
+    if (dayOfWeek == 0 || lockdown == true) {
+        dayOfWeek = 7;
+    }
+}
 
 
 
@@ -403,7 +443,11 @@ var smileyKeepOn= function() {
     window.setTimeout(function(){justClickedFace=false},100);
 }
 
-
+var smileySetup = function(){
+    var faceButton = document.getElementById("face");
+    picSetup("face", iconDB.smile_up, iconDB.smile)
+    faceButton.onclick = smileyToggle;
+}
 
 
 
@@ -440,10 +484,11 @@ var floatToKarma = function(input){
 */
 
 var updateBadge = function(){
+    updateDate();
     var bob = 0;
-    chrome.browserAction.setBadgeBackgroundColor({color:[0,255,0,255]})
+    chrome.browserAction.setBadgeBackgroundColor({color:[0,255,255,0]})
     for (var i in taskArray) {
-        if (taskArray[i].daysDone[dayOfWeek-1] == 2){
+        if (taskArray[i].daysDone[dayOfWeek-1] == 2 && taskArray[i].toss == 0){
             bob += 1;
         }
     }
@@ -468,7 +513,21 @@ var updateBadge = function(){
 var picSetup = function(id, icon, icon2, link){
     var button = document.getElementById(id);
     button.src = icon;
-    button.onmouseover = function() {button.src = icon2;}
-    button.onmouseout = function() {button.src = icon;}
-    button.onclick = function(){document.location = link};
+    if(icon2 != null){
+        button.onmouseover = function() {button.src = icon2;}
+        button.onmouseout = function() {button.src = icon;}
+    }
+    if(link != null){
+        button.onclick = function(){document.location = link};
+    }
+}
+
+var unitNumToString = function(input){
+    switch (input){
+        case 1:
+            return "rep";
+        case 2:
+            return "min";
+    }
+    return;
 }

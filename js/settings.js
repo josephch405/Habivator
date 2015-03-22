@@ -6,13 +6,9 @@ var percentageArray = [];
 var percentageLabels = [];
 
 var faceButton = document.getElementById("face");
-faceButton.onmouseover = function() {
-    faceButton.src = '../img/face/smile.png';
-}
-faceButton.onmouseout = function() {
-    faceButton.src = '../img/face/up.png';
-}
+picSetup("face", iconDB.smile, iconDB.smile_up)
 faceButton.onclick = smileyToggle;
+
 var popBox = document.getElementById("popBox");
 popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
@@ -26,14 +22,11 @@ document.getElementById("files").onchange = function(){importTxt();}
 var exportButton = $('#export')[0];
 exportButton.addEventListener("click", exportTxt);
 
-
 //mapping events to grid button
 picSetup("chartsButton", '../img/charts.png', '../img/charts2.png', 'options.html');
 picSetup("graphButton", '../img/graph.png', '../img/graph2.png', 'options1.html');
 picSetup("advisorButton", '../img/advisor.png', '../img/advisor2.png', 'advisor.html');
 picSetup("settingsButton", '../img/settings.png', '../img/settings2.png', 'settings.html');
-
-
 
 document.getElementById("notifDiv").innerHTML = stringifyNotifInterval();
 
@@ -49,6 +42,9 @@ setNotifOnclick("notif_30min",30 * 60 * 1000);
 setNotifOnclick("notif_1",60 * 60 * 1000);
 setNotifOnclick("notif_2",120 * 60 * 1000);
 setNotifOnclick("notif_4",240 * 60 * 1000);
+
+document.getElementById("clear_records").onclick = function(){clearRecords()};
+document.getElementById("clear_all").onclick = function(){clearAll()};
 
 document.getElementById("notif_never").onclick = function(){
     localStorage.notifActive = false;

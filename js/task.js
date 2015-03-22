@@ -7,6 +7,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     //SCRUB, EXPORT
     //CALCULATIONS
     //BUTTON/TILE
+    //attachIconOnEvents
 
 /*
     INIT functions
@@ -25,8 +26,14 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }                                                       //imports active days and days done if they are correct
     this.unit = unitIn || 0;                                //0 is no unit count, 1 is reps, 2 is minutes
     this.quantity = parseInt(quantityIn) || 0;
+    if (this.quantity <=0){
+        this.quantity = 1;
+    }
     this.editMode = 0;
     this.toss = tossIn|| 0;
+    if (typeof toss == "number" && tossIn != 0){
+        this.toss = 1;
+    }
 
 
 
@@ -118,23 +125,14 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             }
 
             for (var i = 0; i < this.activeDays.length; i++) {
+                var pic_id = this.id + "-" + (parseInt(i) + 1);
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
                 switch (this.activeDays[i]) {
                 case 0:
-                    pic.onmouseover = function() {
-                        this.src = "../img/tile/lrEdit.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "../img/tile/rEdit.png"
-                    }
+                    picSetup(pic_id, "../img/tile/rEdit.png", "../img/tile/lrEdit.png");
                     break;
                 case 1:
-                    pic.onmouseover = function() {
-                        this.src = "../img/tile/lgEdit.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "../img/tile/gEdit.png"
-                    };
+                    picSetup(pic_id, "../img/tile/gEdit.png", "../img/tile/lgEdit.png");
                     break;
                 }
                 pic.onclick = function() {
@@ -142,12 +140,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 };
             }
             editButton = document.getElementById(this.id + "-e")
-            editButton.onmouseover = function() {
-                this.src = "../img/tile/leditButton.png"
-            };
-            editButton.onmouseout = function() {
-                this.src = "../img/tile/editButton.png"
-            };
+            editButton_id = this.id + "-e";
+            picSetup(editButton_id, "../img/tile/editButton.png", "../img/tile/leditButton.png")
             editButton.onclick = function() {
                 switchToTask(id)
             };
@@ -173,30 +167,20 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
             //case for edit mode
         } else {
             for (var i = 0; i < this.daysDone.length; i++) {
+                var pic_id = this.id + "-" + (parseInt(i) + 1);
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
                 var clickable = false;
                 switch (this.daysDone[i]) {
                 case 2:
-                    pic.onmouseover = function() {
-                        this.src = "../img/tile/lr.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "../img/tile/r.png"
-                    }
+                    picSetup(pic_id, iconDB.r, iconDB.lr)
                     clickable = true;
                     break;
                 case 4:
-                    pic.onmouseover = function() {
-                        this.src = "../img/tile/lg.png"
-                    };
-                    pic.onmouseout = function() {
-                        this.src = "../img/tile/g.png"
-                    }
+                    picSetup(pic_id, iconDB.g, iconDB.lg)
                     clickable = true;
                     break;
                 }
-                clickable = clickable && i < dayOfWeek;
-                if (clickable) {
+                if (clickable && i < dayOfWeek) {
                     pic.onclick = function() {
                         dDoneHandler(parseInt(id), parseInt(this.id.split("-")[1]))
                     };
@@ -204,24 +188,16 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 pic.draggable = false;
             }
             editButton = document.getElementById(this.id + "-e")
-            editButton.onmouseover = function() {
-                this.src = "../img/tile/leditButton.png"
-            };
-            editButton.onmouseout = function() {
-                this.src = "../img/tile/editButton.png"
-            };
+            edit_id = this.id + "-e";
+            picSetup(edit_id, iconDB.editButton, iconDB.leditButton)
             editButton.onclick = function() {
                 switchToEdit(id)
             };
             editButton.draggable = false;
         }
         deleteButton = document.getElementById(this.id + "-del")
-        deleteButton.onmouseover = function() {
-            this.src = "../img/tile/ldeleteButton.png"
-        };
-        deleteButton.onmouseout = function() {
-            this.src = "../img/tile/deleteButton.png"
-        };
+        del_id = this.id + "-del";
+        picSetup(del_id, iconDB.deleteButton, iconDB.ldeleteButton)
         deleteButton.onclick = function() {
             deleteTask(id);
         };
@@ -523,22 +499,13 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
     this.attachButtons = function(){
         var pic = document.getElementById(this.id);
+        var pic_id = this.id;
         switch (this.daysDone[dayOfWeek-1]) {
         case 2:
-            pic.onmouseover = function() {
-                this.src = "../img/tile/lr.png"
-            };
-            pic.onmouseout = function() {
-                this.src = "../img/tile/r.png"
-            }
+            picSetup(pic_id, iconDB.r, iconDB.lr)
             break;
         case 4:
-            pic.onmouseover = function() {
-                this.src = "../img/tile/lg.png"
-            };
-            pic.onmouseout = function() {
-                this.src = "../img/tile/g.png"
-            }
+            picSetup(pic_id, iconDB.g, iconDB.lg)
             clickable = true;
             break;
         }
@@ -547,6 +514,5 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         };
         pic.draggable = false;
     }
-
 
 }

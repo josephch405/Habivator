@@ -1,0 +1,110 @@
+@font-face {
+    font-family: aller;
+    src: url(Aller_Rg.ttf);
+}
+
+@font-face {
+    font-family: openSans;
+    src: url(OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(Roboto-Regular.ttf);
+}
+
+
+html, body{
+    margin: 0px;
+    font-family: "roboto";
+    background-color: rgb(240,240,240);
+    font-size:14px;
+}
+
+
+table,td,th
+{
+    border:2px solid black;
+    border-collapse:collapse;
+    white-space: nowrap;
+}
+
+
+td{
+    padding:0px;
+    height:30px;
+    font-size:18px;
+}
+
+th{
+    font-size: 12px;
+}
+
+.iconGrid
+{
+    width:28px;
+    padding:0px;
+}
+
+.halfIconGrid
+{
+    width:12px;
+    padding:0px;
+}
+
+.icon
+{
+    height:28px;
+    width:28px;
+}
+
+.halfIcon
+{
+    height:28px;
+    width:12px;
+}
+
+.editingTextbox
+{
+    font-size: 18px;
+    font-family:calibri;
+    margin:0;
+    height:28px;
+}
+
+.editUnitTextBox
+{
+    font-size: 18px;
+    font-family:calibri;
+    margin:0;
+    width:64px;
+    height:28px;
+}
+
+.unitGrid{
+    width:50px;
+}
+
+.smallText{
+    font-size: 14px;
+}
+
+#popBox{
+    position:absolute;
+    top:8px;
+    right: 120px;
+    width:360px;
+    height:80px;
+    visibility: hidden;
+    font-size: 16px;
+}
+
+#popBox div{
+    position:relative;
+    margin:0px;
+    top:8px;
+    left:12px;
+    width:320px;
+    height:100px;
+    font-size: 16px;
+}

@@ -1,7 +1,18 @@
 var timeoutLength = 60*60*1000;
 var notifier;
+importData(localStorage.save);
+
+if (typeof localStorage.firstTime != "string"){
+    localStorage.firstTime = true;
+    chrome.tabs.create({url: "html/tut.html"});
+}
+
+updateBadge();
 
 function checkInterv(){
+    taskArray = [];
+    archArray = [];
+    importData(localStorage.save);
     if (!isNaN(parseInt(localStorage.notifInterval))) {
         timeoutLength = parseInt(localStorage.notifInterval);
     }
@@ -9,16 +20,17 @@ function checkInterv(){
         notifier = setTimeout(function(){checkInterv()}, 30*60*1000);
     }
     else{
-        notifier = setTimeout(function() {
-            notify("Doing alright?", notifierAgent())
-        }, timeoutLength);
+        notifier = setTimeout(notify, timeoutLength);
     }
+    updateBadge();
 }
 
 checkInterv();
 
-function notify(title, message){
+function notify(messageFx){
+	var title = "Doing alright?"
     console.log("fired")
+    message = notifierAgent();
     chrome.notifications.clear("id", function() {});
     var opt = {
         type: "basic",
@@ -33,8 +45,15 @@ function notify(title, message){
 }
 
 function notifierAgent(){
-    return "Fulfill a habit!";
+    var temp = [];
+    for (var i = 0 ; i < taskArray.length; i++){
+        if (taskArray[i].daysDone[dayOfWeek-1] == 2){
+            temp.push(taskArray[i].name);
+        }
+    }
+    if (temp.length>0){
+        return "Try this habit: " + temp[Math.floor(Math.random()*temp.length)];
+    }
+    return "Stay positive!";
 }
 
-
-importData(localStorage.save);

@@ -5,7 +5,7 @@
    },
    "name": "Habivator - build a habit!",
    "short_name": "Habivator",
-   "version": "0.68",
+   "version": "0.69",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
    "browser_action": {
       "default_icon": "icon.png",

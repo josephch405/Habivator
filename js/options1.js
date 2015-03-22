@@ -16,14 +16,8 @@ for (var i = 0; i<20; i++) {
     }
 }
 
-var faceButton = document.getElementById("face");
-faceButton.onmouseover = function() {
-    faceButton.src = '../img/face/smile.png';
-}
-faceButton.onmouseout = function() {
-    faceButton.src = '../img/face/up.png';
-}
-faceButton.onclick = smileyToggle;
+smileySetup();
+
 var popBox = document.getElementById("popBox");
 popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
@@ -61,3 +55,8 @@ picSetup("chartsButton", '../img/charts.png', '../img/charts2.png', 'options.htm
 picSetup("graphButton", '../img/graph.png', '../img/graph2.png', 'options1.html');
 picSetup("advisorButton", '../img/advisor.png', '../img/advisor2.png', 'advisor.html');
 picSetup("settingsButton", '../img/settings.png', '../img/settings2.png', 'settings.html');
+
+if (archGroupArray.length === 0){
+    $("body").append("<div class = 'greyText'>No records yet! Use Habivator for at least one week and come back.</div>")
+    console.log("bob")
+}

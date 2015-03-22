@@ -1,5 +1,4 @@
-#chart1
-{
+#chart1{
     top:100px;
     display: inline-block;
     height:auto;
@@ -20,13 +19,7 @@
 }
 
 #popBox{
-    position:absolute;
-    top:8px;
-    right: 120px;
-    width:300px;
-    height:120px;
-    visibility: hidden;
-    font-size: 20px;
+    position:fixed;
 }
 
 #fileBox{
@@ -39,4 +32,11 @@
     height:80px;
     width:640px;
     box-shadow: 0px 0px 6px 2px;
+}
+
+.greyText{
+    width:800px;
+    font-size:24px;
+    margin:40px;
+    color: gray;
 }

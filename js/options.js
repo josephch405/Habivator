@@ -8,30 +8,21 @@ var justClicked = false;
 
 archGroupArray.sort(function(a,b){return Date.parse(a.date)-Date.parse(b.date)})
 
-//
 for (var i in archGroupArray) {
     archGroupArray[i].addToPage();
-}
-for (var i in archGroupArray) {
     archGroupArray[i].attachEvents();
 }
 
 if (archGroupArray.length === 0){
-	document.getElementById("archiveTables").style.height = 400;
-	console.log(document.getElementById("archiveTables").style)
+	$("body").append("<div class = 'greyText'>No charts yet! Use Habivator for at least one week and come back.</div>")
+	console.log("bob")
 }
 
 document.body.style.width=600*archGroupArray.length;
 //set page dimensions
 
-var faceButton = document.getElementById("face");
-faceButton.onmouseover = function() {
-    faceButton.src = '../img/face/smile.png';
-}
-faceButton.onmouseout = function() {
-    faceButton.src = '../img/face/up.png';
-}
-faceButton.onclick = smileyToggle;
+smileySetup();
+
 var popBox = document.getElementById("popBox");
 popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;

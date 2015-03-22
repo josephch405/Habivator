@@ -1,36 +1,41 @@
 recommendation system
-	actions
-		toss
-			not listed for 1 week, then totalled at end
+	not listed for 1 week, then totalled at end
+	return to untossed button
+	week view of task
     fix quantity for advisor
 		auto options based on curent value
-----------
-////------
+/////-----
 
-first timer tutorial
-	open on install
+move quotes to external
 ----------
 
+fix new task when there are no tasks
+	no task page with create button
+	button vs week difference
+----------
 
+fix new day badge refreshing
 
-notification
-    based on completed tasks of the day
-///////---
+fix badging when checkout
+----------
 
 fix timer issue
 	fix timer carrying over for loading saves - another field in exporttext?
 	resets weekdone
 ----------
 
+reformat charts
+	lower tables
+	fix width without tables
+	unit simplify - no need for extra grid?
+	narrow grid
+----------
+
 settings page
 	color?
 	graph?
 	day of conclusion
-//--------
-
-reset button
-	clear all tasks, archives, settings
-----------
+/////-----
 
 make website
 ----------
@@ -38,11 +43,8 @@ make website
 moar graphs
 ----------
 
-a counter instead of green box
-	could set how many reps, sets, cups of water to drink
-----------
-
 long load times for arch groups?
+	cap maximum arch array count
 ----------
 
 metronome?

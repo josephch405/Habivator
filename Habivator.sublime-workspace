@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"archG",
+				"archGroupArray"
+			],
+			[
+				"append",
+				"appendAndAttach"
+			],
+			[
 				"onmou",
 				"onmouseout"
 			],
@@ -83,40 +91,26 @@
 			"file": "roadmap.txt",
 			"settings":
 			{
-				"buffer_size": 735,
+				"buffer_size": 840,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/popup.js",
+			"file": "manifest.json",
 			"settings":
 			{
-				"buffer_size": 5029,
+				"buffer_size": 778,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "css/popup.css",
+			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
 			"settings":
 			{
-				"buffer_size": 703,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "css/options.css",
-			"settings":
-			{
-				"buffer_size": 560,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "html/popup.html",
-			"settings":
-			{
-				"buffer_size": 1199,
-				"line_ending": "Windows"
+				"buffer_size": 2443,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"scratch": true
 			}
 		}
 	],
@@ -167,35 +161,43 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/background.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/settings.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/Chart.min.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/roadmap.txt",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/advisor.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/advisor.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/advisor.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/manifest.json",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/temp/manifest.json",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options1.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/advisor.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/advisor.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/background.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/manifest.json",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/site/index.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/settings.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/settings.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/smiley.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/site/index.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/site/index.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/roadmap.txt",
+		"/C/xampp/phpMyAdmin/config.inc.php",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/tut.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/tut.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/Habivator.sublime-project",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/Chart.min.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/iojcopdigjlclknoioleamdbmfhjeedb/0.3_0/js/popup.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/jkhopfdenimipdamjmfpijifmmpnakpc/8.2_0/manifest.json",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/settings.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options1.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/smiley.js",
 		"/C/Users/Administrator/AppData/Local/Temp/7zO83AE61AF/manifest.json",
 		"/C/Users/Administrator/AppData/Local/Temp/7zO8988203E/manifest.json",
 		"/C/Users/Administrator/AppData/Local/Temp/7zO898EE57E/manifest.json",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/nidmklgpplnfghikfnkbdgldlkdgddcn/0.55_0/js/archivedTaskGroup.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup1.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup1.html",
@@ -234,6 +236,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console",
+			"import",
+			"badge",
+			"update",
+			"updatebadge",
+			"console",
+			"dayof",
+			"checkifda",
+			"checkif",
+			"dayofweek",
+			"lock",
+			".\n",
+			"timeoutlen",
+			"cards",
+			"card",
+			"face",
+			"smiley",
+			"main",
+			"’",
+			"save",
+			"onmouse",
+			"onclick",
+			"pic",
+			"this.id + \"-e\"",
+			"editbu",
+			");",
+			"switchto",
+			"onmouseover",
+			"badge",
+			"var",
+			"date",
+			"pushamoun",
+			"addto",
+			"unit",
+			"localst",
+			"toss",
+			"update",
+			"toss",
+			"tut",
+			"fav",
+			"link",
+			"icon",
+			"title",
+			"updatebadge",
+			"temp",
+			"taskarr",
+			"localstorage",
+			"notifier",
+			"add",
+			"dayofweek",
+			"toss",
 			"table",
 			"checkout",
 			"body",
@@ -310,58 +363,7 @@
 			"buttongen",
 			"button",
 			"r.pn",
-			"createrow",
-			"buttongen",
-			"}\n",
-			"iconTag",
-			"addnew",
-			"addnewtask",
-			"addnewta",
-			"new",
-			"createbu",
-			"onclick",
-			"//",
-			"job failed",
-			"nidmklgpplnfghikfnkbdgldlkdgddcn",
-			"nid",
-			".5",
-			"onclick",
-			"button",
-			"ddonehan",
-			"console",
-			"attach",
-			"indaysact",
-			"br",
-			"karma",
-			"totalen",
-			"karma",
-			"pushtasks",
-			"scrubnow",
-			"importdata",
-			"calcula",
-			"pushTasks",
-			"checkou",
-			"checkout",
-			"maxarchive",
-			"maxarchiveid",
-			"maxarchive",
-			"editmode",
-			"switchto",
-			"table",
-			"attach",
-			"tabletag",
-			"task",
-			"=\"';\n",
-			"console",
-			"parse",
-			"file",
-			"style",
-			"perce",
-			"percen",
-			"calculateT",
-			"split(\"\\r",
-			"findTaskB",
-			"find"
+			"createrow"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -382,7 +384,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -391,15 +393,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 735,
+						"buffer_size": 840,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								735,
-								735
+								112,
+								112
 							]
 						],
 						"settings":
@@ -411,119 +413,65 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/popup.js",
+					"file": "manifest.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5029,
+						"buffer_size": 778,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2345,
-								2345
+								273,
+								273
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1926.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "css/popup.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 703,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								60,
-								60
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "css/options.css",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								534,
-								538
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 611.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "html/popup.html",
+					"buffer": 2,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1199,
+						"buffer_size": 2443,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								887,
-								887
+								2443,
+								2443
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -589,7 +537,7 @@
 		[
 			[
 				"",
-				"D:\\Student_Data\\MAI\\mai.sublime-project"
+				"C:\\Users\\Administrator\\Desktop\\igem\\igem.sublime-project"
 			]
 		],
 		"width": 380.0

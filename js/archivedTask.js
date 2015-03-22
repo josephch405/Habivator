@@ -58,9 +58,9 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
             rowText += "</td>"
         }
 
-        rowText += "<td class='smallText'>";
-        rowText += floatToPercentage(this.calculateTaskPercentage()) + "%";
-        rowText += "</td>"
+        //rowText += "<td class='smallText'>";
+        //rowText += floatToPercentage(this.calculateTaskPercentage()) + "%";
+        //rowText += "</td>"
         //use for task percentaging
 
         rowText+="</tr>"
@@ -74,25 +74,16 @@ function archivedTask(nameIn, iconIn, idIn, daysDoneIn, unitIn, quantityIn) {
     this.attachEvents = function() {
         var id = this.id;
         for (var i = 0; i < this.daysDone.length; i++) {
+            var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
+            var pic_id = this.id + "-" + (parseInt(i) + 1);
             switch (parseInt(this.daysDone[i])) {
             case 2:
-                var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
-                pic.onmouseover = function() {
-                    this.src = "../img/tile/lr.png"
-                };
-                pic.onmouseout = function() {
-                    this.src = "../img/tile/r.png"
-                }
+                picSetup(pic_id, iconDB.r, iconDB.lr)
                 clickable = false;
                 break;
             case 4:
                 var pic = document.getElementById(this.id + "-" + (parseInt(i) + 1));
-                pic.onmouseover = function() {
-                    this.src = "../img/tile/lg.png"
-                };
-                pic.onmouseout = function() {
-                    this.src = "../img/tile/g.png"
-                }
+                picSetup(pic_id, iconDB.g, iconDB.lg)
                 break;
             }
         }

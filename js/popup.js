@@ -1,5 +1,6 @@
 //shared code below
 importData(localStorage.save);
+console.log(localStorage.save)
 checkIfDatePassed();
 
 if (localStorage.scrubNow == "true") {
@@ -24,14 +25,8 @@ var checkout = function(){
 }
 //establishing checkout function to be attached to button
 
-var faceButton = document.getElementById("face");
-faceButton.onmouseover = function() {
-    faceButton.src = '../img/face/smile.png';
-}
-faceButton.onmouseout = function() {
-    faceButton.src = '../img/face/up.png';
-}
-faceButton.onclick = smileyToggle;
+smileySetup();
+
 var popBox = document.getElementById("popBox");
 //popBox.onclick = smileyKeepOn;
 document.body.onclick = smileyOff;
@@ -91,6 +86,7 @@ moreMode.onclick=function(){
     chrome.tabs.create({url: "html/options.html"});
 };
 
+/*
 if (localStorage.firstTime == null){
     var i=document.createElement('IMG');
     i.src = "../img/tutorialCover.png";
@@ -102,7 +98,7 @@ if (localStorage.firstTime == null){
         image.parentNode.removeChild(image);
         localStorage.firstTime = true;
     }
-}
+}*/
 //first time tutorial toggling
 
 
