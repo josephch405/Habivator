@@ -51,11 +51,10 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
         var iconTagColor = "green";
         var tPercentage = this.calculateTaskPercentage();
-        var tempKarma = floatToKarma(tPercentage);
-        if (tempKarma == -1){
+        if (tPercentage < .30){
             iconTagColor = "red";
         }
-        else if (tempKarma == 0){
+        else if (tPercentage < .70){
             iconTagColor = "orange";
         }
         rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='../img/tile/" + iconTagColor + ".png'></td>";
@@ -312,7 +311,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         var id = this.id;
         switchToTask(id);
         this.unit = (this.unit + 1) % 3;
-        this.karma = 0;
+        this.karma *= .9;
         saveToLS();
         switchToEdit(id);
     }
@@ -320,7 +319,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     
     this.setUnit = function(unit) {
         this.unit = unit;
-        this.karma = 0;
+        this.karma *=.5;
         saveToLS();
     }
     //sets unit
@@ -410,14 +409,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }
 
     this.calculateKarma = function(){
-        percentage = this.calculateTaskPercentage();
-        if (percentage >= .8){
-            return 1;
-        }
-        else if(percentage <= .2){
-            return -1;
-        }
-        return 0;
+        pTage = this.calculateTaskPercentage()*100;
+        return .000059246*pTage*pTage*pTage - .011043 * pTage * pTage + 1.6045 * pTage - 67.867;
     }
 
 

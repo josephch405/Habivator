@@ -1,0 +1,62 @@
+
+table
+{
+    height:auto;
+    margin:12px;
+    margin-top:16px;
+    width:590px;
+}
+
+#banner
+{
+    width:100%;
+    height:80px;
+    box-shadow:0px 0px 6px 2px;
+}
+
+#face{
+    position:absolute;
+    top:4px ;
+    right:4px;
+    height:72px;
+    width:72px;
+}
+
+#arrow{
+    position:absolute;
+    top:4px ;
+    right:80px;
+    width:136px;
+    height:68px;
+}
+
+#popup{
+    position:absolute;
+    top:4px;
+    right:4px;
+}
+
+#banner img #banner{
+    width:600px;
+}
+
+#plusTaskRow{
+    text-align: center;
+}
+
+.bigIcon{
+    width: 96px;
+}
+
+.bigIconDiv{
+   word-wrap: break-word;
+   width: 96px;
+   white-space:normal;
+   font-size:14px;
+}
+
+.topPlaceholder{
+    width:96px;
+    height:0px;
+    visibility: hidden;
+}

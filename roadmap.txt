@@ -1,22 +1,12 @@
 recommendation system
 	not listed for 1 week, then totalled at end
-	return to untossed button
-	week view of task
     fix quantity for advisor
 		auto options based on curent value
-/////-----
-
-move quotes to external
-----------
+///////---
 
 fix new task when there are no tasks
 	no task page with create button
 	button vs week difference
-----------
-
-fix new day badge refreshing
-
-fix badging when checkout
 ----------
 
 fix timer issue
@@ -47,4 +37,4 @@ long load times for arch groups?
 	cap maximum arch array count
 ----------
 
-metronome?
+FB/twitter integration?

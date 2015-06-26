@@ -1,0 +1,42 @@
+#chart1{
+    top:100px;
+    display: inline-block;
+    height:auto;
+    margin:0px;
+    margin-top:100px;
+    width:580px;
+}
+
+#banner
+{
+    height:80;
+}
+
+#face{
+    position:absolute;
+    top:4px ;
+    right:4px;
+}
+
+#popBox{
+    position:fixed;
+}
+
+#fileBox{
+    position:fixed;
+    bottom:10px;
+}
+
+#ribbon{
+    position:fixed;
+    height:80px;
+    width:640px;
+    box-shadow: 0px 0px 6px 2px;
+}
+
+.greyText{
+    width:800px;
+    font-size:24px;
+    margin:40px;
+    color: gray;
+}

@@ -1,0 +1,59 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="..\css\main.css">
+    <link rel="stylesheet" type="text/css" href="..\css\options.css">
+    <title>Habivator Options</title>
+</head>
+
+<body>
+    
+    <div id = "ribbon">
+        <img id = "chartsButton" style = "position:fixed; height: 80px; width: 240px" src="../img/charts.png">
+        <img id = "graphButton" style = "position:fixed; height: 80px; width: 240px; left:240px" src="../img/graph.png">
+        <img id = "advisorButton" style = "position:fixed;height: 80px; left:480px" src="../img/advisor.png">
+        <img id = "settingsButton" style = "position:fixed;height: 80px; left:560px" src="../img/settings.png">
+    </div>
+
+    <div id="faceBox">
+        <img id="face" style="position:fixed; height:68px; width:68px" src="../img/face/up.png" >
+    </div>
+
+    <div id="popBox">
+        <img style="z-index:10;position:fixed" src="../img/bubble.png">
+        <div style="z-index:20;">
+            Hi!
+        </div>
+    </div>
+    
+    <div id="optionsBox">
+    <h2>Data management</h2>
+    <button id="export">Export as txt</button>
+    , or <b>Upload txt file:</b>
+    <input type=file id="files" value = "Choose backup file" />
+    <h2>Notifications</h2>
+    <button id = "notif_30min">30 min</button>
+    <button id = "notif_1">1 hr</button>
+    <button id = "notif_2">2 hr</button>
+    <button id = "notif_4">4 hr</button>
+    <button id = "notif_never">Never</button>
+    <div id = "notifDiv"></div>
+
+    <h2>Clear data</h2>
+    <button id = "clear_records">Clear records</button>
+    <button id = "clear_all">Clear everything</button>
+
+
+    </div>
+    
+    
+</body>
+
+<script src="..\js\jquery-2.1.1.min.js"></script>
+<script src="..\js\smiley.js"></script>
+<script src="..\js\main.js"></script>
+<script src="..\js\task.js"></script>
+<script src="..\js\archivedTask.js"></script>
+<script src="..\js\archivedTaskGroup.js"></script>
+<script src="..\js\settings.js"></script>
+
+</html>

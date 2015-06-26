@@ -8,21 +8,22 @@ if (typeof localStorage.firstTime != "string"){
 }
 
 updateBadge();
+checkIfDatePassed();
 
 function checkInterv(){
-    taskArray = [];
-    archArray = [];
-    importData(localStorage.save);
+
+    backgroundSync();
+    
     if (!isNaN(parseInt(localStorage.notifInterval))) {
         timeoutLength = parseInt(localStorage.notifInterval);
     }
     if (localStorage.notifActive == "false"){
-        notifier = setTimeout(function(){checkInterv()}, 30*60*1000);
+        notifier = setTimeout(function(){checkInterv()}, 10*60*1000);
     }
     else{
-        notifier = setTimeout(notify, timeoutLength);
+        notify();
+        notifier = setTimeout(function(){checkInterv()}, timeoutLength);
     }
-    updateBadge();
 }
 
 checkInterv();
@@ -41,13 +42,12 @@ function notify(messageFx){
     if (localStorage.notifActive != "false"){
         chrome.notifications.create("id", opt, function() {})
     }
-    checkInterv();
 }
 
 function notifierAgent(){
     var temp = [];
     for (var i = 0 ; i < taskArray.length; i++){
-        if (taskArray[i].daysDone[dayOfWeek-1] == 2){
+        if (taskArray[i].daysDone[dayOfWeek-1] == 2 && taskArray[i].toss == 0){
             temp.push(taskArray[i].name);
         }
     }
@@ -57,3 +57,12 @@ function notifierAgent(){
     return "Stay positive!";
 }
 
+function backgroundSync(){
+    taskArray = [];
+    archGroupArray = [];
+    importData(localStorage.save);
+    updateDate();
+    checkIfDatePassed();
+    saveToLS();
+    updateBadge();
+}

@@ -1,0 +1,14 @@
+*{
+	font-size: 40px;
+}
+
+img{
+	width:60%;
+}
+
+div{
+	/*border-style:solid;
+	border-width:20px;
+	border-color:yellow;*/
+	text-align:center;
+}

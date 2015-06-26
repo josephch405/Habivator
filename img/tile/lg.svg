@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.48.5 r10040"
    sodipodi:docname="lg.svg"
-   inkscape:export-filename="D:\Student_Data\Habivator\img\tile\lg.png"
+   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\tile\lg.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="14.052795"
-     inkscape:cy="19.164111"
+     inkscape:zoom="3.959798"
+     inkscape:cx="36.19071"
+     inkscape:cy="23.740441"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -65,19 +65,26 @@
      id="layer1"
      transform="translate(0,-972.36218)">
     <rect
-       style="fill:#96ff01;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#9cff5a;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect2994"
        width="80"
        height="80"
        x="0"
        y="972.36218" />
     <rect
-       style="fill:#68dc00;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#63f700;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect4328"
        width="80"
-       height="5"
+       height="2.0000026"
        x="0"
-       y="75"
-       transform="translate(0,972.36218)" />
+       y="1050.3622" />
+    <rect
+       style="fill:#63f700;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect4328-7"
+       width="80"
+       height="2"
+       x="972.36218"
+       y="-80"
+       transform="matrix(0,1,-1,0,0,0)" />
   </g>
 </svg>

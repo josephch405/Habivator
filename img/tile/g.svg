@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.48.5 r10040"
    sodipodi:docname="g.svg"
-   inkscape:export-filename="D:\Student_Data\Habivator\img\tile\g.png"
+   inkscape:export-filename="C:\Users\Administrator\Google Drive\11grade\Habivator\img\tile\g.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="0.49544415"
-     inkscape:cy="19.164111"
+     inkscape:zoom="11.2"
+     inkscape:cx="71.338741"
+     inkscape:cy="4.243098"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -65,18 +65,26 @@
      id="layer1"
      transform="translate(0,-972.36218)">
     <rect
-       style="fill:#00ca00;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
-       id="rect2994"
-       width="80"
-       height="80"
-       x="0"
-       y="972.36218" />
-    <rect
-       style="fill:#009214;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#3c9500;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3020"
        width="80"
-       height="10.000003"
+       height="1.9999957"
        x="0"
-       y="1042.3622" />
+       y="1050.3622" />
+    <rect
+       style="fill:#3c9500;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3020-1"
+       width="80"
+       height="2"
+       x="972.36218"
+       y="-80"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#5ee900;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2994"
+       width="78"
+       height="78"
+       x="0"
+       y="972.36218" />
   </g>
 </svg>

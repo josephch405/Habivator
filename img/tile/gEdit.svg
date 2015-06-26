@@ -93,7 +93,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="0.49544415"
+     inkscape:cx="-55.218842"
      inkscape:cy="19.164111"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -138,18 +138,26 @@
        y="0"
        transform="translate(0,972.36218)" />
     <rect
-       style="fill:#00ca00;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter3141)"
-       id="rect2994"
-       width="70"
-       height="69.999992"
-       x="5"
-       y="977.36218" />
-    <rect
-       style="fill:#009214;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3129)"
+       style="fill:#3c9500;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3020"
        width="70"
-       height="8.7500019"
+       height="1.7499962"
        x="5"
-       y="1038.6122" />
+       y="1045.6122" />
+    <rect
+       style="fill:#3c9500;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3020-1"
+       width="70"
+       height="1.75"
+       x="977.36218"
+       y="-75"
+       transform="matrix(0,1,-1,0,0,0)" />
+    <rect
+       style="fill:#5ee900;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2994"
+       width="68.25"
+       height="68.25"
+       x="5"
+       y="977.36218" />
   </g>
 </svg>

@@ -88,10 +88,18 @@
 	"buffers":
 	[
 		{
-			"file": "roadmap.txt",
+			"file": "js/task.js",
 			"settings":
 			{
-				"buffer_size": 840,
+				"buffer_size": 16336,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/background.js",
+			"settings":
+			{
+				"buffer_size": 1642,
 				"line_ending": "Windows"
 			}
 		},
@@ -99,15 +107,31 @@
 			"file": "manifest.json",
 			"settings":
 			{
-				"buffer_size": 778,
+				"buffer_size": 804,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
+			"file": "js/popup.js",
 			"settings":
 			{
-				"buffer_size": 2443,
+				"buffer_size": 4404,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/popup.css",
+			"settings":
+			{
+				"buffer_size": 762,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
+			"settings":
+			{
+				"buffer_size": 12019,
 				"line_ending": "Windows",
 				"name": "Package Control Messages",
 				"scratch": true
@@ -115,9 +139,14 @@
 		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 35.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -161,43 +190,46 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/background.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/main.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/advisor.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/advisor.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/advisor.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/background.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/smiley.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/task.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/settings.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/advisor.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/Chart.min.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/roadmap.txt",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options1.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
+		"/C/Users/Administrator/Google Drive/11grade/code/qmclusky/sampleInput.txt",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/manifest.json",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/advisor.css",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/quotes.js",
+		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/advisor.html",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/temp/manifest.json",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/options1.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/popup.css",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options1.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/options.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/main.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/site/index.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTask.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/settings.html",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/settings.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/smiley.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/site/index.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/site/index.js",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/roadmap.txt",
 		"/C/xampp/phpMyAdmin/config.inc.php",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/tut.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/css/tut.css",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options.html",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/Habivator.sublime-project",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/Chart.min.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/iojcopdigjlclknoioleamdbmfhjeedb/0.3_0/js/popup.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/jkhopfdenimipdamjmfpijifmmpnakpc/8.2_0/manifest.json",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/options1.html",
 		"/C/Users/Administrator/AppData/Local/Temp/7zO83AE61AF/manifest.json",
 		"/C/Users/Administrator/AppData/Local/Temp/7zO8988203E/manifest.json",
 		"/C/Users/Administrator/AppData/Local/Temp/7zO898EE57E/manifest.json",
-		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/archivedTaskGroup.js",
 		"/C/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/nidmklgpplnfghikfnkbdgldlkdgddcn/0.55_0/js/archivedTaskGroup.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/js/popup1.js",
 		"/C/Users/Administrator/Google Drive/11grade/Habivator/html/popup1.html",
@@ -222,7 +254,7 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -236,6 +268,45 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"karma",
+			"?",
+			"karma",
+			"temp",
+			"tper",
+			"calculat",
+			"tpercent",
+			"karma",
+			"()",
+			"}()",
+			"()",
+			"z",
+			"smiley",
+			"picsetup",
+			"smiley",
+			"background",
+			"smileykeepon",
+			"smileyToggle",
+			"smiley",
+			"attachevent",
+			"attach",
+			"maxarchive",
+			"delete",
+			"attach",
+			"scrub",
+			"badge",
+			"shadow",
+			"timeout",
+			"notifier",
+			"notify",
+			"///////---\n",
+			"smileyoff",
+			"body",
+			"textfile",
+			"untoss",
+			"checkif",
+			"savetols",
+			"checkif",
+			"updated",
 			"console",
 			"import",
 			"badge",
@@ -324,46 +395,7 @@
 			"simp",
 			"simplify",
 			"simply",
-			"simpli",
-			"date",
-			"dateobject",
-			"simplif",
-			"date",
-			"face",
-			"deleteta",
-			"delete",
-			"archtaskrow",
-			"archivetasks",
-			"archiveTable",
-			"archivetables",
-			"addarch",
-			"addtota",
-			"totable",
-			"console.",
-			"hidden",
-			"console",
-			"console.l",
-			"scrub",
-			"archtaskrow",
-			"insert",
-			"this.dateobject",
-			"console.log",
-			"instring",
-			"process",
-			"substring",
-			"createButt",
-			"button",
-			"tile",
-			"icon",
-			"tile",
-			"upload",
-			"fileinp",
-			"importtxt",
-			"import",
-			"buttongen",
-			"button",
-			"r.pn",
-			"createrow"
+			"simpli"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -389,28 +421,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "roadmap.txt",
+					"file": "js/task.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 840,
+						"buffer_size": 16336,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								112,
-								112
+								11239,
+								11239
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5345.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -418,19 +451,49 @@
 				},
 				{
 					"buffer": 1,
-					"file": "manifest.json",
+					"file": "js/background.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 778,
+						"buffer_size": 1642,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								273,
-								273
+								1252,
+								1252
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 558.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "manifest.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 804,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
 							]
 						],
 						"settings":
@@ -443,35 +506,97 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
+					"file": "js/popup.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2443,
+						"buffer_size": 4404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2443,
-								2443
+								3769,
+								3769
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"word_wrap": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "css/popup.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 762,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								678,
+								678
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12019,
+								12019
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 756.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -516,6 +641,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "Habivator.sublime-project",
 	"replace":
 	{
@@ -525,19 +651,29 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"task",
+				"js\\task.js"
+			],
+			[
+				"back",
+				"js\\background.js"
+			]
 		],
 		"width": 0.0
 	},
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
 				"",
-				"C:\\Users\\Administrator\\Desktop\\igem\\igem.sublime-project"
+				"C:\\Users\\Administrator\\Google Drive\\Foofie\\Foofie.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -545,6 +681,7 @@
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
