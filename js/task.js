@@ -17,8 +17,8 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     this.id = parseInt(idIn) || -1;                         //unique and ascending order according to creation date
     this.karma = parseInt(karmaIn) || 0;                    //used for recommendations
     this.activeDays = [1, 1, 1, 1, 1, 1, 1];                //0 is no and 1 is yes
-    this.daysDone = [0, 0, 0, 0, 0, 0, 0]                   //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
-    if (activeDaysIn != null && daysDoneIn != null) {
+    this.daysDone = [0, 0, 0, 0, 0, 0, 0];                  //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
+    if (activeDaysIn !== null && daysDoneIn !== null) {
         if (activeDaysIn.length == 7 && daysDoneIn.length == 7) {
             this.activeDays = activeDaysIn;
             this.daysDone = daysDoneIn;
@@ -31,13 +31,9 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
     }
     this.editMode = 0;
     this.toss = tossIn|| 0;
-    if (typeof toss == "number" && tossIn != 0){
+    if (typeof toss == "number" && tossIn !== 0){
         this.toss = 1;
     }
-
-
-
-
 
 /*
     ROW related
@@ -45,16 +41,19 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
     this.createRow = function(inIfTaskRow) {
         var ifTaskRow = false;
-        if (inIfTaskRow == null) {ifTaskRow = true;
-        } else {ifTaskRow = inIfTaskRow;}
+        if (inIfTaskRow === null) {
+            ifTaskRow = true;
+        } else {
+            ifTaskRow = inIfTaskRow;
+        }
         //catches cases where inIfTaskRow DNE
 
         var iconTagColor = "green";
         var tPercentage = this.calculateTaskPercentage();
-        if (tPercentage < .30){
+        if (tPercentage < 0.30){
             iconTagColor = "red";
         }
-        else if (tPercentage < .70){
+        else if (tPercentage < 0.70){
             iconTagColor = "orange";
         }
         rowText = "<td class='iconGrid' id='" + this.id + "-i'><img class='icon' src='../img/tile/" + iconTagColor + ".png'></td>";
@@ -62,7 +61,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
         rowText += "<td";
         if (ifTaskRow) {
-            if (this.unit == 0) {
+            if (this.unit === 0) {
                 rowText += " colspan = 3;>" + this.name + "</td>";
             } else {
                 rowText += " style='width:" + nameBoxWidth + "px;'>" + this.name + "</td>";
@@ -73,14 +72,14 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 }
             }
         } else {
-            if (this.unit == 0) {
+            if (this.unit === 0) {
                 rowText += " colspan = 2>";
             } else if (this.unit > 0) {
                 rowText += " colspan = 1>";
             }
             rowText += "<input id='" + this.id + "-tf" + "' class='editingTextBox' type = 'text' value='" + this.name + "' ></td>";
 
-            if (this.unit == 0) {
+            if (this.unit === 0) {
                 rowText += "<td class='unitGrid' id='" + this.id + "-" + "cUnit" + "'>N/A</td>";
             } else if (this.unit == 1 || this.unit == 2) {
                 rowText += "<td class='unitGrid'>" + "<input id=" + this.id + "-quant type='number' min='0' class='editUnitTextBox' value=" + this.quantity + ">" + "</td>";
@@ -96,22 +95,22 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
         for (var i = 0; i < 7; i++) {
             rowText += "<td class='iconGrid'>";
             rowText += this.buttonGen(i, !ifTaskRow);
-            rowText += "</td>"
+            rowText += "</td>";
         }
         //adds buttons for each day
 
         rowText += "<td class='halfIconGrid'>";
         rowText += "<img class='halfIcon' id='" + this.id + "-e' src='../img/tile/editButton.png'>";
-        rowText += "</td>"
+        rowText += "</td>";
         //edit button
 
         rowText += "<td class='halfIconGrid'>";
         rowText += "<img class='halfIcon' id='" + this.id + "-del' src='../img/tile/deleteButton.png'>";
-        rowText += "</td>"
+        rowText += "</td>";
         //del button
 
         return rowText;
-    }
+    };
     //creates html rows for edit and dDone mode and returns string
 
     this.attachEvents = function() {
@@ -120,8 +119,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
             var editButton = document.getElementById(this.id + "-cUnit");
             editButton.onclick = function() {
-                toggleUnitOutside(id);
-            }
+                toggleUnitOutside(id);};
 
             for (var i = 0; i < this.activeDays.length; i++) {
                 var pic_id = this.id + "-" + (parseInt(i) + 1);
@@ -135,14 +133,14 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                     break;
                 }
                 pic.onclick = function() {
-                    dActiveHandler(parseInt(id), parseInt(this.id.split("-")[1]))
+                    dActiveHandler(parseInt(id), parseInt(this.id.split("-")[1]));
                 };
             }
-            editButton = document.getElementById(this.id + "-e")
+            editButton = document.getElementById(this.id + "-e");
             editButton_id = this.id + "-e";
-            picSetup(editButton_id, "../img/tile/editButton.png", "../img/tile/leditButton.png")
+            picSetup(editButton_id, "../img/tile/editButton.png", "../img/tile/leditButton.png");
             editButton.onclick = function() {
-                switchToTask(id)
+                switchToTask(id);
             };
             //edit button\
 
@@ -150,7 +148,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
 
             tb.onkeydown = function() {
                 if (event.keyCode == 13) {
-                    switchToTask(id)
+                    switchToTask(id);
                 }
                 //textfield input eventing
             };
@@ -158,7 +156,7 @@ function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn
                 tb2 = document.getElementById(this.id + "-quant");
                 tb2.onkeydown = function() {
                     if (event.keyCode == 13) {
-                        switchToTask(id)
+                        switchToTask(id);
                     }
                     //quantity field input eventing
                 };

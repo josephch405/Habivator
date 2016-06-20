@@ -2,7 +2,7 @@ var weekArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 var today = new Date();
 
 var dayOfWeek = today.getDay();
-if (dayOfWeek == 0) {
+if (dayOfWeek === 0) {
     dayOfWeek = 7;
 }                                                                       //initializing date vars
 
@@ -14,15 +14,9 @@ var archGroupArray = [];
 var smileyBob = new Smiley();                                           //new smiley instance for popup managing
 var justClickedFace = false;                                            //justclicked variable used for smiley onclick events
 var nameBoxWidth = 200;
-if (localStorage.weekOrDayMode==null){
-    localStorage.weekOrDayMode = "row";
-}
-if (localStorage.notifActive==null){
-    localStorage.notifActive = true;
-}
-if (localStorage.notifInterval==null){
-    localStorage.notifInterval = 60*60*1000;
-}
+var weekOrDayMode = weekOrDayMode || "row";
+var notifActive = notifActive || true;
+var notifInterval = notifInterval || 60*60*1000;
 
 var iconDB = {
     "lr":"../img/tile/lr.png",
@@ -194,21 +188,6 @@ var importData = function(input) {                                           //d
 
     }
 }
-
-var saveToLS = function() {
-    var string = "saveVer 1;;;";
-    string += maxId + ";;;" + maxArchiveId;
-    for (var i in taskArray) {
-        string += ";;;"
-        string += taskArray[i].exportInfo();
-    }
-    for (var ii in archGroupArray) {
-        string += ";;;"
-        string += archGroupArray[ii].exportInfo();
-    }
-    localStorage.save = string;
-    return (string);
-}
 //saves everything to localstorage
 
 var clearRecords = function(){
@@ -222,7 +201,7 @@ var clearRecords = function(){
     saveToLS();
     alert("Records wiped!");
     location.reload();
-}
+};
 
 var clearAll = function(){
     archGroupArray = [];
@@ -231,11 +210,17 @@ var clearAll = function(){
     saveToLS();
     alert("Everything wiped!");
     location.reload();
-}
+};
 
+var saveToSync = function(){
+    chrome.storage.sync.set({'save': saveToLS()}, function(){});
+};
 
-
-
+var getFromSync = function(){
+    chrome.storage.sync.get('save',function(obj){
+        importData(obj.save);
+    });
+};
 
 
 
@@ -252,12 +237,12 @@ var nextTriggerDate = function() {
     timerDate.setSeconds(0);
     return timerDate;
 }
-                                                    //returns the next trigger date, the next monday 0 midnight
+//returns the next trigger date, the next monday 0 midnight
 
 var checkIfDatePassed = function() {
     if (localStorage.timer == null) {
         localStorage.timer = nextTriggerDate();
-    console.log("create timer ran")
+        console.log("create timer ran")
     } else {
         if (today - (new Date(localStorage.timer)) > 0) {
             lockdown = true;
@@ -266,18 +251,16 @@ var checkIfDatePassed = function() {
             for (var i in taskArray) {
                 taskArray[i].scrub();
             }
-    console.log("lockdown ran")
+            console.log("lockdown ran");
         } else {
             for (var i in taskArray) {
                 taskArray[i].scrub();
             }
             this.lockdown = false;
             localStorage.lockdown = false;
-    console.log("not lock ran")
+            console.log("not lock ran");
         }
     }
-    console.log("ifdp ran")
-    console.log(taskArray)
     saveToLS();
 };
                         //manages date events; if date passed, triggers lockdown, otherwise scrubs

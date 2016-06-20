@@ -63,7 +63,7 @@ weekMode.onmouseout = function() {
     weekMode.src = '../img/week.png';
 }
 weekMode.onclick=function(){
-    localStorage.weekOrDayMode = "week";
+    chrome.storage.sync.weekOrDayMode = "week";
     document.location='popup.html'
 };
 var dayMode = document.getElementById("dayMode");
@@ -74,7 +74,7 @@ dayMode.onmouseout = function() {
     dayMode.src = '../img/day.png';
 }
 dayMode.onclick=function(){
-    localStorage.weekOrDayMode = "day";
+    chrome.storage.sync.weekOrDayMode = "day";
     document.location='popup.html'};
 //row and tile mode toggling
 
@@ -92,7 +92,7 @@ moreMode.onclick=function(){
 
 
 //builds page and constructs respectively based on tile vs row mode
-if (localStorage.weekOrDayMode == "day"){
+if (chrome.storage.sync.weekOrDayMode == "day"){
     $("body").append('<table id="table"><tbody id="tasks"><tr><td class = "topPlaceholder"></td>'+
             '<td class = "topPlaceholder"></td><td class = "topPlaceholder"></td>' +
             '<td class = "topPlaceholder"></td><td class = "topPlaceholder"></td>' +

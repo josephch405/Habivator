@@ -36,8 +36,8 @@ document.getElementById("notifDiv").innerHTML = stringifyNotifInterval();
 
 function setNotifOnclick(id, duration){
     document.getElementById(id).onclick = function(){
-        localStorage.notifActive = true;
-        localStorage.notifInterval = duration;
+        chrome.storage.sync.notifActive = true;
+        chrome.storage.sync.notifInterval = duration;
         document.getElementById("notifDiv").innerHTML = stringifyNotifInterval();
     }
 }
@@ -51,20 +51,20 @@ document.getElementById("clear_records").onclick = function(){clearRecords()};
 document.getElementById("clear_all").onclick = function(){clearAll()};
 
 document.getElementById("notif_never").onclick = function(){
-    localStorage.notifActive = false;
+    chrome.storage.sync.notifActive = false;
     document.getElementById("notifDiv").innerHTML = stringifyNotifInterval();
 }
 
 function stringifyNotifInterval(){
-    if (localStorage.notifActive == "false"){
+    if (chrome.storage.sync.notifActive == "false"){
         return "<br>Notifications inactive."
     }
     var text = "<br>Currently every ";
-    if (parseInt(localStorage.notifInterval) / (60*60*1000)>=1){
-        text += parseInt(localStorage.notifInterval) / (60*60*1000) + " hr ";
+    if (parseInt(chrome.storage.sync.notifInterval) / (60*60*1000)>=1){
+        text += parseInt(chrome.storage.sync.notifInterval) / (60*60*1000) + " hr ";
     }
-    if (parseInt(localStorage.notifInterval) % (60*60*1000)>0){
-        text += parseInt(localStorage.notifInterval) % (60*60*1000) / (60*1000) + " min";
+    if (parseInt(chrome.storage.sync.notifInterval) % (60*60*1000)>0){
+        text += parseInt(chrome.storage.sync.notifInterval) % (60*60*1000) / (60*1000) + " min";
     }
     return text;
 }

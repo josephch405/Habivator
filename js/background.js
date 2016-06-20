@@ -1,6 +1,6 @@
 var timeoutLength = 60*60*1000;
 var notifier;
-importData(localStorage.save);
+getFromSync();
 
 if (typeof localStorage.firstTime != "string"){
     localStorage.firstTime = true;
@@ -14,10 +14,10 @@ function checkInterv(){
 
     backgroundSync();
     
-    if (!isNaN(parseInt(localStorage.notifInterval))) {
-        timeoutLength = parseInt(localStorage.notifInterval);
+    if (!isNaN(parseInt(chrome.storage.sync.notifInterval))) {
+        timeoutLength = parseInt(chrome.storage.sync.notifInterval);
     }
-    if (localStorage.notifActive == "false"){
+    if (chrome.storage.sync.notifActive == "false"){
         notifier = setTimeout(function(){checkInterv()}, 10*60*1000);
     }
     else{
@@ -39,7 +39,7 @@ function notify(messageFx){
         message: message,
         iconUrl: "../icon.png"
     }
-    if (localStorage.notifActive != "false"){
+    if (chrome.storage.sync.notifActive != "false"){
         chrome.notifications.create("id", opt, function() {})
     }
 }
@@ -60,7 +60,7 @@ function notifierAgent(){
 function backgroundSync(){
     taskArray = [];
     archGroupArray = [];
-    importData(localStorage.save);
+    getFromSync();
     updateDate();
     checkIfDatePassed();
     saveToLS();

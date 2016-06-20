@@ -1,6 +1,6 @@
 importData(localStorage.save);
 
-archGroupArray.sort(function(a,b){return Date.parse(b.date)-Date.parse(a.date)})
+archGroupArray.sort(function(a,b){return Date.parse(b.date)-Date.parse(a.date)});
 
 var cards = 0;
 var tossed_cards = 0;
@@ -24,7 +24,7 @@ for (var i in taskArray){
         document.getElementById(id+"_toss").onmouseover = function(){this.src = '../img/untoss2.png'};
         document.getElementById(id+"_toss").onmouseout = function(){this.src = '../img/untoss.png'};
         document.getElementById(id+"_toss").onclick = function(id){return function(){unToss(id)}}(id);
-    	card.css({"borderColor" : "gold"});
+        card.css({"borderColor" : "gold"});
     }
 
     else if(taskArray[i].karma>successThresh){
@@ -35,7 +35,7 @@ for (var i in taskArray){
         var card = $("#"+id+"_card");
         if (taskArray[i].unit===0){
             card.append("Can you add a unit to it? (min, rep)</br>"
-            );
+                );
             appendAndAttach(id,5,2,false,1)
             appendAndAttach(id,5,1,false,2)
         }
@@ -44,7 +44,7 @@ for (var i in taskArray){
                 makeButton(id + "_1", "+1 rep")+ "&nbsp&nbsp" +
                 makeButton(id + "_2", "+5 rep")+ "&nbsp&nbsp" +
                 makeButton(id + "_3", "+10 rep")+ "</br>"
-            );
+                );
             document.getElementById(id + "_1").onclick = pushAmountToUnit(id, 1, 1, true);
             document.getElementById(id + "_2").onclick = pushAmountToUnit(id, 5, 1, true);
             document.getElementById(id + "_3").onclick = pushAmountToUnit(id, 10, 1, true);
@@ -54,7 +54,7 @@ for (var i in taskArray){
                 makeButton(id + "_1", "+1 min")+ "&nbsp&nbsp" +
                 makeButton(id + "_2", "+5 min")+ "&nbsp&nbsp" +
                 makeButton(id + "_3", "+10 min")+ "</br>"
-            );
+                );
             document.getElementById(id + "_1").onclick = pushAmountToUnit(id, 1, 2, true);
             document.getElementById(id + "_2").onclick = pushAmountToUnit(id, 5, 2, true);
             document.getElementById(id + "_3").onclick = pushAmountToUnit(id, 10, 2, true);
@@ -71,14 +71,14 @@ for (var i in taskArray){
     else if(taskArray[i].karma<failThresh){
         cards += 1;
         $("#recommends").append("<div id = '" + id + "_card' class = 'card'>You can work harder on </br><b>" +
-        taskArray[i].name + 
-        unitTail(taskArray[i]) + "</b></br>");
+            taskArray[i].name + 
+            unitTail(taskArray[i]) + "</b></br>");
         var card = $("#"+id+"_card");
         if (taskArray[i].unit===0){
             card.append("Can you add a unit to it? (min, rep)</br>"+
-            makeButton(id + "_1", "5 min") + "&nbsp&nbsp" +
-            makeButton(id + "_2", "5 rep")+ "</br>"
-            );
+                makeButton(id + "_1", "5 min") + "&nbsp&nbsp" +
+                makeButton(id + "_2", "5 rep")+ "</br>"
+                );
 
             document.getElementById(id + "_1").onclick = pushAmountToUnit(id, 5, 2);
             document.getElementById(id + "_2").onclick = pushAmountToUnit(id, 5, 1);
@@ -88,7 +88,7 @@ for (var i in taskArray){
                 makeButton(id + "_1", "-1 rep")+ "&nbsp&nbsp" +
                 makeButton(id + "_2", "-5 rep")+ "&nbsp&nbsp" +
                 makeButton(id + "_3", "-10 rep")+ "</br>"
-            );
+                );
             document.getElementById(id + "_1").onclick = pushAmountToUnit(id, -1, 1, true);
             document.getElementById(id + "_2").onclick = pushAmountToUnit(id, -5, 1, true);
             document.getElementById(id + "_3").onclick = pushAmountToUnit(id, -10, 1, true);
@@ -98,16 +98,16 @@ for (var i in taskArray){
                 makeButton(id + "_1", "-1 min")+ "&nbsp&nbsp" +
                 makeButton(id + "_2", "-5 min")+ "&nbsp&nbsp" +
                 makeButton(id + "_3", "-10 min")+ "</br>"
-            );
+                );
             document.getElementById(id + "_1").onclick = pushAmountToUnit(id, -1, 2, true);
             document.getElementById(id + "_2").onclick = pushAmountToUnit(id, -5, 2, true);
             document.getElementById(id + "_3").onclick = pushAmountToUnit(id, -10, 2, true);
-            card.append("</br>")
+            card.append("</br>");
         }
         if (taskArray[i].unit !== 0){
             card.append("Or perhaps leave out a unit altogether?</br>"+
                 makeButton(id + "_leave", "Leave out unit")
-            );
+                );
             document.getElementById(id + "_leave").onclick = pushAmountToUnit(id, 0, 0, true);
         }
         card.append("</br>");
@@ -120,7 +120,7 @@ var percentageArray = [];
 var percentageLabels = [];
 
 function makeButton(id, tag){
-    return "<button id = " + id + ">" + tag + "</button>"
+    return "<button id = " + id + ">" + tag + "</button>";
 }
 
 function pushAmountToUnit(id, quantity, unit,addTo){
@@ -133,7 +133,7 @@ function pushAmountToUnit(id, quantity, unit,addTo){
         }
         findTaskById(id).setUnit(unit);
         location.reload();
-    }
+    };
 }
 
 function appendAndAttach(id, quantity, unit, addTo, tag){
@@ -142,14 +142,13 @@ function appendAndAttach(id, quantity, unit, addTo, tag){
 }
 
 function unitTail(task){
-    console.log(task)
     if (task.unit == 1){
-        return " - " + task.quantity + " reps"
+        return " - " + task.quantity + " reps";
     }
     else if (task.unit == 2){
-        return " - " + task.quantity + " min"
+        return " - " + task.quantity + " min";
     }
-    else return ""
+    else return "";
 }
 
 function toss(taskId){
