@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"backgro",
+				"background-color"
+			],
+			[
+				"props",
+				"props\tReact: this.props."
+			],
+			[
 				"archG",
 				"archGroupArray"
 			],
@@ -88,91 +96,67 @@
 	"buffers":
 	[
 		{
-			"file": "js/main.js",
+			"file": "webpack.config.js",
 			"settings":
 			{
-				"buffer_size": 13783,
-				"line_ending": "Unix"
+				"buffer_size": 745,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "module.exports = {"
 			}
 		},
 		{
-			"file": "js/background.js",
+			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 1638,
+				"buffer_size": 177,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/task.js",
+			"file": "dayview.jsx",
 			"settings":
 			{
-				"buffer_size": 16374,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/advisor.js",
-			"settings":
-			{
-				"buffer_size": 8004,
+				"buffer_size": 209,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/archivedTask.js",
+			"file": "weekview.jsx",
 			"settings":
 			{
-				"buffer_size": 4445,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/archivedTaskGroup.js",
-			"settings":
-			{
-				"buffer_size": 4117,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/options.js",
-			"settings":
-			{
-				"buffer_size": 1265,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/options1.js",
-			"settings":
-			{
-				"buffer_size": 1921,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/popup.js",
-			"settings":
-			{
-				"buffer_size": 4425,
+				"buffer_size": 217,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/settings.js",
+			"file": "main.jsx",
 			"settings":
 			{
-				"buffer_size": 2513,
+				"buffer_size": 947,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/smiley.js",
+			"file": "main.less",
 			"settings":
 			{
-				"buffer_size": 5623,
+				"buffer_size": 615,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 919,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -183,17 +167,25 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 107.0,
-		"last_filter": "jsh",
+		"height": 261.0,
+		"last_filter": "install",
 		"selected_items":
 		[
 			[
-				"jsh",
-				"JSHint"
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"remove",
 				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"jsh",
+				"JSHint"
 			],
 			[
 				"reomve",
@@ -204,7 +196,7 @@
 				"Package Control: Remove Package"
 			]
 		],
-		"width": 406.0
+		"width": 668.0
 	},
 	"console":
 	{
@@ -224,12 +216,29 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Administrator/Google Drive/Habivator",
-		"/C/Users/Administrator/Google Drive/Habivator/html",
-		"/C/Users/Administrator/Google Drive/Habivator/js"
+		"/C/Users/josep/Github/Habivator",
+		"/C/Users/josep/Github/Habivator/css",
+		"/C/Users/josep/Github/Habivator/js"
 	],
 	"file_history":
 	[
+		"/C/Users/josep/Github/Habivator/css/popup.css",
+		"/C/Users/josep/Github/Habivator/node_modules/css-loader/node_modules/cssnano/node_modules/postcss-calc/node_modules/reduce-css-calc/node_modules/math-expression-evaluator/dist/browser/math-expression-evaluator.min.js",
+		"/C/Users/josep/Github/Habivator/main.less",
+		"/C/Users/josep/Github/Habivator/DayPanel.jsx",
+		"/C/Users/josep/Github/Habivator/main.jsx",
+		"/C/Users/josep/Github/Habivator/.babelrc",
+		"/C/Users/josep/Github/Habivator/js/archivedTaskGroup.js",
+		"/C/Users/josep/Github/Habivator/js/main.js",
+		"/C/Users/josep/Github/Habivator/js/options.js",
+		"/C/Users/josep/Github/Habivator/js/options1.js",
+		"/C/Users/josep/Github/Habivator/js/popup.js",
+		"/C/Users/josep/Github/Habivator/js/settings.js",
+		"/C/Users/josep/Github/Habivator/js/smiley.js",
+		"/C/Users/josep/Github/Habivator/js/archivedTask.js",
+		"/C/Users/josep/Github/Habivator/js/advisor.js",
+		"/C/Users/josep/Github/Habivator/js/task.js",
+		"/C/Users/josep/Github/Habivator/js/background.js",
 		"/C/Users/Administrator/Google Drive/Habivator/js/Chart.min.js",
 		"/C/Users/Administrator/Google Drive/Habivator/js/jquery-2.1.1.min.js",
 		"/C/Users/Administrator/Google Drive/Habivator/js/background.js",
@@ -302,7 +311,7 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 69.0
 	},
 	"find_in_files":
 	{
@@ -465,137 +474,68 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "js/main.js",
+					"file": "webpack.config.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13783,
+						"buffer_size": 745,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6901,
-								6961
+								719,
+								719
 							]
 						],
 						"settings":
 						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "bc3006ac",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
+							"auto_name": "module.exports = {",
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "ef165a43",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
 							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3560.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/background.js",
+					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1638,
+						"buffer_size": 177,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1558,
-								1558
+								41,
+								41
 							]
 						],
 						"settings":
 						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "5ae6fc08",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "98a81279",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
 							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 818.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/task.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16374,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1027,
-								1033
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "1743146d",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 158.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/advisor.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8004,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								30,
-								0
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "4b0ebf16",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -605,199 +545,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "js/archivedTask.js",
+					"buffer": 2,
+					"file": "dayview.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4445,
+						"buffer_size": 209,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								144,
-								145
+								209,
+								209
 							]
 						],
 						"settings":
 						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "393c21de",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
+							"bs_sintax": "javascript (babel)",
+							"buffer_scroll_name": "a89f42bb",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
 							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "js/archivedTaskGroup.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4117,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3618,
-								3622
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "e40b562a",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1706.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "js/options.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1265,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "5e7f4634",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "js/options1.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1921,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "7f4597fc",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "js/popup.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4425,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1649,
-								1655
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "2654f0f4",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 878.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "js/settings.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2513,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1346,
-								1356
-							]
-						],
-						"settings":
-						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "6271c9a9",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
-							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -807,44 +577,134 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "js/smiley.js",
+					"buffer": 3,
+					"file": "weekview.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5623,
+						"buffer_size": 217,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								165,
+								174
 							]
 						],
 						"settings":
 						{
-							"bs_sintax": "javascript",
-							"buffer_scroll_name": "6f86555b",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Eightlime Dark (SL).tmTheme",
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "e73e92a6",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
 							"spell_check": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "main.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								846,
+								846
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "javascript (babel)",
+							"buffer_scroll_name": "a1763b68",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
+							"spell_check": false,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "main.less",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								610,
+								610
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "less",
+							"buffer_scroll_name": "83c7fd86",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 919,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								809,
+								809
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "npm json",
+							"buffer_scroll_name": "1551b0d8",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Boxy Nova.tmTheme",
+							"spell_check": false,
+							"syntax": "Packages/Theme - Afterglow/Prefs/Langs/npm JSON.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 6,
 					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
@@ -865,18 +725,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.934316353887,
 			1.0
 		],
 		"rows":
@@ -886,6 +739,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.commandbox_output":
+	{
+		"height": 172.0
+	},
 	"output.exec":
 	{
 		"height": 100.0
