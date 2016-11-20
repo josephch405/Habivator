@@ -60,6 +60,10 @@
 
 	var _dayview2 = _interopRequireDefault(_dayview);
 
+	var _task = __webpack_require__(189);
+
+	var _task2 = _interopRequireDefault(_task);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	__webpack_require__(185);
@@ -68,24 +72,10 @@
 		displayName: 'PopupApp',
 
 		getInitialState: function getInitialState() {
+			_task2.default.create({ id: 1 });
+			_task2.default.create({ id: 2 });
 			return { mode: "WEEK",
-				tasks: [{ "name": "New Task",
-					"id": 1,
-					"karma": -67,
-					"activeDays": [true, true, true, false, true, true, true],
-					"daysDone": [2, 2, 2, 0, 2, 1, 1],
-					"unit": 1,
-					"quantity": 1,
-					"editMode": 0,
-					"toss": 0 }, { "name": "New Task 2",
-					"id": 2,
-					"karma": -67,
-					"activeDays": [true, true, true, true, true, true, true],
-					"daysDone": [2, 2, 3, 2, 2, 1, 1],
-					"unit": 0,
-					"quantity": 1,
-					"editMode": 0,
-					"toss": 0 }] };
+				tasks: _task2.default.tasks };
 		},
 		setMode: function setMode(m) {
 			this.setState({ mode: m });
@@ -21858,7 +21848,7 @@
 /* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -21870,56 +21860,60 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _task = __webpack_require__(189);
+
+	var _task2 = _interopRequireDefault(_task);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var WeekView = _react2.default.createClass({
-		displayName: "WeekView",
+		displayName: 'WeekView',
 
 		getInitialState: function getInitialState() {
 			return {};
 		},
 		render: function render() {
 			return _react2.default.createElement(
-				"div",
-				{ id: "weekPanel" },
+				'div',
+				{ id: 'weekPanel' },
 				_react2.default.createElement(
-					"div",
-					{ id: "weekHeader" },
-					_react2.default.createElement("div", { id: "o" }),
+					'div',
+					{ id: 'weekHeader' },
+					_react2.default.createElement('div', { id: 'o' }),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Mon"
+						'div',
+						{ className: 'tag' },
+						'Mon'
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Tue"
+						'div',
+						{ className: 'tag' },
+						'Tue'
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Wed"
+						'div',
+						{ className: 'tag' },
+						'Wed'
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Thu"
+						'div',
+						{ className: 'tag' },
+						'Thu'
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Fri"
+						'div',
+						{ className: 'tag' },
+						'Fri'
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Sat"
+						'div',
+						{ className: 'tag' },
+						'Sat'
 					),
 					_react2.default.createElement(
-						"div",
-						{ className: "tag" },
-						"Sun"
+						'div',
+						{ className: 'tag' },
+						'Sun'
 					)
 				),
 				this.props.tasks.map(function (t) {
@@ -21930,7 +21924,7 @@
 	});
 
 	var TaskRow = _react2.default.createClass({
-		displayName: "TaskRow",
+		displayName: 'TaskRow',
 
 		getInitialState: function getInitialState() {
 			return { editMode: false };
@@ -21947,18 +21941,18 @@
 			if (this.props.unit == 1) {
 				//reps
 				quant = _react2.default.createElement(
-					"div",
-					{ className: "quant" },
+					'div',
+					{ className: 'quant' },
 					this.props.quantity,
-					" reps"
+					' reps'
 				);
 			} else if (this.props.unit == 2) {
 				//mins
 				quant = _react2.default.createElement(
-					"div",
-					{ className: "quant" },
+					'div',
+					{ className: 'quant' },
 					this.props.quantity,
-					" mins"
+					' mins'
 				);
 			}
 
@@ -21973,24 +21967,24 @@
 				});
 			}
 			return _react2.default.createElement(
-				"div",
-				{ className: "taskRow" },
-				_react2.default.createElement("div", { className: "karmaFlair" }),
+				'div',
+				{ className: 'taskRow' },
+				_react2.default.createElement('div', { className: 'karmaFlair' }),
 				_react2.default.createElement(
-					"div",
-					{ className: "taskName" },
+					'div',
+					{ className: 'taskName' },
 					this.props.name,
 					quant
 				),
 				buttonRow,
-				_react2.default.createElement("div", { className: "taskDelete" }),
-				_react2.default.createElement("div", { className: "taskEdit", onClick: this.toggleEdit })
+				_react2.default.createElement('div', { className: 'taskDelete' }),
+				_react2.default.createElement('div', { className: 'taskEdit', onClick: this.toggleEdit })
 			);
 		}
 	});
 
 	var ButtonBox = _react2.default.createClass({
-		displayName: "ButtonBox",
+		displayName: 'ButtonBox',
 
 		render: function render() {
 			var cname = "bb";
@@ -22011,7 +22005,7 @@
 			if (this.props.e) {
 				cname += " bbor";
 			}
-			return _react2.default.createElement("div", { className: cname });
+			return _react2.default.createElement('div', { className: cname });
 		}
 	});
 
@@ -22396,6 +22390,197 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 189 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var Tlib = {
+	    tasks: [],
+	    create: function create(_t) {
+	        var t = {
+	            name: _t.name ? _t.name : "New Task",
+	            id: _t.id ? _t.id : -1,
+	            karma: _t.karma ? _t.karma : 0,
+	            activeDays: [true, true, true, true, true, true, true],
+	            daysDone: [0, 0, 0, 0, 0, 0, 0],
+	            quantity: _t.quantity ? _t.quantity : 0,
+	            unit: _t.unit ? _t.unit : 0,
+	            toss: _t.toss ? _t.toss : false
+	        };
+	        this.tasks.push(t);
+	    }
+	};
+
+	exports.default = Tlib;
+
+
+	function Task(nameIn, iconIn, idIn, activeDaysIn, daysDoneIn, unitIn, quantityIn, karmaIn, tossIn) {
+
+	    this.name = nameIn || "New Task"; //name
+	    this.id = parseInt(idIn) || -1; //unique and ascending order according to creation date
+	    this.karma = parseInt(karmaIn) || 0; //used for recommendations
+	    this.activeDays = [1, 1, 1, 1, 1, 1, 1]; //0 is no and 1 is yes
+	    this.daysDone = [0, 0, 0, 0, 0, 0, 0]; //0 is n/a, 1 is blank, 2 is failed, 3 is half and 4 is complete
+	    if (activeDaysIn !== null && daysDoneIn !== null) {
+	        if (activeDaysIn.length == 7 && daysDoneIn.length == 7) {
+	            this.activeDays = activeDaysIn;
+	            this.daysDone = daysDoneIn;
+	        }
+	    } //imports active days and days done if they are correct
+	    this.unit = unitIn || 0; //0 is no unit count, 1 is reps, 2 is minutes
+	    this.quantity = parseInt(quantityIn) || 0;
+	    if (this.quantity <= 0) {
+	        this.quantity = 1;
+	    }
+	    this.editMode = 0;
+	    this.toss = tossIn || 0;
+	    if (typeof toss == "number" && tossIn !== 0) {
+	        this.toss = 1;
+	    }
+
+	    /*
+	        local handlers
+	    */
+
+	    this.dDoneLocal = function (dayIn) {
+	        switch (this.daysDone[dayIn]) {
+	            case 2:
+	                this.daysDone[dayIn] = 4;
+	                document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn);
+	                break;
+	            case 4:
+	                this.daysDone[dayIn] = 2;
+	                document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn);
+	                break;
+	        }
+	    };
+	    //local handler of main dDone function, toggles day completion
+
+	    this.dActiveLocal = function (dayIn) {
+	        switch (this.activeDays[dayIn]) {
+	            case 1:
+	                this.activeDays[dayIn] = 0;
+	                document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn, true);
+	                break;
+	            case 0:
+	                this.activeDays[dayIn] = 1;
+	                document.getElementById(this.id + "-" + (dayIn + 1)).parentNode.innerHTML = this.buttonGen(dayIn, true);
+	                break;
+	        }
+	    };
+	    //local handler of dActive, toggles day active status
+
+	    this.dDoneButtonLocal = function () {
+	        switch (this.daysDone[dayOfWeek - 1]) {
+	            case 2:
+	                this.daysDone[dayOfWeek - 1] = 4;
+	                document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek, 2);
+	                break;
+	            case 4:
+	                this.daysDone[dayOfWeek - 1] = 2;
+	                document.getElementById(this.id).parentNode.innerHTML = this.createButton(dayOfWeek, 2);
+	                break;
+	        }
+	    };
+	    //local handler of button toggle in button view
+
+	    this.toggleUnit = function () {
+	        var id = this.id;
+	        switchToTask(id);
+	        this.unit = (this.unit + 1) % 3;
+	        this.karma *= .9;
+	        saveToLS();
+	        switchToEdit(id);
+	    };
+	    //toggles unit
+
+	    this.setUnit = function (unit) {
+	        this.unit = unit;
+	        this.karma *= .5;
+	        saveToLS();
+	    };
+	    //sets unit
+
+
+	    /*
+	        SCRUB and EXPORT
+	    */
+	    this.scrub = function () {
+	        for (var i in this.daysDone) {
+	            if (this.activeDays[i] == 0) {
+	                this.daysDone[i] = 0;
+	            } else if (this.activeDays[i] == 1) {
+	                if (i >= dayOfWeek) {
+	                    this.daysDone[i] = 1;
+	                } else {
+	                    if (this.daysDone[i] < 2) {
+	                        this.daysDone[i] = 2;
+	                    }
+	                }
+	            }
+	        }
+	    };
+	    //scrubbles task; checks for discrepancies in daysdone and activedays
+
+	    this.scrubClean = function () {
+	        for (var i in this.daysDone) {
+	            this.daysDone[i] = 1;
+	        }
+	        this.scrub();
+	    };
+
+	    this.exportInfo = function () {
+	        string = "task;;";
+	        string += this.name + ";;" + this.icon + ";;" + this.id + ";;";
+	        string += this.activeDays + ";;" + this.daysDone + ";;";
+	        string += this.unit + ";;" + this.quantity + ";;" + this.karma + ";;" + this.toss;
+	        return string;
+	    };
+
+	    this.exportAsArchive = function () {
+	        console.log("archive exported");
+	        var dDone = this.daysDone;
+	        var archive = new archivedTask(String(this.name), String(this.icon), +maxArchiveId, dDone, +this.unit, +this.quantity);
+	        maxArchiveId += 1;
+	        this.karma += this.calculateKarma();
+	        saveToLS();
+	        return archive;
+	    };
+
+	    /*
+	        calculations
+	    */
+	    this.calculateTaskPercentage = function () {
+	        var tempTotalOpen = 0;
+	        var tempTotalCounted = 0;
+
+	        for (var ii = 0; ii < this.daysDone.length; ii++) {
+	            if (this.daysDone[ii] >= 2) {
+	                tempTotalOpen += 1;
+	            }
+	            if (this.daysDone[ii] == 4) {
+	                tempTotalCounted += 1;
+	            }
+	        }
+
+	        if (tempTotalOpen == 0) {
+	            return 1;
+	        }
+
+	        return tempTotalCounted / tempTotalOpen;
+	    };
+
+	    this.calculateKarma = function () {
+	        pTage = this.calculateTaskPercentage() * 100;
+	        return .000059246 * pTage * pTage * pTage - .011043 * pTage * pTage + 1.6045 * pTage - 67.867;
+	    };
+	}
 
 /***/ }
 /******/ ]);

@@ -2,32 +2,16 @@ import React from 'react';
 import {render} from 'react-dom';
 import WeekView from './weekview.jsx';
 import DayView from './dayview.jsx';
+import Tlib from './task.jsx'
 
 require("./main.less");
 
 var PopupApp = React.createClass({
 	getInitialState: function(){
+		Tlib.create({id:1});
+		Tlib.create({id:2});
 		return {mode:"WEEK", 
-			tasks:[
-				{"name":"New Task",
-				"id":1,
-				"karma":-67,
-				"activeDays":[true,true,true,false,true,true,true],
-				"daysDone":[2,2,2,0,2,1,1],
-				"unit":1,
-				"quantity":1,
-				"editMode":0,
-				"toss":0},
-				{"name":"New Task 2",
-				"id":2,
-				"karma":-67,
-				"activeDays":[true,true,true,true,true,true,true],
-				"daysDone":[2,2,3,2,2,1,1],
-				"unit":0,
-				"quantity":1,
-				"editMode":0,
-				"toss":0}
-			]};
+			tasks:Tlib.tasks};
 	},
 	setMode: function(m){
 		this.setState({mode:m})
@@ -35,7 +19,7 @@ var PopupApp = React.createClass({
 	render: function(){
 
 		var lowerContent;
-		if(this.state.mode == "WEEK"){lowerContent = (<WeekView tasks = {this.state.tasks}/>)}
+		if(this.state.mode == "WEEK"){lowerContent = (<WeekView  tasks = {this.state.tasks}/>)}
 		else { lowerContent = (<DayView/>)};
 
 		return(<div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Tlib from './task.jsx'
 
 const WeekView = React.createClass({
 	getInitialState: function(){

@@ -14,6 +14,7 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.sublime-workspace
+*.sublime-project
 
 # =========================
 # Operating System Files
