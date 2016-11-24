@@ -37,22 +37,35 @@ const TaskRow = React.createClass({
 		Tlib.get(this.props.id).name = e.target.value;
 		Tlib.rerender();
 	},
+	quantChange : function(e){
+		if (parseInt(e.target.value) > 0){
+			Tlib.get(this.props.id).quantity = parseInt(e.target.value);
+			Tlib.rerender();
+		}
+	},
+	categChange: function(){
+		Tlib.get(this.props.id).unit = (Tlib.get(this.props.id).unit + 1) % 3
+		Tlib.rerender();
+	},
 	render: function(){
 		var quant, buttonRow, name;
 		if (!this.state.editMode){
 			name = this.props.name;
 			buttonRow = this.props.daysDone.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s} key = {i}/>));		
-			if (this.props.unit == 1){
-				//reps
-				quant = <div className = "quant">{this.props.quantity} reps</div>;
-			}
-			else if (this.props.unit == 2){
-				//mins
-				quant = <div className = "quant">{this.props.quantity} mins</div>;
+			switch(this.props.unit){
+				case 1: quant = <div className = "quant">{this.props.quantity} reps</div>; break;
+				case 2: quant = <div className = "quant">{this.props.quantity} mins</div>; break;
 			}
 		}
 		else{
 			name = <input value = {this.props.name} onChange = {this.nameChange}/>;
+			var cat = (catName) =>{return <div onClick = {this.categChange}>{catName}</div>};
+			var q = <input type = "number" value = {this.props.quantity} onChange = {this.quantChange}/>
+			switch(this.props.unit){
+				case 0: quant = <div className = "quant">{cat("N/A")}</div>; break;
+				case 1: quant = <div className = "quant">{q}{cat("reps")}</div>; break;
+				case 2: quant = <div className = "quant">{q}{cat("mins")}</div>; break;
+			}
 			buttonRow = this.props.activeDays.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s ? 3:2} key = {i}/>))
 		}
 		return(<div className="taskRow">

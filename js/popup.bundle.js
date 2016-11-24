@@ -21941,6 +21941,16 @@
 			_task2.default.get(this.props.id).name = e.target.value;
 			_task2.default.rerender();
 		},
+		quantChange: function quantChange(e) {
+			if (parseInt(e.target.value) > 0) {
+				_task2.default.get(this.props.id).quantity = parseInt(e.target.value);
+				_task2.default.rerender();
+			}
+		},
+		categChange: function categChange() {
+			_task2.default.get(this.props.id).unit = (_task2.default.get(this.props.id).unit + 1) % 3;
+			_task2.default.rerender();
+		},
 		render: function render() {
 			var _this = this;
 
@@ -21950,25 +21960,54 @@
 				buttonRow = this.props.daysDone.map(function (s, i) {
 					return _react2.default.createElement(ButtonBox, { e: _this.state.editMode, s: s, key: i });
 				});
-				if (this.props.unit == 1) {
-					//reps
-					quant = _react2.default.createElement(
-						'div',
-						{ className: 'quant' },
-						this.props.quantity,
-						' reps'
-					);
-				} else if (this.props.unit == 2) {
-					//mins
-					quant = _react2.default.createElement(
-						'div',
-						{ className: 'quant' },
-						this.props.quantity,
-						' mins'
-					);
+				switch (this.props.unit) {
+					case 1:
+						quant = _react2.default.createElement(
+							'div',
+							{ className: 'quant' },
+							this.props.quantity,
+							' reps'
+						);break;
+					case 2:
+						quant = _react2.default.createElement(
+							'div',
+							{ className: 'quant' },
+							this.props.quantity,
+							' mins'
+						);break;
 				}
 			} else {
 				name = _react2.default.createElement('input', { value: this.props.name, onChange: this.nameChange });
+				var cat = function cat(catName) {
+					return _react2.default.createElement(
+						'div',
+						{ onClick: _this.categChange },
+						catName
+					);
+				};
+				var q = _react2.default.createElement('input', { type: 'number', value: this.props.quantity, onChange: this.quantChange });
+				switch (this.props.unit) {
+					case 0:
+						quant = _react2.default.createElement(
+							'div',
+							{ className: 'quant' },
+							cat("N/A")
+						);break;
+					case 1:
+						quant = _react2.default.createElement(
+							'div',
+							{ className: 'quant' },
+							q,
+							cat("reps")
+						);break;
+					case 2:
+						quant = _react2.default.createElement(
+							'div',
+							{ className: 'quant' },
+							q,
+							cat("mins")
+						);break;
+				}
 				buttonRow = this.props.activeDays.map(function (s, i) {
 					return _react2.default.createElement(ButtonBox, { e: _this.state.editMode, s: s ? 3 : 2, key: i });
 				});
@@ -22297,7 +22336,7 @@
 
 
 	// module
-	exports.push([module.id, ".transit {\n  transition: 0.1s ease-in-out;\n  -moz-transition: 0.1s ease-in-out;\n  -webkit-transition: 0.1s ease-in-out;\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\nbody {\n  width: 600px;\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n#navbar {\n  height: 60px;\n  width: 600px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  width: 100px;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  transition: 0.1s ease-in-out;\n  -moz-transition: 0.1s ease-in-out;\n  -webkit-transition: 0.1s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #888888;\n  color: #FFFFFF;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .bb {\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: white;\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n", ""]);
+	exports.push([module.id, ".transit {\n  transition: 0.1s ease-in-out;\n  -moz-transition: 0.1s ease-in-out;\n  -webkit-transition: 0.1s ease-in-out;\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\nbody {\n  width: 600px;\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n#navbar {\n  height: 60px;\n  width: 600px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  width: 100px;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  transition: 0.1s ease-in-out;\n  -moz-transition: 0.1s ease-in-out;\n  -webkit-transition: 0.1s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #888888;\n  color: #FFFFFF;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel .taskRow .quant > input {\n  width: 40px;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel .taskRow .bb {\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: white;\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n", ""]);
 
 	// exports
 
