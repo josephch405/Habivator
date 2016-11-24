@@ -9,7 +9,7 @@ const Tlib = {
 			id: _t.id ? _t.id : this.nextId(),
 			karma: _t.karma ? _t.karma : 0,
 			activeDays: [true, true, true, true,true,true,true],
-			daysDone: [0,0,0,0,0,0,0],
+			daysDone: [2,2,2,2,2,2,2],
 			quantity: _t.quantity ? _t.quantity : 0,
 			unit: _t.unit ? _t.unit : 0,
 			toss: _t.toss ? _t.toss : false
@@ -35,6 +35,17 @@ const Tlib = {
         while (this.tasks[i])
             i ++
         return i;
+    },
+    boxClick: function(tid, did, e){
+        var _t = this.get(tid);
+        if (!e){
+            if(_t.activeDays[did]){
+                _t.daysDone[did] = (_t.daysDone[did] == 2) ? 3 : 2;
+            }
+            return;
+        }
+        _t.activeDays[did] = !_t.activeDays[did];
+        _t.daysDone[did] = _t.activeDays[did] ? 2 : 0;
     }
 }
 

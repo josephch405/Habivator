@@ -1,8 +1,8 @@
 @brightGreen: #69ff1b;
 .transit {
-    transition: .1s ease-in-out;
-    -moz-transition: .1s ease-in-out;
-    -webkit-transition: .1s ease-in-out;
+    transition: .08s ease-in-out;
+    -moz-transition: .08s ease-in-out;
+    -webkit-transition: .08s ease-in-out;
 }
 
 html {
@@ -66,14 +66,14 @@ body {
         padding: 4px;
         //border-top: solid 2px #DDDDDD;
         box-shadow: 0 0 2px 0 black;
-        margin-bottom:2px;
-        input{
-            font-size:16px;
-            width:160px;
+        margin-bottom: 2px;
+        input {
+            font-size: 16px;
+            width: 160px;
             float: left;
         }
-        .quant > input{
-            width:40px;
+        .quant > input {
+            width: 40px;
         }
         div {
             float: left;
@@ -89,59 +89,62 @@ body {
             font-family: PT Sans;
             font-size: 20px;
             padding-left: 20px;
-            .quant{
-            	float:right;
-            	margin-right:20px;
-                div{
+            .quant {
+                float: right;
+                margin-right: 20px;
+                div {
                     width: 40px;
                 }
             }
         }
-        .bb{
-        	float:left;
-        	width:26px;
-        	height:26px;
-        	box-sizing: border-box;
-        	margin-left:2px;
-        	&.g{
-        		background-color: #00FF00;
-        		&:hover{
-        			background-color: #91FF91;
-        		}
-        	}
-        	&.r{
-        		background-color: #FF5757;
-        		&:hover{
-        			background-color: #FF9393;
-        		}
-        	}
-        	&.b{
-        		background-color: #888888;
-        	}
-        	&.w{
-        		background-color: white;
-        	}
-        	&.bbor{
-        		border: solid 3px #888888;
-        	}
+        .bb {
+            .transit;
+            float: left;
+            width: 26px;
+            height: 26px;
+            box-sizing: border-box;
+            margin-left: 2px;
+            &.g {
+                background-color: #00FF00;
+                &:hover {
+                    background-color: #91FF91;
+                }
+            }
+            &.r {
+                background-color: #FF5757;
+                &:hover {
+                    background-color: #FF9393;
+                }
+            }
+            &.b {
+                background-color: #888888;
+            }
+            &.w {
+                background-color: white;
+            }
+            &.bbor {
+                border: solid 3px #888888;
+            }
         }
-        .taskEdit{
-        	height:26px;
-        	width:13px;
-        	float:right;
-        	background-color: #FFCC00;
-        	&:hover{
-        		background-color: #FFDB4D;
-        	}
+        .taskEdit {
+            .transit;
+            height: 26px;
+            width: 13px;
+            float: right;
+            background-color: #FFCC00;
+            &:hover {
+                background-color: #FFDB4D;
+            }
         }
-        .taskDelete{
-        	height:26px;
-        	width:13px;
-        	float:right;
-        	background-color:#FF6935;
-        	&:hover{
-        		background-color: #FFAC8F;
-        	}
+        .taskDelete {
+            .transit;
+            height: 26px;
+            width: 13px;
+            float: right;
+            background-color: #FF6935;
+            &:hover {
+                background-color: #FFAC8F;
+            }
         }
     }
 }

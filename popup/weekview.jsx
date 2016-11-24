@@ -51,7 +51,7 @@ const TaskRow = React.createClass({
 		var quant, buttonRow, name;
 		if (!this.state.editMode){
 			name = this.props.name;
-			buttonRow = this.props.daysDone.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s} key = {i}/>));		
+			buttonRow = this.props.daysDone.map((s, i) => (<ButtonBox e = {this.state.editMode} tid = {this.props.id} s = {s} key = {i} did = {i}/>));		
 			switch(this.props.unit){
 				case 1: quant = <div className = "quant">{this.props.quantity} reps</div>; break;
 				case 2: quant = <div className = "quant">{this.props.quantity} mins</div>; break;
@@ -66,7 +66,7 @@ const TaskRow = React.createClass({
 				case 1: quant = <div className = "quant">{q}{cat("reps")}</div>; break;
 				case 2: quant = <div className = "quant">{q}{cat("mins")}</div>; break;
 			}
-			buttonRow = this.props.activeDays.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s ? 3:2} key = {i}/>))
+			buttonRow = this.props.activeDays.map((s, i) => (<ButtonBox e = {this.state.editMode} tid = {this.props.id} s = {s ? 3:2} key = {i} did = {i}/>))
 		}
 		return(<div className="taskRow">
 			<div className = "karmaFlair"/>
@@ -79,6 +79,10 @@ const TaskRow = React.createClass({
 })
 
 const ButtonBox = React.createClass({
+	clickHandle: function(){
+		Tlib.boxClick(this.props.tid, this.props.did, this.props.e);
+		Tlib.rerender();
+	},
 	render:function(){
 		var cname = "bb";
 		switch(this.props.s){
@@ -98,7 +102,7 @@ const ButtonBox = React.createClass({
 		if (this.props.e){
 			cname += " bbor"
 		}
-		return(<div className = {cname}></div>);
+		return(<div className = {cname} onClick = {this.clickHandle}></div>);
 	}
 })
 
