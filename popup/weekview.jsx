@@ -59,7 +59,7 @@ const TaskRow = React.createClass({
 		}
 		else{
 			name = <input value = {this.props.name} onChange = {this.nameChange}/>;
-			var cat = (catName) =>{return <div onClick = {this.categChange}>{catName}</div>};
+			var cat = (catName) =>{return <a href = "#" onClick = {this.categChange}>{catName}</a>};
 			var q = <input type = "number" value = {this.props.quantity} onChange = {this.quantChange}/>
 			switch(this.props.unit){
 				case 0: quant = <div className = "quant">{cat("N/A")}</div>; break;

@@ -36,9 +36,9 @@ var NavBar = React.createClass({
 	render: function(){
 		return(
 			<div id = "navbar">
-				<div className = "navbutton" onClick = {() => this.props.setMode("WEEK")}>Week</div>
-				<div className = "navbutton" onClick = {() => this.props.setMode("DAY")}>Day</div>
-				<div className = "navbutton">More</div>
+				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("WEEK")}>Week</a>
+				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("DAY")}>Day</a>
+				<a href = "#" className = "navbutton">More</a>
 			</div>
 		);
 	}
