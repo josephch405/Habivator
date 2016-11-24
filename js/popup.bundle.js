@@ -21921,7 +21921,14 @@
 				),
 				this.props.tasks.map(function (t) {
 					return _react2.default.createElement(TaskRow, _extends({}, t, { key: t.id }));
-				})
+				}),
+				_react2.default.createElement(
+					'div',
+					{ onClick: function onClick() {
+							_task2.default.create();_task2.default.rerender();
+						} },
+					'Add New Habit'
+				)
 			);
 		}
 	});
@@ -22023,7 +22030,9 @@
 					quant
 				),
 				buttonRow,
-				_react2.default.createElement('div', { className: 'taskDelete' }),
+				_react2.default.createElement('div', { className: 'taskDelete', onClick: function onClick() {
+						_task2.default.remove(_this.props.id);_task2.default.rerender();
+					} }),
 				_react2.default.createElement('div', { className: 'taskEdit', onClick: this.toggleEdit })
 			);
 		}
@@ -22090,7 +22099,6 @@
 	    },
 	    get: function get(i) {
 	        for (var _t in this.tasks) {
-	            console.log(i);
 	            if (this.tasks[_t].id == i) return this.tasks[_t];
 	        }
 	        return null;
@@ -22115,6 +22123,14 @@
 	        }
 	        _t.activeDays[did] = !_t.activeDays[did];
 	        _t.daysDone[did] = _t.activeDays[did] ? 2 : 0;
+	    },
+	    remove: function remove(id) {
+	        for (var _t in this.tasks) {
+	            if (this.tasks[_t].id == id) {
+	                this.tasks.splice(_t, 1);
+	                return;
+	            }
+	        }
 	    }
 	};
 

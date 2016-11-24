@@ -19,7 +19,7 @@ const WeekView = React.createClass({
 			</div>
 
 			{this.props.tasks.map((t) => (<TaskRow {...t} key = {t.id}/>))}
-
+			<div onClick = {() => {Tlib.create(); Tlib.rerender()}}>Add New Habit</div>
 			</div>);
 	}
 })
@@ -72,7 +72,7 @@ const TaskRow = React.createClass({
 			<div className = "karmaFlair"/>
 			<div className = "taskName">{name}{quant}</div>
 			{buttonRow}
-			<div className = "taskDelete"/>
+			<div className = "taskDelete" onClick = {() => {Tlib.remove(this.props.id); Tlib.rerender()}}/>
 			<div className = "taskEdit" onClick = {this.toggleEdit}/>
 		</div>)
 	}

@@ -18,7 +18,6 @@ const Tlib = {
 	},
     get: function(i){
         for (var _t in this.tasks){
-            console.log(i);
             if (this.tasks[_t].id == i)
                 return this.tasks[_t];
         }
@@ -46,6 +45,14 @@ const Tlib = {
         }
         _t.activeDays[did] = !_t.activeDays[did];
         _t.daysDone[did] = _t.activeDays[did] ? 2 : 0;
+    },
+    remove: function(id){
+        for (var _t in this.tasks){
+            if (this.tasks[_t].id == id){
+                this.tasks.splice(_t, 1);
+                return;
+            }
+        }
     }
 }
 
