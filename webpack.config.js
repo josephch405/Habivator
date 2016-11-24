@@ -5,10 +5,10 @@ var BUILD_DIR = path.resolve(__dirname, '');
 var APP_DIR = path.resolve(__dirname, '');
 
 var config = {
-    entry: APP_DIR + '/main.jsx',
+    entry: {popup:APP_DIR + '/popup/main.jsx'},
     output: {
         path: BUILD_DIR,
-        filename: 'bundle.js'
+        filename: '/js/[name].bundle.js'
     },
     module: {
         loaders: [{

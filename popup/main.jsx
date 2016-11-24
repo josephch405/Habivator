@@ -8,16 +8,19 @@ require("./main.less");
 
 var PopupApp = React.createClass({
 	getInitialState: function(){
-		Tlib.create({id:1});
-		Tlib.create({id:2});
+		Tlib.rerenderHook = this.setTasks;
+		Tlib.create();
+		Tlib.create();
 		return {mode:"WEEK", 
 			tasks:Tlib.tasks};
 	},
 	setMode: function(m){
 		this.setState({mode:m})
 	},
+	setTasks: function(t){
+		this.setState({tasks: t})
+	},
 	render: function(){
-
 		var lowerContent;
 		if(this.state.mode == "WEEK"){lowerContent = (<WeekView  tasks = {this.state.tasks}/>)}
 		else { lowerContent = (<DayView/>)};

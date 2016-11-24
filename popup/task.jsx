@@ -1,9 +1,12 @@
 const Tlib = {
 	tasks: [],
 	create: function(_t){
+        if (_t == null){
+            _t = {};
+        }
 		var t = {
 			name: _t.name ? _t.name : "New Task",
-			id: _t.id ? _t.id : -1,
+			id: _t.id ? _t.id : this.nextId(),
 			karma: _t.karma ? _t.karma : 0,
 			activeDays: [true, true, true, true,true,true,true],
 			daysDone: [0,0,0,0,0,0,0],
@@ -12,7 +15,27 @@ const Tlib = {
 			toss: _t.toss ? _t.toss : false
 		}
 		this.tasks.push(t);
-	}
+	},
+    get: function(i){
+        for (var _t in this.tasks){
+            console.log(i);
+            if (this.tasks[_t].id == i)
+                return this.tasks[_t];
+        }
+        return null;
+    },
+    rerender: function(){
+        this.rerenderHook(this.tasks);
+    },
+    rerenderHook: function(){
+
+    },
+    nextId: function(){
+        var i = 0;
+        while (this.tasks[i])
+            i ++
+        return i;
+    }
 }
 
 export default Tlib;

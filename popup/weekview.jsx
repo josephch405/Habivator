@@ -33,29 +33,31 @@ const TaskRow = React.createClass({
 			editMode: !this.state.editMode
 		});
 	},
+	nameChange : function(e){
+		Tlib.get(this.props.id).name = e.target.value;
+		Tlib.rerender();
+	},
 	render: function(){
-
-
-		var quant;
-		if (this.props.unit == 1){
-			//reps
-			quant = <div className = "quant">{this.props.quantity} reps</div>;
-		}
-		else if (this.props.unit == 2){
-			//mins
-			quant = <div className = "quant">{this.props.quantity} mins</div>;
-		}
-
-		var buttonRow;
+		var quant, buttonRow, name;
 		if (!this.state.editMode){
-			buttonRow = this.props.daysDone.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s} key = {i}/>));
+			name = this.props.name;
+			buttonRow = this.props.daysDone.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s} key = {i}/>));		
+			if (this.props.unit == 1){
+				//reps
+				quant = <div className = "quant">{this.props.quantity} reps</div>;
+			}
+			else if (this.props.unit == 2){
+				//mins
+				quant = <div className = "quant">{this.props.quantity} mins</div>;
+			}
 		}
 		else{
+			name = <input value = {this.props.name} onChange = {this.nameChange}/>;
 			buttonRow = this.props.activeDays.map((s, i) => (<ButtonBox e = {this.state.editMode} s = {s ? 3:2} key = {i}/>))
 		}
 		return(<div className="taskRow">
 			<div className = "karmaFlair"/>
-			<div className = "taskName">{this.props.name}{quant}</div>
+			<div className = "taskName">{name}{quant}</div>
 			{buttonRow}
 			<div className = "taskDelete"/>
 			<div className = "taskEdit" onClick = {this.toggleEdit}/>
