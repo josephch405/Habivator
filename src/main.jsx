@@ -10,8 +10,7 @@ require("./main.less");
 var PopupApp = React.createClass({
 	getInitialState: function(){
 		Tlib.rerenderHook = this.setTasks;
-		Tlib.create();
-		Tlib.create();
+		Tlib.pull();
 		return {mode:"WEEK", 
 			tasks:Tlib.tasks};
 	},

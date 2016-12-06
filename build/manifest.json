@@ -1,24 +1,23 @@
 {
    "manifest_version": 2,
    "background": {
-      "scripts": ["js/jquery-2.1.1.min.js", "js/smiley.js", "js/main.js","js/task.js","js/archivedTask.js","js/archivedTaskGroup.js", "js/background.js"  ]
+      //"scripts": ["background.js"  ]
    },
    "name": "Habivator - build a habit!",
    "short_name": "Habivator",
    "version": "0.72",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
    "browser_action": {
-      "default_icon": "icon.png",
-      "default_popup": "html/popup.html",
+      "default_icon": "/img/icon.png",
+      "default_popup": "popup.html",
       "default_title": "Make a habit!"
    },
    "permissions": [
       "storage",
       "notifications"
    ],
-   "options_page": "html/options.html",
-   "icons": {"128": "icon.png"
- },
+   //"options_page": "html/options.html",
+   "icons": {"128": "/img/icon.png"},
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "offline_enabled": true
 }

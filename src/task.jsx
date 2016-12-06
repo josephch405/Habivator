@@ -15,6 +15,7 @@ const Tlib = {
 			toss: _t.toss ? _t.toss : false
 		}
 		this.tasks.push(t);
+        this.push();
 	},
     get: function(i){
         for (var _t in this.tasks){
@@ -41,10 +42,12 @@ const Tlib = {
             if(_t.activeDays[did]){
                 _t.daysDone[did] = (_t.daysDone[did] == 2) ? 3 : 2;
             }
+            this.push();
             return;
         }
         _t.activeDays[did] = !_t.activeDays[did];
         _t.daysDone[did] = _t.activeDays[did] ? 2 : 0;
+        this.push();
     },
     remove: function(id){
         for (var _t in this.tasks){
@@ -53,9 +56,23 @@ const Tlib = {
                 return;
             }
         }
+        this.push();
     },
     dayOfWeek: function(){
         return (new Date().getDay() + 6) % 7;
+    },
+    push: function(){
+        chrome.storage.sync.set({'tasks': this.tasks}, function() {
+              console.log('Settings saved');
+        });
+    },
+    pull: function(){
+        var a = this;
+        chrome.storage.sync.get("tasks", function(t){
+            a.tasks = t.tasks;
+            console.log(t);
+            a.rerender();
+        });
     }
 }
 
