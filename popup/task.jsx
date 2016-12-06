@@ -53,6 +53,9 @@ const Tlib = {
                 return;
             }
         }
+    },
+    dayOfWeek: function(){
+        return (new Date().getDay() + 6) % 7;
     }
 }
 

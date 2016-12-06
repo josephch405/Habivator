@@ -29,8 +29,10 @@
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
+    "file-loader": "^0.9.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
   }
 }

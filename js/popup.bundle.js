@@ -66,6 +66,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//require("./fonts/ptsans.ttf")
 	__webpack_require__(186);
 
 	var PopupApp = _react2.default.createClass({
@@ -89,7 +90,7 @@
 			if (this.state.mode == "WEEK") {
 				lowerContent = _react2.default.createElement(_weekview2.default, { tasks: this.state.tasks });
 			} else {
-				lowerContent = _react2.default.createElement(_dayview2.default, null);
+				lowerContent = _react2.default.createElement(_dayview2.default, { tasks: this.state.tasks });
 			};
 
 			return _react2.default.createElement(
@@ -22131,6 +22132,9 @@
 	                return;
 	            }
 	        }
+	    },
+	    dayOfWeek: function dayOfWeek() {
+	        return (new Date().getDay() + 6) % 7;
 	    }
 	};
 
@@ -22303,30 +22307,94 @@
 /* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _task = __webpack_require__(184);
+
+	var _task2 = _interopRequireDefault(_task);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DayView = _react2.default.createClass({
-		displayName: "DayView",
+		displayName: 'DayView',
 
 		getInitialState: function getInitialState() {
 			return {};
 		},
 		render: function render() {
 			return _react2.default.createElement(
-				"div",
-				{ id: "daypanel" },
-				"DAY VIEW"
+				'div',
+				{ id: 'dayPanel' },
+				this.props.tasks.map(function (t) {
+					return _react2.default.createElement(DayBox, _extends({}, t, { key: t.id }));
+				})
 			);
+		}
+	});
+
+	var DayBox = _react2.default.createClass({
+		displayName: 'DayBox',
+
+		render: function render() {
+			var day = _task2.default.dayOfWeek();
+			var quant = "";
+			switch (this.props.unit) {
+				case 1:
+					quant = this.props.quantity + " reps";
+					break;
+				case 2:
+					quant = this.props.quantity + " mins";
+					break;
+			}
+			return _react2.default.createElement(
+				'div',
+				{ className: 'dayBox', id: this.props.id },
+				_react2.default.createElement(
+					'div',
+					{ className: 'dayBoxTop' },
+					this.props.name,
+					_react2.default.createElement('br', null),
+					quant
+				),
+				_react2.default.createElement(ButtonBox, { tid: this.props.id, s: this.props.daysDone[day], did: day })
+			);
+		}
+	});
+
+	var ButtonBox = _react2.default.createClass({
+		displayName: 'ButtonBox',
+
+		clickHandle: function clickHandle() {
+			_task2.default.boxClick(this.props.tid, this.props.did, false);
+			_task2.default.rerender();
+		},
+		render: function render() {
+			var cname = "bb";
+			switch (this.props.s) {
+				case 0:
+					cname += " b";
+					break;
+				case 1:
+					cname += " w";
+					break;
+				case 2:
+					cname += " r";
+					break;
+				case 3:
+					cname += " g";
+					break;
+			}
+			return _react2.default.createElement('div', { className: cname, onClick: this.clickHandle });
 		}
 	});
 
@@ -22342,7 +22410,7 @@
 	var content = __webpack_require__(187);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(188)(content, {});
+	var update = __webpack_require__(189)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22362,18 +22430,73 @@
 /* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(189)();
+	exports = module.exports = __webpack_require__(188)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\nbody {\n  width: 600px;\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n#navbar {\n  height: 60px;\n  width: 600px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  width: 100px;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  color: black;\n  text-decoration: none;\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #4E4E4E;\n  color: #FFFFFF;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel .taskRow .quant > input {\n  width: 40px;\n}\n#weekPanel .taskRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel .taskRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: white;\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n", ""]);
+	exports.push([module.id, "@font-face {\n  font-family: \"PT Sans\";\n  src: url(" + __webpack_require__(190) + ") format(\"truetype\");\n}\n.transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\nbody {\n  width: 600px;\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n#navbar {\n  height: 60px;\n  width: 600px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  width: 100px;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  color: black;\n  text-decoration: none;\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #4E4E4E;\n  color: #FFFFFF;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel .taskRow .quant > input {\n  width: 40px;\n}\n#weekPanel .taskRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel .taskRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: white;\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n#dayPanel {\n  padding: 30px;\n}\n#dayPanel .dayBox {\n  float: left;\n  width: 100px;\n  height: 150px;\n  margin: 4px;\n  box-shadow: 0 0 2px 0 black;\n}\n#dayPanel .dayBoxTop {\n  height: 50px;\n  padding: 4px;\n  box-sizing: border-box;\n}\n#dayPanel .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 100px;\n  height: 100px;\n  box-sizing: border-box;\n}\n#dayPanel .bb.g {\n  background-color: #00FF00;\n}\n#dayPanel .bb.g:hover {\n  background-color: #91FF91;\n}\n#dayPanel .bb.r {\n  background-color: #FF5757;\n}\n#dayPanel .bb.r:hover {\n  background-color: #FF9393;\n}\n#dayPanel .bb.b {\n  background-color: #888888;\n}\n#dayPanel .bb.w {\n  background-color: white;\n}\n#dayPanel .bb.bbor {\n  border: solid 3px #888888;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
 /* 188 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function () {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for (var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if (item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function (modules, mediaQuery) {
+			if (typeof modules === "string") modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for (var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if (typeof id === "number") alreadyImportedModules[id] = true;
+			}
+			for (i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if (mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if (mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+/***/ },
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22625,59 +22748,10 @@
 
 
 /***/ },
-/* 189 */
-/***/ function(module, exports) {
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function () {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for (var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if (item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function (modules, mediaQuery) {
-			if (typeof modules === "string") modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for (var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if (typeof id === "number") alreadyImportedModules[id] = true;
-			}
-			for (i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if (mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if (mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
+	module.exports = __webpack_require__.p + "f2eadd43911fbf66f2bf5c8b32f69724.ttf";
 
 /***/ }
 /******/ ]);

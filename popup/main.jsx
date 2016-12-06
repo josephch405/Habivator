@@ -4,6 +4,7 @@ import WeekView from './weekview.jsx';
 import DayView from './dayview.jsx';
 import Tlib from './task.jsx'
 
+//require("./fonts/ptsans.ttf")
 require("./main.less");
 
 var PopupApp = React.createClass({
@@ -23,7 +24,7 @@ var PopupApp = React.createClass({
 	render: function(){
 		var lowerContent;
 		if(this.state.mode == "WEEK"){lowerContent = (<WeekView  tasks = {this.state.tasks}/>)}
-		else { lowerContent = (<DayView/>)};
+		else { lowerContent = (<DayView tasks = {this.state.tasks}/>)};
 
 		return(<div>
 		<NavBar mode = {this.state.mode} setMode = {this.setMode}/>

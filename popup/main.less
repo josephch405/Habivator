@@ -1,4 +1,10 @@
 @brightGreen: #69ff1b;
+
+@font-face {
+    font-family: "PT Sans";
+    src: url('../fonts/ptsans.ttf') format("truetype");
+}
+
 .transit {
     transition: .08s ease-in-out;
     -moz-transition: .08s ease-in-out;
@@ -151,6 +157,50 @@ body {
             &:hover {
                 background-color: #FFAC8F;
             }
+        }
+    }
+}
+
+#dayPanel{
+    padding: 30px;
+    .dayBox{
+        float:left;
+        width:100px;
+        height: 150px;
+        margin: 4px;
+        box-shadow: 0 0 2px 0 black;
+    }
+    .dayBoxTop{
+        height:50px;
+        padding:4px;
+        box-sizing: border-box;
+    }
+    .bb {
+        .transit;
+        float: left;
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        &.g {
+            background-color: #00FF00;
+            &:hover {
+                background-color: #91FF91;
+            }
+        }
+        &.r {
+            background-color: #FF5757;
+            &:hover {
+                background-color: #FF9393;
+            }
+        }
+        &.b {
+            background-color: #888888;
+        }
+        &.w {
+            background-color: white;
+        }
+        &.bbor {
+            border: solid 3px #888888;
         }
     }
 }
