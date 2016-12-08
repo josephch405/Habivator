@@ -1,6 +1,30 @@
 import React from 'react';
 import Tlib from './task.jsx'
 
+
+const ArchiveWeekView = React.createClass({
+	getInitialState: function(){
+		return {};
+	},
+	render: function(){
+		return (<div id = "weekPanel">
+			<div id = "weekHeader">
+				<div id = "o"/>
+				<div className = "tag">Mon</div>
+				<div className = "tag">Tue</div>
+				<div className = "tag">Wed</div>
+				<div className = "tag">Thu</div>
+				<div className = "tag">Fri</div>
+				<div className = "tag">Sat</div>
+				<div className = "tag">Sun</div>
+			</div>
+
+			{this.props.tasks.map((t) => (<TaskRow {...t} key = {t.id}/>))}
+			<div onClick = {() => {Tlib.create(); Tlib.rerender()}}>Add New Habit</div>
+			</div>);
+	}
+})
+
 const WeekView = React.createClass({
 	getInitialState: function(){
 		return {};

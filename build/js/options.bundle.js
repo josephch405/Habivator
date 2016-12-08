@@ -52,14 +52,6 @@
 
 	var _reactDom = __webpack_require__(32);
 
-	var _weekview = __webpack_require__(189);
-
-	var _weekview2 = _interopRequireDefault(_weekview);
-
-	var _dayview = __webpack_require__(190);
-
-	var _dayview2 = _interopRequireDefault(_dayview);
-
 	var _task = __webpack_require__(183);
 
 	var _task2 = _interopRequireDefault(_task);
@@ -68,30 +60,38 @@
 
 	//require("./fonts/ptsans.ttf")
 	__webpack_require__(191);
-	__webpack_require__(184);
+	__webpack_require__(193);
 
-	var PopupApp = _react2.default.createClass({
-		displayName: 'PopupApp',
+	var OptionsApp = _react2.default.createClass({
+		displayName: 'OptionsApp',
 
 		getInitialState: function getInitialState() {
-			_task2.default.rerenderHook = this.setTasks;
 			_task2.default.pull();
-			return { mode: "WEEK",
-				tasks: _task2.default.tasks };
+			return { mode: "CHARTS" };
 		},
 		setMode: function setMode(m) {
 			this.setState({ mode: m });
 		},
-		setTasks: function setTasks(t) {
-			this.setState({ tasks: t });
-		},
 		render: function render() {
 			var lowerContent;
-			if (this.state.mode == "WEEK") {
-				lowerContent = _react2.default.createElement(_weekview2.default, { tasks: this.state.tasks });
-			} else {
-				lowerContent = _react2.default.createElement(_dayview2.default, { tasks: this.state.tasks });
-			};
+
+			switch (this.state.mode) {
+				case "CHARTS":
+					lowerContent = _react2.default.createElement(ChartsView, null);
+					break;
+
+				case "GRAPH":
+					lowerContent = _react2.default.createElement(GraphView, null);
+					break;
+
+				case "ADVICE":
+					lowerContent = _react2.default.createElement(AdviceView, null);
+					break;
+
+				case "SETTINGS":
+					lowerContent = _react2.default.createElement(SettingsView, null);
+					break;
+			}
 
 			return _react2.default.createElement(
 				'div',
@@ -114,27 +114,84 @@
 				_react2.default.createElement(
 					'a',
 					{ href: '#', className: 'navbutton', onClick: function onClick() {
-							return _this.props.setMode("WEEK");
+							return _this.props.setMode("CHARTS");
 						} },
-					'Week'
+					'Charts'
 				),
 				_react2.default.createElement(
 					'a',
 					{ href: '#', className: 'navbutton', onClick: function onClick() {
-							return _this.props.setMode("DAY");
+							return _this.props.setMode("GRAPH");
 						} },
-					'Day'
+					'Graph'
 				),
 				_react2.default.createElement(
 					'a',
-					{ href: '#', className: 'navbutton' },
-					'More'
+					{ href: '#', className: 'navbutton', onClick: function onClick() {
+							return _this.props.setMode("ADVICE");
+						} },
+					'Advice'
+				),
+				_react2.default.createElement(
+					'a',
+					{ href: '#', className: 'navbutton', onClick: function onClick() {
+							return _this.props.setMode("SETTINGS");
+						} },
+					'Settings'
 				)
 			);
 		}
 	});
 
-	(0, _reactDom.render)(_react2.default.createElement(PopupApp, null), document.getElementById('app'));
+	var ChartsView = _react2.default.createClass({
+		displayName: 'ChartsView',
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				'CHARTS'
+			);
+		}
+	});
+
+	var GraphView = _react2.default.createClass({
+		displayName: 'GraphView',
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				'GRAPH'
+			);
+		}
+	});
+
+	var AdviceView = _react2.default.createClass({
+		displayName: 'AdviceView',
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				'ADVICE'
+			);
+		}
+	});
+
+	var SettingsView = _react2.default.createClass({
+		displayName: 'SettingsView',
+
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				'SETTINGS'
+			);
+		}
+	});
+
+	(0, _reactDom.render)(_react2.default.createElement(OptionsApp, null), document.getElementById('optionsApp'));
 
 /***/ },
 /* 1 */
@@ -22057,46 +22114,8 @@
 	}
 
 /***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(185);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(188)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/less-loader/index.js!./main.less", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/less-loader/index.js!./main.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 185 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(186)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\nbody {\n  width: 600px;\n}\n#navbar {\n  width: 600px;\n}\n#navbar .navbutton {\n  width: 100px;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel .taskRow .quant > input {\n  width: 40px;\n}\n#weekPanel .taskRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel .taskRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: white;\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n#dayPanel {\n  padding: 30px;\n}\n#dayPanel .dayBox {\n  float: left;\n  width: 100px;\n  height: 150px;\n  margin: 4px;\n  box-shadow: 0 0 2px 0 black;\n}\n#dayPanel .dayBoxTop {\n  height: 50px;\n  padding: 4px;\n  box-sizing: border-box;\n}\n#dayPanel .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 100px;\n  height: 100px;\n  box-sizing: border-box;\n}\n#dayPanel .bb.g {\n  background-color: #00FF00;\n}\n#dayPanel .bb.g:hover {\n  background-color: #91FF91;\n}\n#dayPanel .bb.r {\n  background-color: #FF5757;\n}\n#dayPanel .bb.r:hover {\n  background-color: #FF9393;\n}\n#dayPanel .bb.b {\n  background-color: #888888;\n}\n#dayPanel .bb.w {\n  background-color: white;\n}\n#dayPanel .bb.bbor {\n  border: solid 3px #888888;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 184 */,
+/* 185 */,
 /* 186 */
 /***/ function(module, exports) {
 
@@ -22411,390 +22430,8 @@
 
 
 /***/ },
-/* 189 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _task = __webpack_require__(183);
-
-	var _task2 = _interopRequireDefault(_task);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ArchiveWeekView = _react2.default.createClass({
-		displayName: 'ArchiveWeekView',
-
-		getInitialState: function getInitialState() {
-			return {};
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ id: 'weekPanel' },
-				_react2.default.createElement(
-					'div',
-					{ id: 'weekHeader' },
-					_react2.default.createElement('div', { id: 'o' }),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Mon'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Tue'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Wed'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Thu'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Fri'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sat'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sun'
-					)
-				),
-				this.props.tasks.map(function (t) {
-					return _react2.default.createElement(TaskRow, _extends({}, t, { key: t.id }));
-				}),
-				_react2.default.createElement(
-					'div',
-					{ onClick: function onClick() {
-							_task2.default.create();_task2.default.rerender();
-						} },
-					'Add New Habit'
-				)
-			);
-		}
-	});
-
-	var WeekView = _react2.default.createClass({
-		displayName: 'WeekView',
-
-		getInitialState: function getInitialState() {
-			return {};
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ id: 'weekPanel' },
-				_react2.default.createElement(
-					'div',
-					{ id: 'weekHeader' },
-					_react2.default.createElement('div', { id: 'o' }),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Mon'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Tue'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Wed'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Thu'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Fri'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sat'
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sun'
-					)
-				),
-				this.props.tasks.map(function (t) {
-					return _react2.default.createElement(TaskRow, _extends({}, t, { key: t.id }));
-				}),
-				_react2.default.createElement(
-					'div',
-					{ onClick: function onClick() {
-							_task2.default.create();_task2.default.rerender();
-						} },
-					'Add New Habit'
-				)
-			);
-		}
-	});
-
-	var TaskRow = _react2.default.createClass({
-		displayName: 'TaskRow',
-
-		getInitialState: function getInitialState() {
-			return { editMode: false };
-		},
-		toggleEdit: function toggleEdit() {
-			this.setState({
-				editMode: !this.state.editMode
-			});
-		},
-		nameChange: function nameChange(e) {
-			_task2.default.get(this.props.id).name = e.target.value;
-			_task2.default.rerender();
-		},
-		quantChange: function quantChange(e) {
-			if (parseInt(e.target.value) > 0) {
-				_task2.default.get(this.props.id).quantity = parseInt(e.target.value);
-				_task2.default.rerender();
-			}
-		},
-		categChange: function categChange() {
-			_task2.default.get(this.props.id).unit = (_task2.default.get(this.props.id).unit + 1) % 3;
-			_task2.default.rerender();
-		},
-		render: function render() {
-			var _this = this;
-
-			var quant, buttonRow, name;
-			if (!this.state.editMode) {
-				name = this.props.name;
-				buttonRow = this.props.daysDone.map(function (s, i) {
-					return _react2.default.createElement(ButtonBox, { e: _this.state.editMode, tid: _this.props.id, s: s, key: i, did: i });
-				});
-				switch (this.props.unit) {
-					case 1:
-						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
-							this.props.quantity,
-							' reps'
-						);break;
-					case 2:
-						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
-							this.props.quantity,
-							' mins'
-						);break;
-				}
-			} else {
-				name = _react2.default.createElement('input', { value: this.props.name, onChange: this.nameChange });
-				var cat = function cat(catName) {
-					return _react2.default.createElement(
-						'a',
-						{ href: '#', onClick: _this.categChange },
-						catName
-					);
-				};
-				var q = _react2.default.createElement('input', { type: 'number', value: this.props.quantity, onChange: this.quantChange });
-				switch (this.props.unit) {
-					case 0:
-						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
-							cat("N/A")
-						);break;
-					case 1:
-						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
-							q,
-							cat("reps")
-						);break;
-					case 2:
-						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
-							q,
-							cat("mins")
-						);break;
-				}
-				buttonRow = this.props.activeDays.map(function (s, i) {
-					return _react2.default.createElement(ButtonBox, { e: _this.state.editMode, tid: _this.props.id, s: s ? 3 : 2, key: i, did: i });
-				});
-			}
-			return _react2.default.createElement(
-				'div',
-				{ className: 'taskRow' },
-				_react2.default.createElement('div', { className: 'karmaFlair' }),
-				_react2.default.createElement(
-					'div',
-					{ className: 'taskName' },
-					name,
-					quant
-				),
-				buttonRow,
-				_react2.default.createElement('div', { className: 'taskDelete', onClick: function onClick() {
-						_task2.default.remove(_this.props.id);_task2.default.rerender();
-					} }),
-				_react2.default.createElement('div', { className: 'taskEdit', onClick: this.toggleEdit })
-			);
-		}
-	});
-
-	var ButtonBox = _react2.default.createClass({
-		displayName: 'ButtonBox',
-
-		clickHandle: function clickHandle() {
-			_task2.default.boxClick(this.props.tid, this.props.did, this.props.e);
-			_task2.default.rerender();
-		},
-		render: function render() {
-			var cname = "bb";
-			switch (this.props.s) {
-				case 0:
-					cname += " b";
-					break;
-				case 1:
-					cname += " w";
-					break;
-				case 2:
-					cname += " r";
-					break;
-				case 3:
-					cname += " g";
-					break;
-			}
-			if (this.props.e) {
-				cname += " bbor";
-			}
-			return _react2.default.createElement('div', { className: cname, onClick: this.clickHandle });
-		}
-	});
-
-	exports.default = WeekView;
-
-/***/ },
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _task = __webpack_require__(183);
-
-	var _task2 = _interopRequireDefault(_task);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var DayView = _react2.default.createClass({
-		displayName: 'DayView',
-
-		getInitialState: function getInitialState() {
-			return {};
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ id: 'dayPanel' },
-				this.props.tasks.map(function (t) {
-					return _react2.default.createElement(DayBox, _extends({}, t, { key: t.id }));
-				})
-			);
-		}
-	});
-
-	var DayBox = _react2.default.createClass({
-		displayName: 'DayBox',
-
-		render: function render() {
-			var day = _task2.default.dayOfWeek();
-			var quant = "";
-			switch (this.props.unit) {
-				case 1:
-					quant = this.props.quantity + " reps";
-					break;
-				case 2:
-					quant = this.props.quantity + " mins";
-					break;
-			}
-			return _react2.default.createElement(
-				'div',
-				{ className: 'dayBox', id: this.props.id },
-				_react2.default.createElement(
-					'div',
-					{ className: 'dayBoxTop' },
-					this.props.name,
-					_react2.default.createElement('br', null),
-					quant
-				),
-				_react2.default.createElement(ButtonBox, { tid: this.props.id, s: this.props.daysDone[day], did: day })
-			);
-		}
-	});
-
-	var ButtonBox = _react2.default.createClass({
-		displayName: 'ButtonBox',
-
-		clickHandle: function clickHandle() {
-			_task2.default.boxClick(this.props.tid, this.props.did, false);
-			_task2.default.rerender();
-		},
-		render: function render() {
-			var cname = "bb";
-			switch (this.props.s) {
-				case 0:
-					cname += " b";
-					break;
-				case 1:
-					cname += " w";
-					break;
-				case 2:
-					cname += " r";
-					break;
-				case 3:
-					cname += " g";
-					break;
-			}
-			return _react2.default.createElement('div', { className: cname, onClick: this.clickHandle });
-		}
-	});
-
-	exports.default = DayView;
-
-/***/ },
+/* 189 */,
+/* 190 */,
 /* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -22830,6 +22467,46 @@
 
 	// module
 	exports.push([module.id, "body {\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n.transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n@font-face {\n  font-family: \"PT Sans\";\n  src: url(" + __webpack_require__(187) + ") format(\"truetype\");\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\n#navbar {\n  height: 60px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  color: black;\n  text-decoration: none;\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #4E4E4E;\n  color: #FFFFFF;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(194);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(188)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/less-loader/index.js!./options.less", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/less-loader/index.js!./options.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(186)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n#navbar .navbutton {\n  width: 200px;\n}\n", ""]);
 
 	// exports
 

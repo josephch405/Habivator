@@ -1,0 +1,52 @@
+@brightGreen: #69ff1b;
+
+
+body {
+    height: auto;
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+}
+
+.transit {
+    transition: .08s ease-in-out;
+    -moz-transition: .08s ease-in-out;
+    -webkit-transition: .08s ease-in-out;
+}
+
+@font-face {
+    font-family: "PT Sans";
+    src: url('../src/fonts/ptsans.ttf') format("truetype");
+}
+
+
+html {
+    background-color: #DDDDDD;
+}
+
+* {
+    font-family: PT Sans;
+}
+
+
+#navbar {
+    height: 60px;
+    box-shadow: 0 0 2px 0 black;
+    .navbutton {
+        font-family: PT Sans;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        float: left;
+        height: 20px;
+        font-size: 20px;
+        background-color: #FFFFFF;
+        color:black;
+        text-decoration: none;
+        .transit;
+        &:hover {
+            background-color: #4E4E4E;
+            color: #FFFFFF;
+        }
+    }
+}

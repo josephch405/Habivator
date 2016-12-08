@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'build');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-    entry: {popup:APP_DIR + '/main.jsx'},
+    entry: {popup:APP_DIR + '/main.jsx', options:APP_DIR + '/options.jsx'},
     output: {
         path: BUILD_DIR,
         filename: '/js/[name].bundle.js'
