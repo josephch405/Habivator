@@ -1,5 +1,5 @@
 import React from 'react';
-import Tlib from './task.jsx';
+import {Tlib} from './task.jsx';
 
 const DayView = React.createClass({
 	getInitialState: function(){

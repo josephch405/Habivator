@@ -21899,6 +21899,7 @@
 	            toss: _t.toss ? _t.toss : false
 	        };
 	        this.tasks.push(t);
+	        this.pruneTasks();
 	        this.push();
 	    },
 	    get: function get(i) {

@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import WeekView from './weekview.jsx';
 import DayView from './dayview.jsx';
-import Tlib from './task.jsx'
+import {Tlib} from './task.jsx'
 
 //require("./fonts/ptsans.ttf")
 require("./base.less");

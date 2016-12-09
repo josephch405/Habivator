@@ -62,8 +62,6 @@
 
 	var _task = __webpack_require__(183);
 
-	var _task2 = _interopRequireDefault(_task);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//require("./fonts/ptsans.ttf")
@@ -74,10 +72,10 @@
 		displayName: 'PopupApp',
 
 		getInitialState: function getInitialState() {
-			_task2.default.rerenderHook = this.setTasks;
-			_task2.default.pull();
+			_task.Tlib.rerenderHook = this.setTasks;
+			_task.Tlib.pull();
 			return { mode: "WEEK",
-				tasks: _task2.default.tasks };
+				tasks: _task.Tlib.tasks };
 		},
 		setMode: function setMode(m) {
 			this.setState({ mode: m });
@@ -21842,6 +21840,7 @@
 	            toss: _t.toss ? _t.toss : false
 	        };
 	        this.tasks.push(t);
+	        this.pruneTasks();
 	        this.push();
 	    },
 	    get: function get(i) {
@@ -37252,8 +37251,6 @@
 
 	var _task = __webpack_require__(183);
 
-	var _task2 = _interopRequireDefault(_task);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ArchiveWeekView = _react2.default.createClass({
@@ -37312,7 +37309,7 @@
 				_react2.default.createElement(
 					'div',
 					{ onClick: function onClick() {
-							_task2.default.create();_task2.default.rerender();
+							_task.Tlib.create();_task.Tlib.rerender();
 						} },
 					'Add New Habit'
 				)
@@ -37376,7 +37373,7 @@
 				_react2.default.createElement(
 					'div',
 					{ onClick: function onClick() {
-							_task2.default.create();_task2.default.rerender();
+							_task.Tlib.create();_task.Tlib.rerender();
 						} },
 					'Add New Habit'
 				)
@@ -37396,18 +37393,18 @@
 			});
 		},
 		nameChange: function nameChange(e) {
-			_task2.default.get(this.props.id).name = e.target.value;
-			_task2.default.rerender();
+			_task.Tlib.get(this.props.id).name = e.target.value;
+			_task.Tlib.rerender();
 		},
 		quantChange: function quantChange(e) {
 			if (parseInt(e.target.value) > 0) {
-				_task2.default.get(this.props.id).quantity = parseInt(e.target.value);
-				_task2.default.rerender();
+				_task.Tlib.get(this.props.id).quantity = parseInt(e.target.value);
+				_task.Tlib.rerender();
 			}
 		},
 		categChange: function categChange() {
-			_task2.default.get(this.props.id).unit = (_task2.default.get(this.props.id).unit + 1) % 3;
-			_task2.default.rerender();
+			_task.Tlib.get(this.props.id).unit = (_task.Tlib.get(this.props.id).unit + 1) % 3;
+			_task.Tlib.rerender();
 		},
 		render: function render() {
 			var _this = this;
@@ -37482,7 +37479,7 @@
 				),
 				buttonRow,
 				_react2.default.createElement('div', { className: 'taskDelete', onClick: function onClick() {
-						_task2.default.remove(_this.props.id);_task2.default.rerender();
+						_task.Tlib.remove(_this.props.id);_task.Tlib.rerender();
 					} }),
 				_react2.default.createElement('div', { className: 'taskEdit', onClick: this.toggleEdit })
 			);
@@ -37493,8 +37490,8 @@
 		displayName: 'ButtonBox',
 
 		clickHandle: function clickHandle() {
-			_task2.default.boxClick(this.props.tid, this.props.did, this.props.e);
-			_task2.default.rerender();
+			_task.Tlib.boxClick(this.props.tid, this.props.did, this.props.e);
+			_task.Tlib.rerender();
 		},
 		render: function render() {
 			var cname = "bb";
@@ -37539,8 +37536,6 @@
 
 	var _task = __webpack_require__(183);
 
-	var _task2 = _interopRequireDefault(_task);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DayView = _react2.default.createClass({
@@ -37564,7 +37559,7 @@
 		displayName: 'DayBox',
 
 		render: function render() {
-			var day = _task2.default.dayOfWeek();
+			var day = _task.Tlib.dayOfWeek();
 			var quant = "";
 			switch (this.props.unit) {
 				case 1:
@@ -37593,8 +37588,8 @@
 		displayName: 'ButtonBox',
 
 		clickHandle: function clickHandle() {
-			_task2.default.boxClick(this.props.tid, this.props.did, false);
-			_task2.default.rerender();
+			_task.Tlib.boxClick(this.props.tid, this.props.did, false);
+			_task.Tlib.rerender();
 		},
 		render: function render() {
 			var cname = "bb";
