@@ -1,5 +1,8 @@
 import React from 'react';
-import {Tlib} from './task.jsx';
+
+const dayOfWeek = function(){
+	return (new Date().getDay() + 6) % 7;
+}
 
 const DayView = React.createClass({
 	getInitialState: function(){
@@ -7,19 +10,19 @@ const DayView = React.createClass({
 	},
 	render: function(){
 		return (<div id = "dayPanel">
-			{this.props.tasks.map((t) => (<DayBox {...t} key = {t.id}/>))}
+			{this.props.tasks.map((t) => (<DayBox {...t} toggleDaysDone = {this.props.toggleDaysDone} key = {t.id}/>))}
 			</div>);
 	}
 })
 
 const DayBox = React.createClass({
 	render:function(){
-		var day = Tlib.dayOfWeek();
+		var day = dayOfWeek();
 		var quant = "";
 		switch(this.props.unit){
-			case 1: quant = this.props.quantity + " reps";
+			case 1: quant = this.props.quant + " reps";
 				break;
-			case 2: quant = this.props.quantity + " mins";
+			case 2: quant = this.props.quant + " mins";
 				break;
 		}
 		return (<div className = "dayBox" id = {this.props.id}>
@@ -27,7 +30,7 @@ const DayBox = React.createClass({
 				{this.props.name}<br/>
 				{quant}
 			</div>
-			<ButtonBox tid = {this.props.id} s = {this.props.daysDone[day]} did = {day}/>
+			<ButtonBox tid = {this.props.id} toggleDaysDone = {this.props.toggleDaysDone} s = {this.props.daysDone[day]} did = {day}/>
 				
 		</div>)
 	}
@@ -35,10 +38,6 @@ const DayBox = React.createClass({
 
 
 const ButtonBox = React.createClass({
-	clickHandle: function(){
-		Tlib.boxClick(this.props.tid, this.props.did, false);
-		Tlib.rerender();
-	},
 	render:function(){
 		var cname = "bb";
 		switch(this.props.s){
@@ -55,7 +54,7 @@ const ButtonBox = React.createClass({
 				cname += " g";
 				break;
 		}
-		return(<div className = {cname} onClick = {this.clickHandle}></div>);
+		return(<div className = {cname} onClick = {()=>this.props.toggleDaysDone(this.props.tid, dayOfWeek())}></div>);
 	}
 })
 

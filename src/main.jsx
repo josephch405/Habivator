@@ -1,19 +1,21 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant } from './actions.js'
+import { Provider, connect } from 'react-redux'
+import { createStore } from 'redux'
+import mainApp from './reducers.js';
 import WeekView from './weekview.jsx';
 import DayView from './dayview.jsx';
-import {Tlib} from './task.jsx'
 
 //require("./fonts/ptsans.ttf")
 require("./base.less");
 require("./main.less");
 
-var PopupApp = React.createClass({
+let store = createStore(mainApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+const PopupApp = React.createClass({
 	getInitialState: function(){
-		Tlib.rerenderHook = this.setTasks;
-		Tlib.pull();
-		return {mode:"WEEK", 
-			tasks:Tlib.tasks};
+		return {mode:"WEEK"};
 	},
 	setMode: function(m){
 		this.setState({mode:m})
@@ -23,9 +25,8 @@ var PopupApp = React.createClass({
 	},
 	render: function(){
 		var lowerContent;
-		if(this.state.mode == "WEEK"){lowerContent = (<WeekView  tasks = {this.state.tasks}/>)}
-		else { lowerContent = (<DayView tasks = {this.state.tasks}/>)};
-
+		if(this.state.mode == "WEEK"){lowerContent = (<WeekView {...this.props}/>)}
+		else { lowerContent = (<DayView {...this.props}/>)};
 		return(<div>
 		<NavBar mode = {this.state.mode} setMode = {this.setMode}/>
 		{lowerContent}
@@ -33,7 +34,33 @@ var PopupApp = React.createClass({
 	}
 })
 
-var NavBar = React.createClass({
+const mapStateToProps = (state) => {
+	return {
+		tasks: state.tasks
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTask: () => {
+      dispatch(addTask())
+    },
+    toggleDaysDone: (tid, did) => {
+      dispatch(toggleDaysDone(tid, did))
+    },
+    toggleActiveDays: (tid, did) => {
+      dispatch(toggleActiveDays(tid, did))
+    },
+    toggleUnit: (tid) => {
+      dispatch(toggleUnit(tid))
+    },
+    setQuant: (tid, q) => {
+      dispatch(setQuant(tid, q))
+    }
+  }
+}
+
+const NavBar = React.createClass({
 	render: function(){
 		return(
 			<div id = "navbar">
@@ -45,5 +72,9 @@ var NavBar = React.createClass({
 	}
 })
 
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PopupApp)
 
-render(<PopupApp/>, document.getElementById('app'));
+render(<Provider store = {store}><App/></Provider>, document.getElementById('app'));

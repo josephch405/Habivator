@@ -20,18 +20,18 @@ export function addTask() {
   return { type: ADD_TASK }
 }
 
-export function toggleDaysdone(taskIndex, dayIndex) {
-  return { type: TOGGLE_DAYSDONE, taskIndex, dayIndex }
+export function toggleDaysDone(taskId, dayIndex) {
+  return { type: TOGGLE_DAYSDONE, taskId, dayIndex }
 }
 
-export function toggleActivedays(taskIndex, dayIndex) {
-  return { type: TOGGLE_ACTIVEDAYS, taskIndex, dayIndex }
+export function toggleActiveDays(taskId, dayIndex) {
+  return { type: TOGGLE_ACTIVEDAYS, taskId, dayIndex }
 }
 
-export function toggleUnit(taskIndex) {
-  return { type: TOGGLE_UNIT, taskIndex }
+export function toggleUnit(taskId) {
+  return { type: TOGGLE_UNIT, taskId }
 }
 
-export function setQuant(taskIndex, quant) {
-  return { type: SET_QUANT, taskIndex, quant }
+export function setQuant(taskId, quant) {
+  return { type: SET_QUANT, taskId, quant }
 }
