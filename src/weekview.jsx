@@ -23,6 +23,10 @@ const ArchiveWeekView = React.createClass({
 })
 
 const WeekView = React.createClass({
+	componentWillMount: function(){
+		console.log("test");
+		this.props.prune();
+	},
 	render: function(){
 		//functions for callbacks, etc; excluding the task in props
 		var _fs = Object.assign({}, this.props);

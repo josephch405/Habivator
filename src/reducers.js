@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux'
-import { ADD_TASK, TOGGLE_DAYSDONE, TOGGLE_ACTIVEDAYS, TOGGLE_UNIT, SET_QUANT } from './actions'
+import { ADD_TASK, TOGGLE_DAYSDONE, TOGGLE_ACTIVEDAYS, TOGGLE_UNIT, SET_QUANT, PRUNE, SET_TIME } from './actions'
+import moment from 'moment';
+
+const dayOfWeek = () => (new Date().getDay() + 6) % 7;
+
+const revealUpTo = (weekStart) => Math.min(moment().diff(moment(weekStart), 'days'), 6);
 
 const blankTask = {
     name: "New Task",
@@ -37,7 +42,7 @@ const daysDone = (state = [2,2,2,2,2,2,2], action, active) => {
     switch (action.type) {
         case TOGGLE_DAYSDONE:
             //if the day is toggleable, toggle between red and green
-            if (active)
+            if (active[di])
                 _o[di] = (_o[di] == 2) ? 3 : 2;
             //otherwise, return black
             else
@@ -45,19 +50,36 @@ const daysDone = (state = [2,2,2,2,2,2,2], action, active) => {
             return _o;
         case TOGGLE_ACTIVEDAYS:
             //if the day is toggleable, and is black/white, set to red
-            if (active && _o[di] < 2)
+            if (active[di] && _o[di] < 2)
                 _o[di] = 2;
             //otherwise, set to black
-            else if (!active)
+            else if (!active[di])
                 _o[di] = 0;
-            return _o
+            return _o;
+        case PRUNE:
+            var cutoff = action.dayIndex;
+            console.log("prune run")
+            //dates before cutoff
+            for (var i = 0; i <= cutoff; i ++){
+                if (active[i] && _o[i] < 2)
+                        _o[i] = 2;
+                else if (!active[i])
+                    _o[i] = 0;
+            }
+            for (var i = cutoff + 1; i <= 6; i ++){
+                if (active[i])
+                    _o[i] = 1;
+                else
+                    _o[i] = 0;
+            }
+            return _o;
         default:
             return state;
     }
 }
 
 const task = (state = {}, action) => {
-    if (state.id != action.taskId) {
+    if (action.taskId && state.id != action.taskId) {
         return state;
     }
     var _o = Object.assign({}, state);
@@ -65,13 +87,10 @@ const task = (state = {}, action) => {
 
     switch (action.type) {
         case TOGGLE_DAYSDONE:
-            _o.activeDays = activeDays(state.activeDays, action);
-            _o.daysDone = daysDone(state.daysDone, action, _o.activeDays[di]);
-            return _o;
-
         case TOGGLE_ACTIVEDAYS:
+        case PRUNE:
             _o.activeDays = activeDays(state.activeDays, action);
-            _o.daysDone = daysDone(state.daysDone, action, _o.activeDays[di]);
+            _o.daysDone = daysDone(state.daysDone, action, _o.activeDays);
             return _o;
 
         case TOGGLE_UNIT:
@@ -99,8 +118,36 @@ const tasks = (state = [blankTask], action) => {
     }
 }
 
-const mainApp = combineReducers({
-    tasks
-})
+const weekDate = (state = moment().startOf('isoweek').toString(), action) => {
+    switch (action.type){
+        case SET_TIME:
+            return moment(action.time).startOf('isoweek').toString();
+        default:
+            return state;
+    }
+}
 
-export default mainApp
+export default function mainApp(state = {}, action){
+    var _o = Object.assign({}, state);
+    switch (action.type){
+        case PRUNE:
+            var cutoff = revealUpTo(state.weekDate);
+            action.dayIndex = cutoff;
+            return {
+                tasks: tasks(state.tasks, action),
+                weekDate: weekDate(state.weekDate, action)
+            };
+        case ADD_TASK:
+        case TOGGLE_DAYSDONE:
+        case TOGGLE_ACTIVEDAYS:
+        case TOGGLE_UNIT:
+        case SET_QUANT:
+        default: 
+            var _o = {
+                tasks: tasks(state.tasks, action),
+                weekDate: weekDate(state.weekDate, action)
+            };
+            _o = mainApp(_o, {type: PRUNE});
+            return _o;
+    }
+}

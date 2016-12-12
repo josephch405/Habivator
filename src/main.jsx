@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant } from './actions.js'
+import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, prune, setTime } from './actions.js'
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
 import mainApp from './reducers.js';
@@ -56,6 +56,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setQuant: (tid, q) => {
       dispatch(setQuant(tid, q))
+    },
+    prune: (t) => {
+      dispatch(prune(t))
     }
   }
 }
