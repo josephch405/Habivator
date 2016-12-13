@@ -3,8 +3,8 @@ import {render} from 'react-dom';
 import Tlib from './task.jsx'
 
 //require("./fonts/ptsans.ttf")
-require("./base.less");
-require("./options.less");
+require("./less/base.less");
+require("./less/options.less");
 
 var OptionsApp = React.createClass({
 	getInitialState: function(){

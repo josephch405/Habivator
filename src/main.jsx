@@ -1,19 +1,30 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, prune, setTime } from './actions.js'
+import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, setTime, setName, pullPopup, load, removeTask } from './actions.js'
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
-import mainApp from './reducers.js';
+import popupApp from './reducers.js';
 import WeekView from './weekview.jsx';
 import DayView from './dayview.jsx';
+import { habisave } from './habisave'
 
 //require("./fonts/ptsans.ttf")
-require("./base.less");
-require("./main.less");
+require("./less/base.less");
+require("./less/main.less");
 
-let store = createStore(mainApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+let store = createStore(popupApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+const push = (popupStore)=>{
+    chrome.storage.sync.set({'popupStore': popupStore}, function() {
+          console.log('tasks saved');
+    });
+}
 
 const PopupApp = React.createClass({
+	componentWillMount: function(){
+		var a = this;
+		habisave.pullPopup(function(_s){console.log(_s.popupStoreState);a.props.load(_s.popupStoreState)});
+	},
 	getInitialState: function(){
 		return {mode:"WEEK"};
 	},
@@ -45,6 +56,9 @@ const mapDispatchToProps = (dispatch) => {
     addTask: () => {
       dispatch(addTask())
     },
+    removeTask: (tid) => {
+      dispatch(removeTask(tid))
+    },
     toggleDaysDone: (tid, did) => {
       dispatch(toggleDaysDone(tid, did))
     },
@@ -57,8 +71,11 @@ const mapDispatchToProps = (dispatch) => {
     setQuant: (tid, q) => {
       dispatch(setQuant(tid, q))
     },
-    prune: (t) => {
-      dispatch(prune(t))
+    load:(_state)=>{
+    	dispatch(load(_state))
+    },
+    setName: (tid, name)=>{
+    	dispatch(setName(tid, name));
     }
   }
 }
@@ -79,5 +96,6 @@ const App = connect(
   mapStateToProps,
   mapDispatchToProps
 )(PopupApp)
+
 
 render(<Provider store = {store}><App/></Provider>, document.getElementById('app'));

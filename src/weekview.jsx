@@ -23,10 +23,6 @@ const ArchiveWeekView = React.createClass({
 })
 
 const WeekView = React.createClass({
-	componentWillMount: function(){
-		console.log("test");
-		this.props.prune();
-	},
 	render: function(){
 		//functions for callbacks, etc; excluding the task in props
 		var _fs = Object.assign({}, this.props);
@@ -45,7 +41,7 @@ const WeekView = React.createClass({
 			</div>
 
 			{this.props.tasks.map((t) => (<TaskRow {...t} {..._fs} key = {t.id}/>))}
-			<div onClick = {this.props.addTask}>Add New Habit</div>
+			<div id = "addNewRow" onClick = {this.props.addTask}>+ Add New Habit</div>
 			</div>);
 	}
 })
@@ -60,7 +56,7 @@ const TaskRow = React.createClass({
 		});
 	},
 	nameChange : function(e){
-		//
+		this.props.setName(this.props.id, e.target.value);
 	},
 	quantChange : function(e){
 		if (parseInt(e.target.value) > 0){
@@ -105,7 +101,7 @@ const TaskRow = React.createClass({
 			<div className = "karmaFlair"/>
 			<div className = "taskName">{name}{quant}</div>
 			{buttonRow}
-			<div className = "taskDelete" onClick = {()=>{}/*() => {Tlib.remove(this.props.id); Tlib.rerender()}*/}/>
+			<div className = "taskDelete" onClick = {()=>{this.props.removeTask(this.props.id)}/*() => {Tlib.remove(this.props.id); Tlib.rerender()}*/}/>
 			<div className = "taskEdit" onClick = {this.toggleEdit}/>
 		</div>)
 	}

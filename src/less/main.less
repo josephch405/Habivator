@@ -33,7 +33,12 @@ body {
             text-align: center;
         }
     }
+
     .taskRow {
+        .transit;
+        &:hover{
+            background-color: #EEEEEE;
+        }
         height: 26px;
         padding: 4px;
         //border-top: solid 2px #DDDDDD;
@@ -96,7 +101,7 @@ body {
                 background-color: #888888;
             }
             &.w {
-                background-color: white;
+                background-color: rgba(255,255,255,0);;
             }
             &.bbor {
                 border: solid 3px #888888;
@@ -123,9 +128,16 @@ body {
             }
         }
     }
+    #addNewRow{
+        .taskRow;
+        padding-left: 20px;
+        font-size:18px;
+        color: #555555;
+    }
 }
 
 #dayPanel{
+    display:inline-block;
     padding: 30px;
     .dayBox{
         float:left;
@@ -161,7 +173,7 @@ body {
             background-color: #888888;
         }
         &.w {
-            background-color: white;
+            background-color: rgba(255,255,255,0);
         }
         &.bbor {
             border: solid 3px #888888;
