@@ -1,14 +1,25 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Tlib from './task.jsx'
+import { Provider, connect } from 'react-redux'
+import { createStore } from 'redux'
+import { load } from './actions.js'
+
+import { optionsApp } from './reducers.js';
+import WeekView from './weekview.jsx';
+import { habisave } from './habisave'
 
 //require("./fonts/ptsans.ttf")
 require("./less/base.less");
 require("./less/options.less");
 
+const store = createStore(optionsApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
 var OptionsApp = React.createClass({
+	componentWillMount: function(){
+		var b = this;
+		habisave.pullOptions(function(_s){b.props.load(_s.optionsStoreState)});
+	},
 	getInitialState: function(){
-		Tlib.pull();
 		return {mode:"CHARTS"};
 	},
 	setMode: function(m){
@@ -19,19 +30,19 @@ var OptionsApp = React.createClass({
 
 		switch(this.state.mode){
 			case "CHARTS":
-				lowerContent = <ChartsView/>;
+				lowerContent = <ChartsView {...this.props}/>;
 				break;
 
 			case "GRAPH":
-				lowerContent = <GraphView/>;
+				lowerContent = <GraphView {...this.props}/>;
 				break;
 
 			case "ADVICE":
-				lowerContent = <AdviceView/>;
+				lowerContent = <AdviceView {...this.props}/>;
 				break;
 
 			case "SETTINGS":
-				lowerContent = <SettingsView/>;
+				lowerContent = <SettingsView {...this.props}/>;
 				break;
 		}
 
@@ -41,6 +52,25 @@ var OptionsApp = React.createClass({
 		</div>);
 	}
 })
+
+const mapStateToProps = (state) => {
+	return {
+		archTasks: state.archTasks,
+		settings: state.settings,
+		current: state.current
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+   /* removeTask: (tid) => {
+      dispatch(removeTask(tid))
+    },*/
+    load:(_state) => {
+    	dispatch(load(_state))
+    }
+  }
+}
 
 var NavBar = React.createClass({
 	render: function(){
@@ -57,7 +87,8 @@ var NavBar = React.createClass({
 
 var ChartsView = React.createClass({
 	render: function(){
-		return (<div>CHARTS</div>);
+		var b = this.props.archTasks.length + "";
+		return (<div>CHARTSz<br/>{b}</div>);
 	}
 })
 
@@ -79,4 +110,12 @@ var SettingsView = React.createClass({
 	}
 })
 
-render(<OptionsApp/>, document.getElementById('optionsApp'));
+
+
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OptionsApp)
+
+
+render(<Provider store = {store}><App/></Provider>, document.getElementById('optionsApp'));

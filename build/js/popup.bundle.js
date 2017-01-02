@@ -60,31 +60,35 @@
 
 	var _reducers = __webpack_require__(342);
 
-	var _reducers2 = _interopRequireDefault(_reducers);
-
-	var _weekview = __webpack_require__(343);
+	var _weekview = __webpack_require__(344);
 
 	var _weekview2 = _interopRequireDefault(_weekview);
 
-	var _dayview = __webpack_require__(344);
+	var _dayview = __webpack_require__(345);
 
 	var _dayview2 = _interopRequireDefault(_dayview);
 
-	var _habisave = __webpack_require__(347);
+	var _habisave = __webpack_require__(343);
+
+	var _moment = __webpack_require__(184);
+
+	var _moment2 = _interopRequireDefault(_moment);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//require("./fonts/ptsans.ttf")
-	__webpack_require__(348);
-	__webpack_require__(350);
+	__webpack_require__(295);
+	__webpack_require__(346);
 
-	var store = (0, _redux.createStore)(_reducers2.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+	var store = (0, _redux.createStore)(_reducers.popupApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-	var push = function push(popupStore) {
-		chrome.storage.sync.set({ 'popupStore': popupStore }, function () {
-			console.log('tasks saved');
-		});
-	};
+	/*
+	const push = (popupStore) => {
+	    chrome.storage.sync.set({'popupStore': popupStore}, function() {
+	          console.log('tasks saved');
+	    });
+	}
+	*/
 
 	var PopupApp = _react2.default.createClass({
 		displayName: 'PopupApp',
@@ -92,7 +96,7 @@
 		componentWillMount: function componentWillMount() {
 			var a = this;
 			_habisave.habisave.pullPopup(function (_s) {
-				console.log(_s.popupStoreState);a.props.load(_s.popupStoreState);
+				a.props.load(_s.popupStoreState);
 			});
 		},
 		getInitialState: function getInitialState() {
@@ -114,7 +118,7 @@
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement(NavBar, { mode: this.state.mode, setMode: this.setMode }),
+				_react2.default.createElement(NavBar, { weekEnded: this.props.weekEnded, mode: this.state.mode, setMode: this.setMode }),
 				lowerContent
 			);
 		}
@@ -122,7 +126,8 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
-			tasks: state.tasks
+			tasks: state.tasks,
+			weekEnded: (0, _moment2.default)().diff((0, _moment2.default)(state.weekDate), 'days') > 6
 		};
 	};
 
@@ -161,6 +166,14 @@
 		render: function render() {
 			var _this = this;
 
+			var finishWeek;
+			if (this.props.weekEnded) {
+				finishWeek = _react2.default.createElement(
+					'a',
+					{ href: '#', id: 'finishWeek', className: 'navbutton', onClick: _habisave.habisave.weekendTally },
+					'Finish Week'
+				);
+			}
 			return _react2.default.createElement(
 				'div',
 				{ id: 'navbar' },
@@ -182,7 +195,8 @@
 					'a',
 					{ href: '#', className: 'navbutton' },
 					'More'
-				)
+				),
+				finishWeek
 			);
 		}
 	});
@@ -21867,178 +21881,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 183 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.ATlib = exports.Tlib = undefined;
-
-	var _moment = __webpack_require__(184);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Tlib = {
-	    weekStart: null,
-	    tasks: [],
-	    create: function create(_t) {
-	        if (_t == null) {
-	            _t = {};
-	        }
-	        var t = {
-	            name: _t.name ? _t.name : "New Task",
-	            id: _t.id ? _t.id : this.nextId(),
-	            karma: _t.karma ? _t.karma : 0,
-	            activeDays: [true, true, true, true, true, true, true],
-	            daysDone: [2, 2, 2, 2, 2, 2, 2], //0: b, 1: w, 2: r, 3: g
-	            quantity: _t.quantity ? _t.quantity : 0,
-	            unit: _t.unit ? _t.unit : 0,
-	            toss: _t.toss ? _t.toss : false
-	        };
-	        this.tasks.push(t);
-	        this.pruneTasks();
-	        this.push();
-	    },
-	    get: function get(i) {
-	        for (var _t in this.tasks) {
-	            if (this.tasks[_t].id == i) return this.tasks[_t];
-	        }
-	        return null;
-	    },
-	    rerender: function rerender() {
-	        this.rerenderHook(this.tasks);
-	    },
-	    rerenderHook: function rerenderHook() {},
-	    nextId: function nextId() {
-	        var i = 0;
-	        while (this.tasks[i]) {
-	            i++;
-	        }return i;
-	    },
-	    boxClick: function boxClick(tid, did, e) {
-	        var _t = this.get(tid);
-	        if (!e) {
-	            if (_t.activeDays[did]) {
-	                _t.daysDone[did] = _t.daysDone[did] == 2 ? 3 : 2;
-	            }
-	            this.push();
-	            return;
-	        }
-	        _t.activeDays[did] = !_t.activeDays[did];
-	        _t.daysDone[did] = _t.activeDays[did] ? 2 : 0;
-	        this.push();
-	    },
-	    remove: function remove(id) {
-	        for (var _t in this.tasks) {
-	            if (this.tasks[_t].id == id) {
-	                this.tasks.splice(_t, 1);
-	                return;
-	            }
-	        }
-	        this.push();
-	    },
-	    dayOfWeek: function dayOfWeek() {
-	        return (new Date().getDay() + 6) % 7;
-	    },
-	    revealUpTo: function revealUpTo() {
-	        console.log((0, _moment2.default)());
-	        console.log(this.weekStart);
-	        return Math.min((0, _moment2.default)().diff(this.weekStart, 'days'), 6);
-	    },
-	    push: function push() {
-	        chrome.storage.sync.set({ 'tasks': this.tasks }, function () {
-	            console.log('tasks saved');
-	        });
-	        chrome.storage.sync.set({ 'weekStart': this.weekStart.toString() }, function () {
-	            console.log('weekStart saved');
-	        });
-	    },
-	    pull: function pull() {
-	        var a = this;
-	        chrome.storage.sync.get("tasks", function (t) {
-	            a.tasks = t.tasks;
-	            console.log(t);
-	            a.rerender();
-
-	            chrome.storage.sync.get("weekStart", function (w) {
-	                if ((0, _moment2.default)(w.weekStart).isValid()) {
-	                    a.weekStart = (0, _moment2.default)(w.weekStart).startOf('isoweek');
-	                } else {
-	                    a.weekStart = (0, _moment2.default)().startOf('isoweek');
-	                }
-	                a.pruneTasks();
-	                a.rerender();
-	                a.push();
-	                console.log(a.revealUpTo());
-	            });
-	        });
-	    },
-	    pruneTasks: function pruneTasks() {
-	        var cutoff = this.revealUpTo();
-	        for (var i = 0; i < this.tasks.length; i++) {
-	            var t = this.tasks[i];
-	            //go through dates before cutoff
-	            for (var ii = 0; ii <= cutoff; ii++) {
-	                if (t.activeDays[ii]) {
-	                    if (t.daysDone[ii] < 2) t.daysDone[ii] = 2;
-	                } else {
-	                    t.daysDone[ii] = 0;
-	                }
-	            }
-	            for (var ii = cutoff + 1; ii <= 6; ii++) {
-	                if (t.activeDays[ii]) {
-	                    t.daysDone[ii] = 1;
-	                } else {
-	                    t.daysDone[ii] = 0;
-	                }
-	            }
-	        }
-	    }
-	};
-
-	var ATlib = {
-	    archTasks: []
-
-	};
-
-	exports.Tlib = Tlib;
-	exports.ATlib = ATlib;
-
-	/*
-	    calculations
-
-	    this.calculateTaskPercentage = function(){
-	        var tempTotalOpen = 0;
-	        var tempTotalCounted = 0;
-
-	        for (var ii=0; ii<this.daysDone.length; ii++){
-	            if (this.daysDone[ii]>=2) {
-	                tempTotalOpen += 1;
-	            }
-	            if (this.daysDone[ii]==4) {
-	                tempTotalCounted += 1;
-	            }
-	        }
-
-	        if (tempTotalOpen == 0){
-	            return 1;
-	        }
-
-	        return tempTotalCounted/tempTotalOpen;
-	    }
-
-	    this.calculateKarma = function(){
-	        pTage = this.calculateTaskPercentage()*100;
-	        return .000059246*pTage*pTage*pTage - .011043 * pTage * pTage + 1.6045 * pTage - 67.867;
-	    }
-	*/
-
-/***/ },
+/* 183 */,
 /* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -36939,8 +36782,46 @@
 
 
 /***/ },
-/* 295 */,
-/* 296 */,
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(296);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(299)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./base.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./base.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(297)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "body {\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n.transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n@font-face {\n  font-family: \"PT Sans\";\n  src: url(" + __webpack_require__(298) + ") format(\"truetype\");\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\n#navbar {\n  height: 60px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  color: black;\n  text-decoration: none;\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #4E4E4E;\n  color: #FFFFFF;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 297 */
 /***/ function(module, exports) {
 
@@ -37274,20 +37155,23 @@
 	exports.setName = setName;
 	exports.setTime = setTime;
 	exports.load = load;
-	var ADD_TASK = exports.ADD_TASK = 'ADD_TASK';
-	var REMOVE_TASK = exports.REMOVE_TASK = 'REMOVE_TASK';
+	exports.setNotifInterv = setNotifInterv;
+	var ADD_TASK = exports.ADD_TASK = '1';
+	var REMOVE_TASK = exports.REMOVE_TASK = '2';
 
-	var TOGGLE_DAYSDONE = exports.TOGGLE_DAYSDONE = 'TOGGLE_DAYSDONE';
-	var TOGGLE_ACTIVEDAYS = exports.TOGGLE_ACTIVEDAYS = 'TOGGLE_ACTIVEDAYS';
-	var TOGGLE_UNIT = exports.TOGGLE_UNIT = 'TOGGLE_UNIT';
+	var TOGGLE_DAYSDONE = exports.TOGGLE_DAYSDONE = '3';
+	var TOGGLE_ACTIVEDAYS = exports.TOGGLE_ACTIVEDAYS = '4';
+	var TOGGLE_UNIT = exports.TOGGLE_UNIT = '5';
 
-	var SET_QUANT = exports.SET_QUANT = 'SET_QUANT';
-	var SET_NAME = exports.SET_NAME = 'SET_NAME';
+	var SET_QUANT = exports.SET_QUANT = '6';
+	var SET_NAME = exports.SET_NAME = '7';
 
-	var PRUNE = exports.PRUNE = 'PRUNE';
-	var SET_TIME = exports.SET_TIME = 'SET_TIME';
+	var PRUNE = exports.PRUNE = '8';
+	var SET_TIME = exports.SET_TIME = '9';
 
-	var LOAD = exports.LOAD = 'LOAD';
+	var LOAD = exports.LOAD = '10';
+
+	var SET_NOTIF_INTERV = exports.SET_NOTIF_INTERV = '11';
 
 	/*
 	 * action creators
@@ -37327,6 +37211,10 @@
 
 	function load(_state) {
 	  return { type: LOAD, _state: _state };
+	}
+
+	function setNotifInterv(_state, target) {
+	  return { type: SET_NOTIF_INTERV, _state: _state, target: target };
 	}
 
 /***/ },
@@ -39356,11 +39244,6 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = popupApp;
-
 	var _redux = __webpack_require__(310);
 
 	var _actions = __webpack_require__(302);
@@ -39369,20 +39252,27 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _habisave = __webpack_require__(347);
+	var _habisave = __webpack_require__(343);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+	/* int - returns day of week, 0...6 (mon...sun)
+	 */
 	var dayOfWeek = function dayOfWeek() {
 	    return (new Date().getDay() + 6) % 7;
 	};
 
+	/* int - returns number of days to "prune" the week; takes in moment as param
+	 */
 	var revealUpTo = function revealUpTo(weekStart) {
 	    return Math.min((0, _moment2.default)().diff((0, _moment2.default)(weekStart), 'days'), 6);
 	};
 
+	/* Template for default, blank task
+	 *Use for field reference
+	 */
 	var blankTask = {
 	    name: "New Task",
 	    id: 0,
@@ -39394,6 +39284,8 @@
 	    toss: false
 	};
 
+	/* bool - returns if task with this id exists in passed in array
+	 */
 	var idOccupied = function idOccupied(tasks, id) {
 	    for (var i = 0; i < tasks.length; i++) {
 	        if (tasks[i].id == id) {
@@ -39503,16 +39395,11 @@
 	    switch (action.type) {
 	        case _actions.ADD_TASK:
 	            var _t = Object.assign({}, blankTask);
-	            console.log("TID");
-	            console.log(nextId(state));
-	            console.log(state);
 	            _t.id = nextId(state);
 	            return [].concat(_toConsumableArray(state), [_t]);
 	        case _actions.REMOVE_TASK:
-	            console.log("RMT");
 	            var _o = Object.assign([], state);
 	            for (var i = 0; i < state.length; i++) {
-	                console.log(i);
 	                if (_o[i].id == action.taskId) {
 	                    _o.splice(i, 1);
 	                    return _o;
@@ -39539,7 +39426,10 @@
 	    }
 	};
 
-	function popupApp() {
+	/* handles "whole week data" objects that have a "weekDate" and "tasks"
+	 * should be renamed tbh
+	 */
+	var popupApp = function popupApp() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	    var action = arguments[1];
 
@@ -39550,7 +39440,6 @@
 	            action.dayIndex = cutoff;
 	            _o.tasks = tasks(state.tasks, action);
 	            _o.weekDate = weekDate(state.weekDate, action);
-	            console.log(_o);
 	            return _o;
 	        case _actions.LOAD:
 	            _o = action._state;
@@ -39561,6 +39450,8 @@
 	        case _actions.TOGGLE_ACTIVEDAYS:
 	        case _actions.TOGGLE_UNIT:
 	        case _actions.SET_QUANT:
+	        case _actions.SET_NAME:
+	        case _actions.REMOVE_TASK:
 	            var pushChanges = true;
 	        default:
 	            _o = {
@@ -39572,13 +39463,125 @@
 	            if (pushChanges) _habisave.habisave.pushPopup(_o);
 	            return _o;
 	    }
-	}
+	};
+
+	var settings = function settings() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    var action = arguments[1];
+
+	    var _o = Object.assign({}, state);
+	    switch (action.type) {
+	        case _actions.SET_NOTIF_INTERV:
+	            _o.notifInterv = action.target;
+	    }
+	    return _o;
+	};
+
+	var archTask = function archTask() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    var action = arguments[1];
+
+	    var _o = {
+	        tasks: tasks(state.tasks, _actions.LOAD),
+	        weekDate: weekDate(state.weekDate, _actions.LOAD)
+	    };
+	    return _o;
+	};
+
+	/* handles "whole archive data" as an array - essentially the "charts" in options
+	 */
+	var archTasks = function archTasks() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	    var action = arguments[1];
+
+	    var _o = Object.assign([], state);
+	    switch (action.type) {
+	        default:
+	            for (var i = 0; i < state.length; i++) {
+	                _o[i] = archTask(_o[i], _actions.LOAD);
+	            }
+	            return _o;
+	    }
+	};
+
+	/* reducer for entire "options" side - combines settings, archtasks and popupApp
+	*/
+	var optionsApp = function optionsApp() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    var action = arguments[1];
+
+	    var _o = Object.assign({}, state);
+	    switch (action.type) {
+	        case _actions.LOAD:
+	            _o = {
+	                settings: settings(action._state.settings, action),
+	                archTasks: archTasks(action._state.archTasks, action),
+	                current: popupApp(action._state.current, action)
+	            };
+	            break;
+	        default:
+	            _o = {
+	                settings: settings(state.settings, action),
+	                archTasks: archTasks(state.weekDate, action),
+	                current: popupApp(state.current, action)
+	            };
+	    }
+	    return _o;
+	};
+
+	module.exports = {
+	    popupApp: popupApp,
+	    optionsApp: optionsApp
+	};
 
 /***/ },
 /* 343 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var habisave = exports.habisave = {
+		pushPopup: function pushPopup(popupStoreState, callback) {
+			chrome.storage.sync.set({ 'popupStoreState': popupStoreState }, callback);
+		},
+		pullPopup: function pullPopup(callback) {
+			chrome.storage.sync.get("popupStoreState", callback);
+		},
+		pushOptions: function pushOptions(optionsStoreState, callback) {
+			console.log("pushOptions run");
+			chrome.storage.sync.set({ 'optionsStoreState': optionsStoreState }, callback);
+		},
+		pullOptions: function pullOptions(callback) {
+			console.log("pullOptions run");
+			chrome.storage.sync.get("optionsStoreState", callback);
+		},
+		weekendTally: function weekendTally() {
+			chrome.storage.sync.get("popupStoreState", function (a) {
+				chrome.storage.sync.get("optionsStoreState", function (b) {
+					//first, construct new arch set
+					var c = b.optionsStoreState ? b.optionsStoreState : {};
+					console.log("test");
+					console.log(b);
+					console.log(c);
+					if (Array.isArray(c)) c.archTasks.push(a.popupStoreState);else c.archTasks = [a.popupStoreState];
+					chrome.storage.sync.set({ 'optionsStoreState': c }, function () {
+						chrome.storage.sync.set({ 'popupStoreState': {} }, function () {
+							chrome.tabs.create({ url: "html/options.html" });
+						});
+					});
+				});
+			});
+		}
+	};
+
+/***/ },
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -39590,73 +39593,69 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _task = __webpack_require__(183);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ArchiveWeekView = _react2.default.createClass({
-		displayName: 'ArchiveWeekView',
+		displayName: "ArchiveWeekView",
 
 		render: function render() {
 			return _react2.default.createElement(
-				'div',
-				{ id: 'weekPanel' },
+				"div",
+				{ id: "weekPanel" },
 				_react2.default.createElement(
-					'div',
-					{ id: 'weekHeader' },
-					_react2.default.createElement('div', { id: 'o' }),
+					"div",
+					{ id: "weekHeader" },
+					_react2.default.createElement("div", { id: "o" }),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Mon'
+						"div",
+						{ className: "tag" },
+						"Mon"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Tue'
+						"div",
+						{ className: "tag" },
+						"Tue"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Wed'
+						"div",
+						{ className: "tag" },
+						"Wed"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Thu'
+						"div",
+						{ className: "tag" },
+						"Thu"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Fri'
+						"div",
+						{ className: "tag" },
+						"Fri"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sat'
+						"div",
+						{ className: "tag" },
+						"Sat"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sun'
+						"div",
+						{ className: "tag" },
+						"Sun"
 					)
 				),
 				this.props.tasks.map(function (t) {
 					return _react2.default.createElement(TaskRow, _extends({}, t, { key: t.id }));
 				}),
 				_react2.default.createElement(
-					'div',
-					{ onClick: function onClick() {
-							_task.Tlib.create();_task.Tlib.rerender();
-						} },
-					'Add New Habit'
+					"div",
+					{ onClick: function onClick() {} },
+					"Add New Habit"
 				)
 			);
 		}
 	});
 
 	var WeekView = _react2.default.createClass({
-		displayName: 'WeekView',
+		displayName: "WeekView",
 
 		render: function render() {
 			//functions for callbacks, etc; excluding the task in props
@@ -39664,62 +39663,62 @@
 			delete _fs.tasks;
 
 			return _react2.default.createElement(
-				'div',
-				{ id: 'weekPanel' },
+				"div",
+				{ id: "weekPanel" },
 				_react2.default.createElement(
-					'div',
-					{ id: 'weekHeader' },
-					_react2.default.createElement('div', { id: 'o' }),
+					"div",
+					{ id: "weekHeader" },
+					_react2.default.createElement("div", { id: "o" }),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Mon'
+						"div",
+						{ className: "tag" },
+						"Mon"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Tue'
+						"div",
+						{ className: "tag" },
+						"Tue"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Wed'
+						"div",
+						{ className: "tag" },
+						"Wed"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Thu'
+						"div",
+						{ className: "tag" },
+						"Thu"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Fri'
+						"div",
+						{ className: "tag" },
+						"Fri"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sat'
+						"div",
+						{ className: "tag" },
+						"Sat"
 					),
 					_react2.default.createElement(
-						'div',
-						{ className: 'tag' },
-						'Sun'
+						"div",
+						{ className: "tag" },
+						"Sun"
 					)
 				),
 				this.props.tasks.map(function (t) {
 					return _react2.default.createElement(TaskRow, _extends({}, t, _fs, { key: t.id }));
 				}),
 				_react2.default.createElement(
-					'div',
-					{ id: 'addNewRow', onClick: this.props.addTask },
-					'+ Add New Habit'
+					"div",
+					{ id: "addNewRow", onClick: this.props.addTask },
+					"+ Add New Habit"
 				)
 			);
 		}
 	});
 
 	var TaskRow = _react2.default.createClass({
-		displayName: 'TaskRow',
+		displayName: "TaskRow",
 
 		getInitialState: function getInitialState() {
 			return { editMode: false };
@@ -39728,6 +39727,9 @@
 			this.setState({
 				editMode: !this.state.editMode
 			});
+		},
+		keyPress: function keyPress(t) {
+			if (t.charCode == 13) this.toggleEdit();
 		},
 		nameChange: function nameChange(e) {
 			this.props.setName(this.props.id, e.target.value);
@@ -39758,49 +39760,49 @@
 				switch (this.props.unit) {
 					case 1:
 						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
+							"div",
+							{ className: "quant" },
 							this.props.quant,
-							' reps'
+							" reps"
 						);break;
 					case 2:
 						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
+							"div",
+							{ className: "quant" },
 							this.props.quant,
-							' mins'
+							" mins"
 						);break;
 				}
 			} else {
-				name = _react2.default.createElement('input', { value: this.props.name, onChange: this.nameChange });
+				name = _react2.default.createElement("input", { value: this.props.name, onChange: this.nameChange, onKeyPress: this.keyPress });
 				var cat = function cat(catName) {
 					return _react2.default.createElement(
-						'a',
-						{ href: '#', onClick: function onClick() {
+						"a",
+						{ href: "#", onClick: function onClick() {
 								return _this.props.toggleUnit(tid);
 							} },
 						catName
 					);
 				};
-				var q = _react2.default.createElement('input', { type: 'number', value: this.props.quant, onChange: this.quantChange });
+				var q = _react2.default.createElement("input", { type: "number", value: this.props.quant, onChange: this.quantChange, onKeyPress: this.keyPress });
 				switch (this.props.unit) {
 					case 0:
 						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
+							"div",
+							{ className: "quant" },
 							cat("N/A")
 						);break;
 					case 1:
 						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
+							"div",
+							{ className: "quant" },
 							q,
 							cat("reps")
 						);break;
 					case 2:
 						quant = _react2.default.createElement(
-							'div',
-							{ className: 'quant' },
+							"div",
+							{ className: "quant" },
 							q,
 							cat("mins")
 						);break;
@@ -39818,26 +39820,26 @@
 				});
 			}
 			return _react2.default.createElement(
-				'div',
-				{ className: 'taskRow' },
-				_react2.default.createElement('div', { className: 'karmaFlair' }),
+				"div",
+				{ className: "taskRow" },
+				_react2.default.createElement("div", { className: "karmaFlair" }),
 				_react2.default.createElement(
-					'div',
-					{ className: 'taskName' },
+					"div",
+					{ className: "taskName" },
 					name,
 					quant
 				),
 				buttonRow,
-				_react2.default.createElement('div', { className: 'taskDelete', onClick: function onClick() {
+				_react2.default.createElement("div", { className: "taskDelete", onClick: function onClick() {
 						_this.props.removeTask(_this.props.id);
-					} /*() => {Tlib.remove(this.props.id); Tlib.rerender()}*/ }),
-				_react2.default.createElement('div', { className: 'taskEdit', onClick: this.toggleEdit })
+					} }),
+				_react2.default.createElement("div", { className: "taskEdit", onClick: this.toggleEdit })
 			);
 		}
 	});
 
 	var ButtonBox = _react2.default.createClass({
-		displayName: 'ButtonBox',
+		displayName: "ButtonBox",
 
 		render: function render() {
 			var cname = "bb";
@@ -39858,14 +39860,14 @@
 			if (this.props.e) {
 				cname += " bbor";
 			}
-			return _react2.default.createElement('div', { className: cname, onClick: this.props.onClick });
+			return _react2.default.createElement("div", { className: cname, onClick: this.props.onClick });
 		}
 	});
 
 	exports.default = WeekView;
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39964,76 +39966,13 @@
 	exports.default = DayView;
 
 /***/ },
-/* 345 */,
-/* 346 */,
-/* 347 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	var habisave = exports.habisave = {
-		pushPopup: function pushPopup(popupStoreState) {
-			chrome.storage.sync.set({ 'popupStoreState': popupStoreState }, function () {
-				console.log('tasks saved');
-			});
-		},
-		pullPopup: function pullPopup(callback) {
-			console.log("pullRun");
-			chrome.storage.sync.get("popupStoreState", callback);
-		}
-	};
-
-/***/ },
-/* 348 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(349);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(299)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./base.less", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./base.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 349 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(297)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "body {\n  height: auto;\n  background-color: #FFFFFF;\n  padding: 0;\n  margin: 0;\n}\n.transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n@font-face {\n  font-family: \"PT Sans\";\n  src: url(" + __webpack_require__(298) + ") format(\"truetype\");\n}\nhtml {\n  background-color: #DDDDDD;\n}\n* {\n  font-family: PT Sans;\n}\n#navbar {\n  height: 60px;\n  box-shadow: 0 0 2px 0 black;\n}\n#navbar .navbutton {\n  font-family: PT Sans;\n  text-align: center;\n  padding-top: 30px;\n  padding-bottom: 10px;\n  float: left;\n  height: 20px;\n  font-size: 20px;\n  background-color: #FFFFFF;\n  color: black;\n  text-decoration: none;\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\n#navbar .navbutton:hover {\n  background-color: #4E4E4E;\n  color: #FFFFFF;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 350 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(351);
+	var content = __webpack_require__(347);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(299)(content, {});
@@ -40053,7 +39992,7 @@
 	}
 
 /***/ },
-/* 351 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(297)();
@@ -40061,7 +40000,7 @@
 
 
 	// module
-	exports.push([module.id, ".transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\nbody {\n  width: 600px;\n}\n#navbar {\n  width: 600px;\n}\n#navbar .navbutton {\n  width: 100px;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow:hover {\n  background-color: #EEEEEE;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel .taskRow .quant > input {\n  width: 40px;\n}\n#weekPanel .taskRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel .taskRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: rgba(255, 255, 255, 0);\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n#weekPanel #addNewRow {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n  padding-left: 20px;\n  font-size: 18px;\n  color: #555555;\n}\n#weekPanel #addNewRow:hover {\n  background-color: #EEEEEE;\n}\n#weekPanel #addNewRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel #addNewRow .quant > input {\n  width: 40px;\n}\n#weekPanel #addNewRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel #addNewRow div {\n  float: left;\n}\n#weekPanel #addNewRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel #addNewRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel #addNewRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel #addNewRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel #addNewRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel #addNewRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel #addNewRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel #addNewRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel #addNewRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel #addNewRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel #addNewRow .bb.w {\n  background-color: rgba(255, 255, 255, 0);\n}\n#weekPanel #addNewRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel #addNewRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel #addNewRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel #addNewRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel #addNewRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n#dayPanel {\n  display: inline-block;\n  padding: 30px;\n}\n#dayPanel .dayBox {\n  float: left;\n  width: 100px;\n  height: 150px;\n  margin: 4px;\n  box-shadow: 0 0 2px 0 black;\n}\n#dayPanel .dayBoxTop {\n  height: 50px;\n  padding: 4px;\n  box-sizing: border-box;\n}\n#dayPanel .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 100px;\n  height: 100px;\n  box-sizing: border-box;\n}\n#dayPanel .bb.g {\n  background-color: #00FF00;\n}\n#dayPanel .bb.g:hover {\n  background-color: #91FF91;\n}\n#dayPanel .bb.r {\n  background-color: #FF5757;\n}\n#dayPanel .bb.r:hover {\n  background-color: #FF9393;\n}\n#dayPanel .bb.b {\n  background-color: #888888;\n}\n#dayPanel .bb.w {\n  background-color: rgba(255, 255, 255, 0);\n}\n#dayPanel .bb.bbor {\n  border: solid 3px #888888;\n}\n", ""]);
+	exports.push([module.id, ".transit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n}\nbody {\n  width: 600px;\n}\n#navbar {\n  width: 600px;\n}\n#navbar .navbutton {\n  width: 100px;\n}\n#navbar #finishWeek {\n  width: 200px;\n  float: right;\n  color: white;\n  background-color: black;\n}\n#navbar #finishWeek:hover {\n  background-color: #555555;\n}\n#weekPanel {\n  padding: 20px;\n}\n#weekPanel #weekHeader {\n  width: 600px;\n  height: 20px;\n}\n#weekPanel #weekHeader div {\n  display: inline-block;\n}\n#weekPanel #weekHeader #o {\n  width: 320px;\n}\n#weekPanel #weekHeader .tag {\n  font-family: PT Sans;\n  width: 28px;\n  font-size: 12px;\n  text-align: center;\n}\n#weekPanel .taskRow {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n}\n#weekPanel .taskRow:hover {\n  background-color: #EEEEEE;\n}\n#weekPanel .taskRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel .taskRow .quant > input {\n  width: 40px;\n}\n#weekPanel .taskRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel .taskRow div {\n  float: left;\n}\n#weekPanel .taskRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel .taskRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel .taskRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel .taskRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel .taskRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel .taskRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel .taskRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel .taskRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel .taskRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel .taskRow .bb.w {\n  background-color: rgba(255, 255, 255, 0);\n}\n#weekPanel .taskRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel .taskRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel .taskRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel .taskRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel .taskRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n#weekPanel #addNewRow {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  padding: 4px;\n  box-shadow: 0 0 2px 0 black;\n  margin-bottom: 2px;\n  padding-left: 20px;\n  font-size: 18px;\n  color: #555555;\n}\n#weekPanel #addNewRow:hover {\n  background-color: #EEEEEE;\n}\n#weekPanel #addNewRow input {\n  font-size: 16px;\n  width: 160px;\n  float: left;\n}\n#weekPanel #addNewRow .quant > input {\n  width: 40px;\n}\n#weekPanel #addNewRow .quant > a {\n  text-decoration: none;\n  color: black;\n}\n#weekPanel #addNewRow div {\n  float: left;\n}\n#weekPanel #addNewRow .karmaFlair {\n  width: 10px;\n  height: 26px;\n  background-color: #00FF00;\n}\n#weekPanel #addNewRow .taskName {\n  width: 286px;\n  height: 26px;\n  font-family: PT Sans;\n  font-size: 20px;\n  padding-left: 20px;\n}\n#weekPanel #addNewRow .taskName .quant {\n  float: right;\n  margin-right: 20px;\n}\n#weekPanel #addNewRow .taskName .quant div {\n  width: 40px;\n}\n#weekPanel #addNewRow .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 26px;\n  height: 26px;\n  box-sizing: border-box;\n  margin-left: 2px;\n}\n#weekPanel #addNewRow .bb.g {\n  background-color: #00FF00;\n}\n#weekPanel #addNewRow .bb.g:hover {\n  background-color: #91FF91;\n}\n#weekPanel #addNewRow .bb.r {\n  background-color: #FF5757;\n}\n#weekPanel #addNewRow .bb.r:hover {\n  background-color: #FF9393;\n}\n#weekPanel #addNewRow .bb.b {\n  background-color: #888888;\n}\n#weekPanel #addNewRow .bb.w {\n  background-color: rgba(255, 255, 255, 0);\n}\n#weekPanel #addNewRow .bb.bbor {\n  border: solid 3px #888888;\n}\n#weekPanel #addNewRow .taskEdit {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FFCC00;\n}\n#weekPanel #addNewRow .taskEdit:hover {\n  background-color: #FFDB4D;\n}\n#weekPanel #addNewRow .taskDelete {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  height: 26px;\n  width: 13px;\n  float: right;\n  background-color: #FF6935;\n}\n#weekPanel #addNewRow .taskDelete:hover {\n  background-color: #FFAC8F;\n}\n#dayPanel {\n  display: inline-block;\n  padding: 30px;\n}\n#dayPanel .dayBox {\n  float: left;\n  width: 100px;\n  height: 150px;\n  margin: 4px;\n  box-shadow: 0 0 2px 0 black;\n}\n#dayPanel .dayBoxTop {\n  height: 50px;\n  padding: 4px;\n  box-sizing: border-box;\n}\n#dayPanel .bb {\n  transition: 0.08s ease-in-out;\n  -moz-transition: 0.08s ease-in-out;\n  -webkit-transition: 0.08s ease-in-out;\n  float: left;\n  width: 100px;\n  height: 100px;\n  box-sizing: border-box;\n}\n#dayPanel .bb.g {\n  background-color: #00FF00;\n}\n#dayPanel .bb.g:hover {\n  background-color: #91FF91;\n}\n#dayPanel .bb.r {\n  background-color: #FF5757;\n}\n#dayPanel .bb.r:hover {\n  background-color: #FF9393;\n}\n#dayPanel .bb.b {\n  background-color: #888888;\n}\n#dayPanel .bb.w {\n  background-color: rgba(255, 255, 255, 0);\n}\n#dayPanel .bb.bbor {\n  border: solid 3px #888888;\n}\n", ""]);
 
 	// exports
 

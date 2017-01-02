@@ -1,6 +1,4 @@
 import React from 'react';
-import {Tlib} from './task.jsx'
-
 
 const ArchiveWeekView = React.createClass({
 	render: function(){
@@ -17,7 +15,7 @@ const ArchiveWeekView = React.createClass({
 			</div>
 
 			{this.props.tasks.map((t) => (<TaskRow {...t} key = {t.id}/>))}
-			<div onClick = {() => {Tlib.create(); Tlib.rerender()}}>Add New Habit</div>
+			<div onClick = {() => {}}>Add New Habit</div>
 			</div>);
 	}
 })
@@ -55,6 +53,10 @@ const TaskRow = React.createClass({
 			editMode: !this.state.editMode
 		});
 	},
+	keyPress: function(t){
+		if(t.charCode==13)
+            this.toggleEdit();
+	},
 	nameChange : function(e){
 		this.props.setName(this.props.id, e.target.value);
 	},
@@ -81,9 +83,9 @@ const TaskRow = React.createClass({
 			}
 		}
 		else{
-			name = <input value = {this.props.name} onChange = {this.nameChange}/>;
+			name = <input value = {this.props.name} onChange = {this.nameChange} onKeyPress={this.keyPress}/>;
 			var cat = (catName) =>{return <a href = "#" onClick = {()=>this.props.toggleUnit(tid)}>{catName}</a>};
-			var q = <input type = "number" value = {this.props.quant} onChange = {this.quantChange}/>
+			var q = <input type = "number" value = {this.props.quant} onChange = {this.quantChange} onKeyPress={this.keyPress}/>
 			switch(this.props.unit){
 				case 0: quant = <div className = "quant">{cat("N/A")}</div>; break;
 				case 1: quant = <div className = "quant">{q}{cat("reps")}</div>; break;
@@ -101,7 +103,7 @@ const TaskRow = React.createClass({
 			<div className = "karmaFlair"/>
 			<div className = "taskName">{name}{quant}</div>
 			{buttonRow}
-			<div className = "taskDelete" onClick = {()=>{this.props.removeTask(this.props.id)}/*() => {Tlib.remove(this.props.id); Tlib.rerender()}*/}/>
+			<div className = "taskDelete" onClick = {()=>{this.props.removeTask(this.props.id)}}/>
 			<div className = "taskEdit" onClick = {this.toggleEdit}/>
 		</div>)
 	}

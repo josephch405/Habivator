@@ -1,17 +1,19 @@
-export const ADD_TASK = 'ADD_TASK'
-export const REMOVE_TASK = 'REMOVE_TASK'
+export const ADD_TASK = '1'
+export const REMOVE_TASK = '2'
 
-export const TOGGLE_DAYSDONE = 'TOGGLE_DAYSDONE'
-export const TOGGLE_ACTIVEDAYS = 'TOGGLE_ACTIVEDAYS'
-export const TOGGLE_UNIT = 'TOGGLE_UNIT'
+export const TOGGLE_DAYSDONE = '3'
+export const TOGGLE_ACTIVEDAYS = '4'
+export const TOGGLE_UNIT = '5'
 
-export const SET_QUANT = 'SET_QUANT'
-export const SET_NAME = 'SET_NAME'
+export const SET_QUANT = '6'
+export const SET_NAME = '7'
 
-export const PRUNE = 'PRUNE'
-export const SET_TIME = 'SET_TIME'
+export const PRUNE = '8'
+export const SET_TIME = '9'
 
-export const LOAD = 'LOAD'
+export const LOAD = '10'
+
+export const SET_NOTIF_INTERV = '11'
 
 /*
  * action creators
@@ -51,4 +53,8 @@ export function setTime(time){
 
 export function load(_state){
 	return {type: LOAD, _state};
+}
+
+export function setNotifInterv(_state, target){
+	return {type: SET_NOTIF_INTERV, _state, target};
 }

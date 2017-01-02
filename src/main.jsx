@@ -3,27 +3,31 @@ import { render } from 'react-dom';
 import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, setTime, setName, pullPopup, load, removeTask } from './actions.js'
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
-import popupApp from './reducers.js';
+import { popupApp } from './reducers.js';
 import WeekView from './weekview.jsx';
 import DayView from './dayview.jsx';
 import { habisave } from './habisave'
+
+import moment from 'moment';
 
 //require("./fonts/ptsans.ttf")
 require("./less/base.less");
 require("./less/main.less");
 
-let store = createStore(popupApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(popupApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-const push = (popupStore)=>{
+/*
+const push = (popupStore) => {
     chrome.storage.sync.set({'popupStore': popupStore}, function() {
           console.log('tasks saved');
     });
 }
+*/
 
 const PopupApp = React.createClass({
 	componentWillMount: function(){
 		var a = this;
-		habisave.pullPopup(function(_s){console.log(_s.popupStoreState);a.props.load(_s.popupStoreState)});
+		habisave.pullPopup(function(_s){a.props.load(_s.popupStoreState)});
 	},
 	getInitialState: function(){
 		return {mode:"WEEK"};
@@ -39,7 +43,7 @@ const PopupApp = React.createClass({
 		if(this.state.mode == "WEEK"){lowerContent = (<WeekView {...this.props}/>)}
 		else { lowerContent = (<DayView {...this.props}/>)};
 		return(<div>
-		<NavBar mode = {this.state.mode} setMode = {this.setMode}/>
+		<NavBar weekEnded = {this.props.weekEnded} mode = {this.state.mode} setMode = {this.setMode}/>
 		{lowerContent}
 		</div>);
 	}
@@ -47,7 +51,8 @@ const PopupApp = React.createClass({
 
 const mapStateToProps = (state) => {
 	return {
-		tasks: state.tasks
+		tasks: state.tasks,
+		weekEnded: moment().diff(moment(state.weekDate), 'days') > 6
 	}
 }
 
@@ -82,11 +87,14 @@ const mapDispatchToProps = (dispatch) => {
 
 const NavBar = React.createClass({
 	render: function(){
+		var finishWeek;
+		if(this.props.weekEnded){finishWeek = <a href = "#" id = "finishWeek" className = "navbutton" onClick = {habisave.weekendTally}>Finish Week</a>}
 		return(
 			<div id = "navbar">
 				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("WEEK")}>Week</a>
 				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("DAY")}>Day</a>
 				<a href = "#" className = "navbutton">More</a>
+				{finishWeek}
 			</div>
 		);
 	}

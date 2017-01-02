@@ -13,6 +13,15 @@ body {
     .navbutton {
         width: 100px;
     }
+    #finishWeek {
+        width: 200px;
+        float: right;
+        color:white;
+        background-color: black;
+        &:hover {
+            background-color: #555555
+        }
+    }
 }
 
 #weekPanel {
@@ -33,10 +42,9 @@ body {
             text-align: center;
         }
     }
-
     .taskRow {
         .transit;
-        &:hover{
+        &:hover {
             background-color: #EEEEEE;
         }
         height: 26px;
@@ -52,9 +60,9 @@ body {
         .quant > input {
             width: 40px;
         }
-        .quant > a{
+        .quant > a {
             text-decoration: none;
-            color:black;
+            color: black;
         }
         div {
             float: left;
@@ -101,7 +109,8 @@ body {
                 background-color: #888888;
             }
             &.w {
-                background-color: rgba(255,255,255,0);;
+                background-color: rgba(255, 255, 255, 0);
+                ;
             }
             &.bbor {
                 border: solid 3px #888888;
@@ -128,27 +137,27 @@ body {
             }
         }
     }
-    #addNewRow{
+    #addNewRow {
         .taskRow;
         padding-left: 20px;
-        font-size:18px;
+        font-size: 18px;
         color: #555555;
     }
 }
 
-#dayPanel{
-    display:inline-block;
+#dayPanel {
+    display: inline-block;
     padding: 30px;
-    .dayBox{
-        float:left;
-        width:100px;
+    .dayBox {
+        float: left;
+        width: 100px;
         height: 150px;
         margin: 4px;
         box-shadow: 0 0 2px 0 black;
     }
-    .dayBoxTop{
-        height:50px;
-        padding:4px;
+    .dayBoxTop {
+        height: 50px;
+        padding: 4px;
         box-sizing: border-box;
     }
     .bb {
@@ -173,7 +182,7 @@ body {
             background-color: #888888;
         }
         &.w {
-            background-color: rgba(255,255,255,0);
+            background-color: rgba(255, 255, 255, 0);
         }
         &.bbor {
             border: solid 3px #888888;
