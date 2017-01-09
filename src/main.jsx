@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, setTime, setName, pullPopup, load, removeTask } from './actions.js'
+import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, setTime, setName, pullPopup, load, removeTask, wipePopup } from './actions.js'
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
 import { popupApp } from './reducers.js';
@@ -28,12 +28,20 @@ const PopupApp = React.createClass({
 	componentWillMount: function(){
 		var a = this;
 		habisave.pullPopup(function(_s){a.props.load(_s.popupStoreState)});
+		habisave.pull("popupMode", this.setMode);
 	},
 	getInitialState: function(){
 		return {mode:"WEEK"};
 	},
 	setMode: function(m){
-		this.setState({mode:m})
+		console.log("setMode:")
+		console.log(m)
+		if(m.popupMode != null)
+			this.setState({mode:m.popupMode});
+		else{
+			this.setState({mode:m});
+			habisave.push("popupMode", m, null);
+		}
 	},
 	setTasks: function(t){
 		this.setState({tasks: t})
@@ -43,7 +51,8 @@ const PopupApp = React.createClass({
 		if(this.state.mode == "WEEK"){lowerContent = (<WeekView {...this.props}/>)}
 		else { lowerContent = (<DayView {...this.props}/>)};
 		return(<div>
-		<NavBar weekEnded = {this.props.weekEnded} mode = {this.state.mode} setMode = {this.setMode}/>
+		<NavBar weekEnded = {this.props.weekEnded} wipePopup = {this.props.wipePopup}
+			mode = {this.state.mode} setMode = {this.setMode}/>
 		{lowerContent}
 		</div>);
 	}
@@ -81,14 +90,24 @@ const mapDispatchToProps = (dispatch) => {
     },
     setName: (tid, name)=>{
     	dispatch(setName(tid, name));
+    },
+    wipePopup: (time)=>{
+    	dispatch(wipePopup(time));
     }
   }
 }
 
+const today = moment().startOf('isoweek').toString();
+
 const NavBar = React.createClass({
+	weekendTally: function(){
+		var record = store.getState();
+		this.props.wipePopup(today);
+		habisave.weekendTally(record);
+	},
 	render: function(){
 		var finishWeek;
-		if(this.props.weekEnded){finishWeek = <a href = "#" id = "finishWeek" className = "navbutton" onClick = {habisave.weekendTally}>Finish Week</a>}
+		if(this.props.weekEnded){finishWeek = <a href = "#" id = "finishWeek" className = "navbutton" onClick = {this.weekendTally}>Finish Week</a>}
 		return(
 			<div id = "navbar">
 				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("WEEK")}>Week</a>

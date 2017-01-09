@@ -14,6 +14,7 @@ export const SET_TIME = '9'
 export const LOAD = '10'
 
 export const SET_NOTIF_INTERV = '11'
+export const WIPE_POPUP = '12'
 
 /*
  * action creators
@@ -57,4 +58,8 @@ export function load(_state){
 
 export function setNotifInterv(_state, target){
 	return {type: SET_NOTIF_INTERV, _state, target};
+}
+
+export function wipePopup(time){
+	return {type: WIPE_POPUP, time};
 }

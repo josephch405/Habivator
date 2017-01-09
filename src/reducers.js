@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
-import { ADD_TASK, TOGGLE_DAYSDONE, TOGGLE_ACTIVEDAYS, TOGGLE_UNIT, SET_QUANT, PRUNE, SET_TIME, REMOVE_TASK, SET_NAME, LOAD, SET_NOTIF_INTERV } from './actions'
+import { ADD_TASK, TOGGLE_DAYSDONE, TOGGLE_ACTIVEDAYS, 
+    TOGGLE_UNIT, SET_QUANT, PRUNE, SET_TIME, REMOVE_TASK, 
+    SET_NAME, LOAD, SET_NOTIF_INTERV, WIPE_POPUP } from './actions'
 import moment from 'moment';
-import { habisave } from './habisave'
+import { habisave } from './habisave';
 
 /* int - returns day of week, 0...6 (mon...sun)
  */
@@ -56,6 +58,7 @@ const activeDays = (state = [true, true, true, true, true, true, true], action) 
     }
 }
 
+//0: black, 1: white, 2: red, 3: green
 const daysDone = (state = [2, 2, 2, 2, 2, 2, 2], action, active) => {
     var di = action.dayIndex;
     var _o = Object.assign([], state);
@@ -92,6 +95,8 @@ const daysDone = (state = [2, 2, 2, 2, 2, 2, 2], action, active) => {
                     _o[i] = 0;
             }
             return _o;
+        case WIPE_POPUP:
+            return [2,2,2,2,2,2,2];
         default:
             return state;
     }
@@ -107,6 +112,7 @@ const task = (state = {}, action) => {
     switch (action.type) {
         case TOGGLE_DAYSDONE:
         case TOGGLE_ACTIVEDAYS:
+        case WIPE_POPUP:
         case PRUNE:
             _o.activeDays = activeDays(state.activeDays, action);
             _o.daysDone = daysDone(state.daysDone, action, _o.activeDays);
@@ -153,6 +159,7 @@ const tasks = (state = [blankTask], action) => {
 const weekDate = (state = moment().startOf('isoweek').toString(), action) => {
     switch (action.type) {
         case SET_TIME:
+        case WIPE_POPUP:
             return moment(action.time).startOf('isoweek').toString();
         default:
             return state;
@@ -175,6 +182,7 @@ const popupApp = (state = {}, action) => {
             _o = action._state;
             _o = popupApp(_o, { type: PRUNE });
             return _o;
+        case WIPE_POPUP:
         case ADD_TASK:
         case TOGGLE_DAYSDONE:
         case TOGGLE_ACTIVEDAYS:
