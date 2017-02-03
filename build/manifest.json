@@ -4,6 +4,7 @@
       //"scripts": ["background.js"  ]
    },
    "name": "Habivator - build a habit!",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs3KhhirPYzvYBw7i7OvpnN8MWPmN6xFQiwvuVFpCPWjqj4YFLwXXEFKDPSaHRfrky5cpEDY/MJJhwM0YMeZEJ8k/T3jXr9b+ugBR4zxStlSYmnhURLUw57DeghTAxtPWQK12egwviBUCkOeDXgWXQzxPrXcSHkP7m0v8N8BO2hIWus+6Ivk55xbeTma2Rk8lGGUDK/ZKH18Q5ZgN/YoYLOye/LDlvuqPQbxuYisntYdEGBLdeBIFJ6nFl8uc7kN5cbHs9/CTzev+sQjGbboZ/8qA3LeNCOhK+tFVyzTqKqWthS4OZ97AkzX8OlqP+RiaR9aYEJMeJJSle3pNu1ZBpQIDAQAB",
    "short_name": "Habivator",
    "version": "0.72",
    "description": "Reach your goals - working out, reading, coding, anything - but first build a habit.",
@@ -14,8 +15,13 @@
    },
    "permissions": [
       "storage",
-      "notifications"
+      "notifications",
+      "identity"
    ],
+   "oauth2":{
+      "client_id": "532461452327-g8f10db6gcitei3hl4cshuuherkfe1h5.apps.googleusercontent.com",
+      "scopes": ["https://www.googleapis.com/auth/plus.login"]
+   },
    "options_page": "options.html",
    "icons": {"128": "/img/icon.png"},
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from './fbase.jsx';
 import { render } from 'react-dom';
 import { addTask, toggleDaysDone, toggleActiveDays, toggleUnit, setQuant, setTime, setName, pullPopup, load, removeTask, wipePopup } from './actions.js'
 import { Provider, connect } from 'react-redux'
@@ -105,6 +106,9 @@ const NavBar = React.createClass({
 		this.props.wipePopup(today);
 		habisave.weekendTally(record);
 	},
+	openOptions: () => {
+		chrome.tabs.create({ url: "options.html" })
+	},
 	render: function(){
 		var finishWeek;
 		if(this.props.weekEnded){finishWeek = <a href = "#" id = "finishWeek" className = "navbutton" onClick = {this.weekendTally}>Finish Week</a>}
@@ -112,7 +116,7 @@ const NavBar = React.createClass({
 			<div id = "navbar">
 				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("WEEK")}>Week</a>
 				<a href = "#" className = "navbutton" onClick = {() => this.props.setMode("DAY")}>Day</a>
-				<a href = "#" className = "navbutton">More</a>
+				<a href = "#" className = "navbutton" onClick = {this.openOptions}>More</a>
 				{finishWeek}
 			</div>
 		);

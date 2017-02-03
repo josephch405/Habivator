@@ -1,3 +1,26 @@
+import * as firebase from "firebase";
+
+var config = {
+    apiKey: "AIzaSyD7F9joUeMQrN5L2hLuvQ2vFlz8ZOlMSm4",
+    authDomain: "habivator.firebaseapp.com",
+    databaseURL: "https://habivator.firebaseio.com",
+    storageBucket: "habivator.appspot.com",
+    messagingSenderId: "532461452327"
+};
+
+firebase.initializeApp(config);
+
+var fbUid;
+
+
+chrome.identity.getAuthToken((token)=>{
+    var cred = firebase.auth.GoogleAuthProvider.credential(null,token);
+    firebase.auth().signInWithCredential(cred);
+})
+
+
+setTimeout(()=>console.log(firebase.auth().currentUser.uid), 1000);
+
 export const habisave = {
     pushPopup: (popupStoreState, callback) => {
         updateBadge(popupStoreState);
@@ -5,6 +28,10 @@ export const habisave = {
     },
     pullPopup: (callback) => {
         chrome.storage.sync.get("popupStoreState", callback);
+        /*if(firebase){
+            firebase.database().ref()
+        }*/
+        //console.log(firebase.auth().currentUser.uid);
     },
     pushOptions: (optionsStoreState, callback) => {
         console.log("pushOptions run")

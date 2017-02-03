@@ -7,6 +7,129 @@
 #navbar {
     //width: 600px;
     .navbutton {
-        width: 200px;
+        width: 20%;
+    }
+}
+
+
+#weekPanel {
+    padding: 20px;
+    width: 520px;
+    #weekHeader {
+        width: 600px;
+        height: 20px;
+        div {
+            display: inline-block;
+        }
+        #o {
+            width: 320px;
+        }
+        .tag {
+            font-family: PT Sans;
+            width: 28px;
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+    .taskRow {
+        .transit;
+        &:hover {
+            background-color: #EEEEEE;
+        }
+        height: 26px;
+        padding: 4px;
+        //border-top: solid 2px #DDDDDD;
+        box-shadow: 0 0 2px 0 black;
+        margin-bottom: 2px;
+        input {
+            font-size: 16px;
+            width: 160px;
+            float: left;
+        }
+        .quant > input {
+            width: 40px;
+        }
+        .quant > a {
+            text-decoration: none;
+            color: black;
+        }
+        div {
+            float: left;
+        }
+        .karmaFlair {
+            width: 10px;
+            height: 26px;
+            background-color: #00FF00;
+        }
+        .taskName {
+            width: 286px;
+            height: 26px;
+            font-family: PT Sans;
+            font-size: 20px;
+            padding-left: 20px;
+            .quant {
+                float: right;
+                margin-right: 20px;
+                div {
+                    width: 40px;
+                }
+            }
+        }
+        .bb {
+            .transit;
+            float: left;
+            width: 26px;
+            height: 26px;
+            box-sizing: border-box;
+            margin-left: 2px;
+            &.g {
+                background-color: #00FF00;
+                &:hover {
+                    background-color: #91FF91;
+                }
+            }
+            &.r {
+                background-color: #FF5757;
+                &:hover {
+                    background-color: #FF9393;
+                }
+            }
+            &.b {
+                background-color: #888888;
+            }
+            &.w {
+                background-color: rgba(255, 255, 255, 0);
+                ;
+            }
+            &.bbor {
+                border: solid 3px #888888;
+            }
+        }
+        .taskEdit {
+            .transit;
+            height: 26px;
+            width: 13px;
+            float: right;
+            background-color: #FFCC00;
+            &:hover {
+                background-color: #FFDB4D;
+            }
+        }
+        .taskDelete {
+            .transit;
+            height: 26px;
+            width: 13px;
+            float: right;
+            background-color: #FF6935;
+            &:hover {
+                background-color: #FFAC8F;
+            }
+        }
+    }
+    #bottomBar {
+        .taskRow;
+        padding-left: 20px;
+        font-size: 18px;
+        color: #555555;
     }
 }
